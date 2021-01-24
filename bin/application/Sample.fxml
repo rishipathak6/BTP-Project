@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -34,7 +35,12 @@
             <CheckBox fx:id="logoCheckBox" mnemonicParsing="false" onAction="#loadLogo" text="Show Logo" />
             <CheckBox fx:id="haarClassifier" mnemonicParsing="false" onAction="#haarSelected" text="Haar Classifier" />
             <CheckBox fx:id="lbpClassifier" mnemonicParsing="false" onAction="#lbpSelected" text="LBP Classifier" />
-            <Label text="Encryption Percentage" />
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="140.0" text="Encryption Percentage" />
+                  <TextField fx:id="encText" prefHeight="25.0" prefWidth="58.0" />
+               </children>
+            </HBox>
             <Slider fx:id="encPercent" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
          </children>
          <padding>

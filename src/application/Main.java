@@ -1,5 +1,5 @@
 package application;
-	
+
 import org.opencv.core.Core;
 
 import javafx.application.Application;
@@ -10,54 +10,46 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
-public class Main extends Application
-{
-	
+public class Main extends Application {
+
 	@Override
-	public void start(Stage primaryStage)
-	{
-		try
-		{
+	public void start(Stage primaryStage) {
+		try {
 			// load the FXML resource
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Sample.fxml"));
 			// store the root element so that the controllers can use it
 			BorderPane rootElement = (BorderPane) loader.load();
 			// create and style a scene
-			Scene scene = new Scene(rootElement, 640, 540);
+			Scene scene = new Scene(rootElement);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			// create the stage with the given title and the previously created
 			// scene
-			primaryStage.setTitle("JavaFX meets OpenCV");
+			primaryStage.setTitle("IP based Camera Video feed encryption");
 			primaryStage.setScene(scene);
 			// show the GUI
 			primaryStage.show();
-			
+
 			// set the proper behavior on closing the application
 			SampleController controller = loader.getController();
 			primaryStage.setOnCloseRequest((new EventHandler<WindowEvent>() {
-				public void handle(WindowEvent we)
-				{
+				public void handle(WindowEvent we) {
 					controller.setClosed();
 				}
 			}));
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * For launching the application...
 	 * 
-	 * @param args
-	 *            optional params
+	 * @param args optional params
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		// load the native OpenCV library
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		
+
 		launch(args);
 	}
 }

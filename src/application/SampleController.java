@@ -42,6 +42,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -73,6 +74,8 @@ public class SampleController {
 	private CheckBox lbpClassifier;
 	@FXML
 	private Slider encPercent;
+	@FXML
+	private TextField encText;
 	private double percentage;
 	private int frameno = 1;
 	// a timer for acquiring the video stream
@@ -130,6 +133,10 @@ public class SampleController {
 				this.haarClassifier.setSelected(true);
 				this.checkboxSelection(
 						"C:\\Users\\radha\\Documents\\MyFirstJFXApp\\src\\application\\resources\\haarcascades\\haarcascade_frontalface_alt.xml");
+
+				encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
+					encText.setText(Double.toString(newValue.doubleValue()));
+				});
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
 
@@ -299,7 +306,7 @@ public class SampleController {
 //					echo = client.sendEcho("server is working");
 //					System.out.println(echo);
 						if (cText20 != byteArray) {
-							Mat encMat = Imgcodecs.imdecode(new MatOfByte(cText20), Imgcodecs.IMREAD_UNCHANGED);
+							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
 								Image imageToShow = Utils.mat2Image(encMat);
 								updateImageView(encryptedFrame, imageToShow);
