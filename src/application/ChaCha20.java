@@ -29,7 +29,7 @@ public class ChaCha20 {
 //		encryptedText = pText;
 		for (int i = 0; i < times - 1; i++) {
 			cipher.update(pText, offset + i * (length), 64, encryptedText, offset + i * (length));
-			compr(pText, encryptedText, offset + (i) * (length));
+//			compr(pText, encryptedText, offset + (i) * (length));
 		}
 		cipher.doFinal(pText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
 

@@ -35,6 +35,7 @@
             <CheckBox fx:id="logoCheckBox" mnemonicParsing="false" onAction="#loadLogo" text="Show Logo" />
             <CheckBox fx:id="haarClassifier" mnemonicParsing="false" onAction="#haarSelected" text="Haar Classifier" />
             <CheckBox fx:id="lbpClassifier" mnemonicParsing="false" onAction="#lbpSelected" text="LBP Classifier" />
+            <CheckBox fx:id="decryptCheck" mnemonicParsing="false" text="Decrypt Video" />
             <HBox alignment="CENTER" prefHeight="29.0" prefWidth="200.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="140.0" text="Encryption Percentage" />

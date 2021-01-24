@@ -76,6 +76,8 @@ public class SampleController {
 	private Slider encPercent;
 	@FXML
 	private TextField encText;
+	@FXML
+	private CheckBox decryptCheck;
 	private double percentage;
 	private int frameno = 1;
 	// a timer for acquiring the video stream
@@ -136,6 +138,9 @@ public class SampleController {
 
 				encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
 					encText.setText(Double.toString(newValue.doubleValue()));
+				});
+				encText.textProperty().addListener((observable, oldValue, newValue) -> {
+				    encPercent.setValue(Double.parseDouble(newValue));
 				});
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
@@ -305,14 +310,22 @@ public class SampleController {
 //					System.out.println(echo);
 //					echo = client.sendEcho("server is working");
 //					System.out.println(echo);
-						if (cText20 != byteArray) {
+						if (this.decryptCheck.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
 								Image imageToShow = Utils.mat2Image(encMat);
 								updateImageView(encryptedFrame, imageToShow);
 							}
 						}
+						else {
+							Mat encMat = Imgcodecs.imdecode(new MatOfByte(cText20), Imgcodecs.IMREAD_UNCHANGED);
+							if (!encMat.empty()) {
+								Image imageToShow = Utils.mat2Image(encMat);
+								updateImageView(encryptedFrame, imageToShow);
+							}
+						}
 					}
+					
 				}
 
 			} catch (Exception e) {
