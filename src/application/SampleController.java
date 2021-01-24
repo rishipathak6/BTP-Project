@@ -269,24 +269,22 @@ public class SampleController {
 					nonce20 = getNonce(); // 96-bit nonce (12 bytes)
 					counter20++; // 32-bit initial count (8 bytes)
 					if (percentage != 0) {
-						numencblock = (int) (len * percentage / 100);
+						numencblock = (int) (len * percentage / 6400);
 						unencgap = len / numencblock;
-						System.out.println("Percentage = " + percentage);
-//						for (int i = 0; i < len; i = i + unencgap) {
-//							byteBlock = Arrays.copyOfRange(byteArray, i, i + 64);
-//							System.out.println("Input          : " + byteBlock);
-//							 System.out.println("Input (hex): " + convertBytesToHex(byteBlock));
+						System.out.println("Percentage = " + percentage + " numencblock = " + numencblock
+								+ " enencgap = " + unencgap);
 
 						System.out.println("\n---Encryption---");
-						cText20 = cipherCC20.encrypt(byteArray, key20, nonce20, counter20, 0, numencblock); // encrypt
+						cText20 = cipherCC20.encrypt(byteArray, key20, nonce20, counter20, 0, unencgap, numencblock); // encrypt
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
-						// System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
+						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
+						System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
 
 						System.out.println("\n---Decryption---");
 
-						pText20 = cipherCC20.decrypt(cText20, key20, nonce20, counter20, 0, numencblock); // decrypt
+						pText20 = cipherCC20.decrypt(cText20, key20, nonce20, counter20, 0, unencgap, numencblock); // decrypt
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
@@ -295,17 +293,19 @@ public class SampleController {
 
 //						}
 //						
-					}
+//					}
 //					String echo = client.sendEcho("hello server");
 //					System.out.println(echo);
 //					echo = client.sendEcho("server is working");
 //					System.out.println(echo);
-
-					Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
-					if (!encMat.empty()) {
-						Image imageToShow = Utils.mat2Image(encMat);
-						updateImageView(encryptedFrame, imageToShow);
-					} 
+						if (cText20 != byteArray) {
+							Mat encMat = Imgcodecs.imdecode(new MatOfByte(cText20), Imgcodecs.IMREAD_UNCHANGED);
+							if (!encMat.empty()) {
+								Image imageToShow = Utils.mat2Image(encMat);
+								updateImageView(encryptedFrame, imageToShow);
+							}
+						}
+					}
 				}
 
 			} catch (Exception e) {

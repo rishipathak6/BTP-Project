@@ -12,35 +12,64 @@ The inputs to ChaCha20 encryption, specified by RFC 7539, are:
 */
 public class ChaCha20 {
 
-    private static final String ENCRYPT_ALGO = "ChaCha20";
+	private static final String ENCRYPT_ALGO = "ChaCha20";
 
-    public byte[] encrypt(byte[] pText, SecretKey key, byte[] nonce, int counter, int offset, int length) throws Exception {
+	public byte[] encrypt(byte[] pText, SecretKey key, byte[] nonce, int counter, int offset, int length, int times)
+			throws Exception {
 
-        Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
+		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 
-        ChaCha20ParameterSpec param = new ChaCha20ParameterSpec(nonce, counter);
+		ChaCha20ParameterSpec param = new ChaCha20ParameterSpec(nonce, counter);
 
-        cipher.init(Cipher.ENCRYPT_MODE, key, param);
+		cipher.init(Cipher.ENCRYPT_MODE, key, param);
 
 //        byte[] encryptedText = cipher.doFinal(pText, offset, length);
-        byte[] encryptedText = cipher.doFinal(pText);
+		byte[] encryptedText = new byte[pText.length];
+		System.arraycopy(pText, 0, encryptedText, 0, pText.length);
+//		encryptedText = pText;
+		for (int i = 0; i < times - 1; i++) {
+			cipher.update(pText, offset + i * (length), 64, encryptedText, offset + i * (length));
+			compr(pText, encryptedText, offset + (i) * (length));
+		}
+		cipher.doFinal(pText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
 
-        return encryptedText;
-    }
+		return encryptedText;
+	}
 
-    public byte[] decrypt(byte[] cText, SecretKey key, byte[] nonce, int counter, int offset, int length) throws Exception {
+	public byte[] decrypt(byte[] cText, SecretKey key, byte[] nonce, int counter, int offset, int length, int times)
+			throws Exception {
 
-        Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
+		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 
-        ChaCha20ParameterSpec param = new ChaCha20ParameterSpec(nonce, counter);
+		ChaCha20ParameterSpec param = new ChaCha20ParameterSpec(nonce, counter);
 
-        cipher.init(Cipher.DECRYPT_MODE, key, param);
+		cipher.init(Cipher.DECRYPT_MODE, key, param);
 
-//        byte[] decryptedText = cipher.doFinal(cText, offset, length);
-        byte[] decryptedText = cipher.doFinal(cText);
+//		byte[] encryptedText = cipher.doFinal(pText, offset, length);
+		byte[] encryptedText = new byte[cText.length];
+		System.arraycopy(cText, 0, encryptedText, 0, cText.length);
+//			encryptedText = pText;
+		for (int i = 0; i < times - 1; i++) {
+			cipher.update(cText, offset + i * (length), 64, encryptedText, offset + i * (length));
+//			compr(cText, encryptedText, offset + (i) * (length));
+		}
+		cipher.doFinal(cText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
 
-        return decryptedText;
+		return encryptedText;
 
-    }
+	}
 
+	private static void compr(byte[] bytes, byte[] encbytes, int ind) {
+		StringBuilder result1 = new StringBuilder();
+		StringBuilder result2 = new StringBuilder();
+		for (int i = ind; i < ind + 64; i++) {
+			result1.append(String.format("%02x", bytes[i]));
+		}
+		for (int i = ind; i < ind + 64; i++) {
+			result2.append(String.format("%02x", encbytes[i]));
+		}
+		System.out.println(ind + " " + (ind + 64));
+		System.out.println(result1.toString());
+		System.out.println(result2.toString());
+	}
 }
