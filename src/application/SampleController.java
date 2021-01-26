@@ -2,8 +2,10 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -115,6 +117,8 @@ public class SampleController {
 	private byte[] mac = new byte[MAC_LEN]; // 12 bytes , 96 bits
 	private byte[] originalCText;
 
+	private OutputStream destStream;
+
 	EchoClient client;
 
 	/**
@@ -134,13 +138,13 @@ public class SampleController {
 				this.cameraActive = true;
 				this.haarClassifier.setSelected(true);
 				this.checkboxSelection(
-						"C:\\Users\\radha\\Documents\\MyFirstJFXApp\\src\\application\\resources\\haarcascades\\haarcascade_frontalface_alt.xml");
+						"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
 
 				encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
 					encText.setText(Double.toString(newValue.doubleValue()));
 				});
 				encText.textProperty().addListener((observable, oldValue, newValue) -> {
-				    encPercent.setValue(Double.parseDouble(newValue));
+					encPercent.setValue(Double.parseDouble(newValue));
 				});
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
@@ -281,18 +285,18 @@ public class SampleController {
 					nonce20 = getNonce(); // 96-bit nonce (12 bytes)
 					counter20++; // 32-bit initial count (8 bytes)
 					if (percentage != 0) {
-						numencblock = (int) (len * percentage / 6400);
+						numencblock = (int) ((len * percentage + 6399) / 6400);
 						unencgap = len / numencblock;
-						System.out.println("Percentage = " + percentage + " numencblock = " + numencblock
-								+ " enencgap = " + unencgap);
+						System.out.println("Percentage = " + percentage + " number of blocks encrypted = " + numencblock
+								+ " Gap between encrypted blocks = " + unencgap);
 
 						System.out.println("\n---Encryption---");
 						cText20 = cipherCC20.encrypt(byteArray, key20, nonce20, counter20, 0, unencgap, numencblock); // encrypt
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
-						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
-						System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
+//						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
+//						System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
 
 						System.out.println("\n---Decryption---");
 
@@ -316,16 +320,27 @@ public class SampleController {
 								Image imageToShow = Utils.mat2Image(encMat);
 								updateImageView(encryptedFrame, imageToShow);
 							}
-						}
-						else {
+						} else {
+//							BitmapEncoder.encodeToBitmap(cText20,
+//									new File("C:/Users/radha/Documents/MyFirstJFXApp/src/application/enc.bmp"));
+//							Mat encMat = Imgcodecs
+//									.imread("C:/Users/radha/Documents/MyFirstJFXApp/src/application/enc.bmp");
+//							if (!encMat.empty()) {
+//								Image imageToShow = Utils.mat2Image(encMat);
+//								updateImageView(encryptedFrame, imageToShow);
+//							} else {
+//								System.out.println("Encrypted Image cannot be shown");
+//							}
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(cText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
 								Image imageToShow = Utils.mat2Image(encMat);
 								updateImageView(encryptedFrame, imageToShow);
+							} else {
+								System.out.println("The frame is too encrypted to show");
 							}
 						}
 					}
-					
+
 				}
 
 			} catch (Exception e) {
@@ -451,7 +466,7 @@ public class SampleController {
 			this.lbpClassifier.setSelected(false);
 
 		this.checkboxSelection(
-				"C:\\Users\\radha\\Documents\\MyFirstJFXApp\\src\\application\\resources\\haarcascades\\haarcascade_frontalface_alt.xml");
+				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
 	}
 
 	/**
@@ -465,7 +480,7 @@ public class SampleController {
 			this.haarClassifier.setSelected(false);
 
 		this.checkboxSelection(
-				"C:\\Users\\radha\\Documents\\MyFirstJFXApp\\src\\application\\resources\\lbpcascades\\lbpcascade_frontalface.xml");
+				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/lbpcascades/lbpcascade_frontalface.xml");
 	}
 
 	/**

@@ -28,10 +28,10 @@ public class ChaCha20 {
 		System.arraycopy(pText, 0, encryptedText, 0, pText.length);
 //		encryptedText = pText;
 		for (int i = 0; i < times - 1; i++) {
-			cipher.update(pText, offset + i * (length), 64, encryptedText, offset + i * (length));
+			cipher.update(pText, offset + (i + 1) * (length) - 64, 64, encryptedText, offset + (i + 1) * (length) - 64);
 //			compr(pText, encryptedText, offset + (i) * (length));
 		}
-		cipher.doFinal(pText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
+		cipher.doFinal(pText, offset + (times) * length - 64, 64, encryptedText, offset + (times) * length - 64);
 
 		return encryptedText;
 	}
@@ -50,10 +50,10 @@ public class ChaCha20 {
 		System.arraycopy(cText, 0, encryptedText, 0, cText.length);
 //			encryptedText = pText;
 		for (int i = 0; i < times - 1; i++) {
-			cipher.update(cText, offset + i * (length), 64, encryptedText, offset + i * (length));
+			cipher.update(cText, offset + (i + 1) * (length) - 64, 64, encryptedText, offset + (i + 1) * (length) - 64);
 //			compr(cText, encryptedText, offset + (i) * (length));
 		}
-		cipher.doFinal(cText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
+		cipher.doFinal(cText, offset + (times) * length - 64, 64, encryptedText, offset + (times) * length - 64);
 
 		return encryptedText;
 
