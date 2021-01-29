@@ -2,15 +2,18 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -37,6 +40,8 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 //import it.polito.elite.teachingg.cv.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -118,16 +123,19 @@ public class SampleController {
 	private byte[] originalCText;
 
 	private OutputStream destStream;
-
+	private DatagramSocket datagramSocket;
+	private InetAddress receiverAddress;
 	EchoClient client;
 
 	/**
 	 * The action triggered by pushing the button on the GUI
 	 *
 	 * @param event the push button event
+	 * @throws SocketException 
+	 * @throws UnknownHostException 
 	 */
 	@FXML
-	protected void startCamera(ActionEvent event) {
+	protected void startCamera(ActionEvent event) throws SocketException, UnknownHostException {
 		if (!this.cameraActive) {
 			// start the video capture
 			this.capture.open(cameraId);
@@ -143,9 +151,17 @@ public class SampleController {
 				encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
 					encText.setText(Double.toString(newValue.doubleValue()));
 				});
-				encText.textProperty().addListener((observable, oldValue, newValue) -> {
-					encPercent.setValue(Double.parseDouble(newValue));
+				encText.textProperty().addListener(new ChangeListener<String>() {
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue,
+							String newValue) {
+						if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
+							encPercent.setValue(Double.parseDouble(newValue));
+						}
+					}
 				});
+				datagramSocket = new DatagramSocket();
+				receiverAddress  = InetAddress.getLocalHost();
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
 
@@ -295,7 +311,7 @@ public class SampleController {
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
-//						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
+						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
 //						System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
 
 						System.out.println("\n---Decryption---");
@@ -310,10 +326,9 @@ public class SampleController {
 //						}
 //						
 //					}
-//					String echo = client.sendEcho("hello server");
-//					System.out.println(echo);
-//					echo = client.sendEcho("server is working");
-//					System.out.println(echo);
+						DatagramPacket packet = new DatagramPacket(cText20, cText20.length, receiverAddress, 80);
+						datagramSocket.send(packet);
+
 						if (this.decryptCheck.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
