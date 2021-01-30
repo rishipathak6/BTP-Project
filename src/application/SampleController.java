@@ -2,12 +2,14 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
@@ -122,25 +124,19 @@ public class SampleController {
 	private byte[] mac = new byte[MAC_LEN]; // 12 bytes , 96 bits
 	private byte[] originalCText;
 
-	private OutputStream destStream;
-	private DatagramSocket datagramSocket;
-	private InetAddress receiverAddress;
-	EchoClient client;
-
 	/**
 	 * The action triggered by pushing the button on the GUI
 	 *
 	 * @param event the push button event
-	 * @throws SocketException 
-	 * @throws UnknownHostException 
+	 * @throws IOException 
 	 */
 	@FXML
-	protected void startCamera(ActionEvent event) throws SocketException, UnknownHostException {
+	protected void startCamera(ActionEvent event) throws IOException {
 		if (!this.cameraActive) {
 			// start the video capture
 			this.capture.open(cameraId);
 			new EchoServer().start();
-			client = new EchoClient();
+
 			// is the video stream available?
 			if (this.capture.isOpened()) {
 				this.cameraActive = true;
@@ -160,15 +156,16 @@ public class SampleController {
 						}
 					}
 				});
-				datagramSocket = new DatagramSocket();
-				receiverAddress  = InetAddress.getLocalHost();
+
+				Socket socket = new Socket(InetAddress.getLocalHost(), 3000);
+
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
 
 					@Override
 					public void run() {
 						// effectively grab and process a single frame
-						Mat frame = grabFrame(frameno);
+						Mat frame = grabFrame(frameno, socket);
 						frameno++;
 						// convert and show the frame
 						Image imageToShow = Utils.mat2Image(frame);
@@ -206,10 +203,11 @@ public class SampleController {
 	 * Get a frame from the opened video stream (if any)
 	 * 
 	 * @param frameno
+	 * @param socket
 	 *
 	 * @return the {@link Mat} to show
 	 */
-	private Mat grabFrame(int frameno) {
+	private Mat grabFrame(int frameno, Socket socket) {
 		// init everything
 		Mat frame = new Mat();
 
@@ -326,8 +324,7 @@ public class SampleController {
 //						}
 //						
 //					}
-						DatagramPacket packet = new DatagramPacket(cText20, cText20.length, receiverAddress, 80);
-						datagramSocket.send(packet);
+						sendBytes(cText20, 0, cText20.length, socket);
 
 						if (this.decryptCheck.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
@@ -381,9 +378,6 @@ public class SampleController {
 				System.err.println("Exception in stopping the frame capture, trying to release the camera now... " + e);
 			}
 		}
-
-		client.sendEcho("end");
-		client.close();
 
 		if (this.capture.isOpened()) {
 			// release the camera
@@ -586,6 +580,24 @@ public class SampleController {
 		byte[] newNonce = new byte[12];
 		new SecureRandom().nextBytes(newNonce);
 		return newNonce;
+	}
+
+	public void sendBytes(byte[] myByteArray, int start, int len, Socket socket) throws IOException {
+		if (len < 0)
+			throw new IllegalArgumentException("Negative length not allowed");
+		if (start < 0 || start >= myByteArray.length)
+			throw new IndexOutOfBoundsException("Out of bounds: " + start);
+		// Other checks if needed.
+
+		// May be better to save the streams in the support class;
+		// just like the socket variable.
+		OutputStream out = socket.getOutputStream();
+		DataOutputStream dos = new DataOutputStream(out);
+
+		dos.writeInt(len);
+		if (len > 0) {
+			dos.write(myByteArray, start, len);
+		}
 	}
 
 }
