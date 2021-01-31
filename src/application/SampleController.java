@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -63,6 +65,15 @@ import javafx.scene.image.ImageView;
  *
  */
 public class SampleController {
+//	private int port;
+//	private String ip;
+//
+//	public SampleController(String ip, int port, Consumer<Serializable> onReceiveCallback) {
+//		super(onReceiveCallback);
+//		this.port = port;
+//		this.ip = ip;
+//	}
+
 	// the FXML button
 	@FXML
 	private Button button;
@@ -128,14 +139,13 @@ public class SampleController {
 	 * The action triggered by pushing the button on the GUI
 	 *
 	 * @param event the push button event
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
 		if (!this.cameraActive) {
 			// start the video capture
 			this.capture.open(cameraId);
-			new EchoServer().start();
 
 			// is the video stream available?
 			if (this.capture.isOpened()) {
@@ -599,5 +609,23 @@ public class SampleController {
 			dos.write(myByteArray, start, len);
 		}
 	}
+
+//	@Override
+//	protected boolean isServer() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//	@Override
+//	protected String getIP() {
+//		// TODO Auto-generated method stub
+//		return ip;
+//	}
+//
+//	@Override
+//	protected int getPort() {
+//		// TODO Auto-generated method stub
+//		return port;
+//	}
 
 }
