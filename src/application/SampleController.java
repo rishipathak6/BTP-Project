@@ -319,7 +319,7 @@ public class SampleController {
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
-						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
+//						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
 //						System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
 
 						System.out.println("\n---Decryption---");

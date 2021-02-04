@@ -6,7 +6,6 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -42,9 +40,14 @@ import org.opencv.videoio.VideoCapture;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 //import it.polito.elite.teachingg.cv.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -52,6 +55,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 /**
  * The controller for our application, where the application logic is
@@ -111,6 +115,7 @@ public class ServerController {
 	private int len;
 	private int numencblock;
 	private int unencgap;
+	private boolean onceStarted;
 	private static final int NONCE_LEN = 12; // 96 bits, 12 bytes
 	private static final int MAC_LEN = 16; // 128 bits, 16 bytes
 	ChaCha20 cipherCC20 = new ChaCha20();
@@ -132,6 +137,22 @@ public class ServerController {
 	private OutputStream destStream;
 	private InetAddress receiverAddress;
 
+	private static class service extends ScheduledService<byte[]> {
+		private ServerSocket serverSocket;
+//		private Socket clientSocket;
+		private ImageView currentFrame;
+
+		public service(ServerSocket serverSocket, ImageView currentFrame) {
+			this.serverSocket = serverSocket;
+//			this.clientSocket = clientSocket;
+			this.currentFrame = currentFrame;
+		}
+
+		@Override
+		protected Task<byte[]> createTask() {
+			return new MyTask(serverSocket, currentFrame);
+		}
+	}
 
 	/**
 	 * The action triggered by pushing the button on the GUI
@@ -139,7 +160,6 @@ public class ServerController {
 	 * @param event the push button event
 	 * @throws IOException
 	 */
-	
 
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
@@ -150,33 +170,57 @@ public class ServerController {
 //			client = new EchoClient();
 		// is the video stream available?
 //		if (this.capture.isOpened()) {
-			this.cameraActive = true;
-			this.haarClassifier.setSelected(true);
-			this.checkboxSelection(
-					"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
+		this.cameraActive = true;
+		this.haarClassifier.setSelected(true);
+		this.checkboxSelection(
+				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
 
-			encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
-				encText.setText(Double.toString(newValue.doubleValue()));
-			});
-			encText.textProperty().addListener(new ChangeListener<String>() {
-				@Override
-				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
-						encPercent.setValue(Double.parseDouble(newValue));
-					}
+		encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
+			encText.setText(Double.toString(newValue.doubleValue()));
+		});
+		encText.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
+					encPercent.setValue(Double.parseDouble(newValue));
 				}
-			});
-			
-			new Thread(()->{try {
-				recieveData();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}}).start();
-//			
-				// update the button content
-				this.button.setText("Stop Camera");
-			
+			}
+		});
+
+//		Thread thread = new Thread(task);
+//		thread.setDaemon(true);
+//		thread.start();
+//		service.setDelay(Duration.seconds(5));
+
+		ServerSocket serverSocket = new ServerSocket(3000);
+
+		service service = new service(serverSocket, currentFrame);
+		service.setPeriod(Duration.millis(33));
+//		service.setMaximumFailureCount(5);
+		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			@Override
+			public void handle(WorkerStateEvent arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("Transmission successful");
+				Mat frame = Imgcodecs.imdecode(new MatOfByte(service.getValue()), Imgcodecs.IMREAD_UNCHANGED);
+//				frameno++;
+				// convert and show the frame
+				Image imageToShow = Utils.mat2Image(frame);
+				updateImageView(currentFrame, imageToShow);
+			}
+		});
+
+		service.start();
+		// update the button content
+//		if (onceStarted) {
+//			service.restart();
+//		} else {
+//			service.start();
+//			onceStarted = true;
+//			button.setText("Restart");
+//		}
+//		this.button.setText("Stop Camera");
 
 //		} else {
 //			// log the error
@@ -198,25 +242,147 @@ public class ServerController {
 		if (logoCheckBox.isSelected())
 			this.logo = Imgcodecs.imread("resources/Poli.png");
 	}
-	
+
+	Task<byte[]> task = new Task<byte[]>() {
+		@Override
+		protected byte[] call() throws Exception {
+//			DatagramSocket datagramSocket = new DatagramSocket(80);
+			byte[] buffer = new byte[100000];
+//			DatagramPacket packet = null;
+			ServerSocket serverSocket = new ServerSocket(3000);
+			Socket clientSocket = serverSocket.accept();
+//			while (true) {
+//				packet = new DatagramPacket(buffer, buffer.length);
+
+			// Step 3 : revieve the data in byte buffer.
+//				datagramSocket.receive(packet);
+
+			buffer = readBytes(clientSocket);
+//				System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
+			// grab a frame every 33 ms (30 frames/sec)
+//					Runnable frameGrabber = new Runnable() {
+			//
+//						@Override
+//						public void run() {
+
+//						}
+//					};
+			// effectively grab and process a single frame
+			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
+//						frameno++;
+			// convert and show the frame
+			Image imageToShow = Utils.mat2Image(frame);
+			updateImageView(currentFrame, imageToShow);
+//					
+//			}
+			serverSocket.close();
+			return buffer;
+		}
+
+		@Override
+		protected void succeeded() {
+			super.succeeded();
+			updateMessage("Done!");
+		}
+
+		@Override
+		protected void cancelled() {
+			super.cancelled();
+			updateMessage("Cancelled!");
+		}
+
+		@Override
+		protected void failed() {
+			super.failed();
+			updateMessage("Failed!");
+		}
+	};
+
+	private static class MyTask extends Task<byte[]> {
+		private ServerSocket serverSocket;
+//		private Socket clientSocket;
+		private ImageView currentFrame;
+
+		public MyTask(ServerSocket serverSocket, ImageView currentFrame) {
+			this.serverSocket = serverSocket;
+//			this.clientSocket = clientSocket;
+			this.currentFrame = currentFrame;
+		}
+
+		public byte[] readBytes(Socket socket) throws IOException {
+			// Again, probably better to store these objects references in the support class
+			InputStream in = socket.getInputStream();
+			DataInputStream dis = new DataInputStream(in);
+
+			int len = dis.readInt();
+			byte[] data = new byte[len];
+			if (len > 0) {
+				dis.readFully(data);
+			}
+			return data;
+		}
+
+		private void updateImageView(ImageView view, Image image) {
+			Utils.onFXThread(view.imageProperty(), image);
+		}
+
+		@Override
+		protected byte[] call() throws Exception {
+//			DatagramSocket datagramSocket = new DatagramSocket(80);
+			byte[] buffer = new byte[100000];
+//			DatagramPacket packet = null;
+
+//			while (true) {
+//				packet = new DatagramPacket(buffer, buffer.length);
+//			private ServerSocket serverSocket = new ServerSocket(3000);
+			Socket clientSocket = serverSocket.accept();
+			// Step 3 : revieve the data in byte buffer.
+//				datagramSocket.receive(packet);
+
+			buffer = readBytes(clientSocket);
+//				System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
+			// grab a frame every 33 ms (30 frames/sec)
+//					Runnable frameGrabber = new Runnable() {
+			//
+//						@Override
+//						public void run() {
+
+//						}
+//					};
+			// effectively grab and process a single frame
+//			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
+////						frameno++;
+//			// convert and show the frame
+//			Image imageToShow = Utils.mat2Image(frame);
+//			updateImageView(currentFrame, imageToShow);
+//					
+//			}
+//			serverSocket.close();
+			return buffer;
+
+		}
+	}
+
 	private void recieveData() throws IOException {
 //		DatagramSocket datagramSocket = new DatagramSocket(80);
-		byte[] buffer = new byte[65536];
+		byte[] buffer = new byte[100000];
 //		DatagramPacket packet = null;
 		ServerSocket serverSocket = new ServerSocket(3000);
+		Socket clientSocket = serverSocket.accept();
 		while (true) {
 //			packet = new DatagramPacket(buffer, buffer.length);
 
 			// Step 3 : revieve the data in byte buffer.
 //			datagramSocket.receive(packet);
-			Socket clientSocket = serverSocket.accept();
+
 			buffer = readBytes(clientSocket);
-			System.out.println("Encrypted (hex): " + convertBytesToHex(buffer));
+			System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
 			// grab a frame every 33 ms (30 frames/sec)
 //				Runnable frameGrabber = new Runnable() {
 //
 //					@Override
 //					public void run() {
+
 			// effectively grab and process a single frame
 			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
 //						frameno++;
@@ -228,9 +394,9 @@ public class ServerController {
 
 //				this.timer = Executors.newSingleThreadScheduledExecutor();
 //				this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
-//			serverSocket.close();
+			serverSocket.close();
 		}
-		
+
 	}
 
 	/**
@@ -412,8 +578,6 @@ public class ServerController {
 				System.err.println("Exception in stopping the frame capture, trying to release the camera now... " + e);
 			}
 		}
-
-	
 
 		if (this.capture.isOpened()) {
 			// release the camera
@@ -617,18 +781,18 @@ public class ServerController {
 		new SecureRandom().nextBytes(newNonce);
 		return newNonce;
 	}
-	
-	public byte[] readBytes(Socket socket) throws IOException {
-	    // Again, probably better to store these objects references in the support class
-	    InputStream in = socket.getInputStream();
-	    DataInputStream dis = new DataInputStream(in);
 
-	    int len = dis.readInt();
-	    byte[] data = new byte[len];
-	    if (len > 0) {
-	        dis.readFully(data);
-	    }
-	    return data;
+	public byte[] readBytes(Socket socket) throws IOException {
+		// Again, probably better to store these objects references in the support class
+		InputStream in = socket.getInputStream();
+		DataInputStream dis = new DataInputStream(in);
+
+		int len = dis.readInt();
+		byte[] data = new byte[len];
+		if (len > 0) {
+			dis.readFully(data);
+		}
+		return data;
 	}
 
 //	@Override
