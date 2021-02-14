@@ -57,7 +57,7 @@ public class Main extends Application {
 				primaryStage.show();
 
 				// set the proper behavior on closing the application
-				SampleController controller = loader.getController();
+				ServerController controller = loader.getController();
 				primaryStage.setOnCloseRequest((new EventHandler<WindowEvent>() {
 					public void handle(WindowEvent we) {
 						controller.setClosed();

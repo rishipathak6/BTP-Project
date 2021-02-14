@@ -3,12 +3,14 @@ package application;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 
 import org.opencv.core.Core;
@@ -40,11 +43,8 @@ import org.opencv.videoio.VideoCapture;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
-//import it.polito.elite.teachingg.cv.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -77,9 +77,9 @@ public class ServerController {
 	private Button button;
 	// the FXML image view
 	@FXML
-	private ImageView currentFrame;
+	private static ImageView currentFrame;
 	@FXML
-	private ImageView encryptedFrame;
+	private static ImageView encryptedFrame;
 	@FXML
 	private CheckBox grayscale;
 	@FXML
@@ -113,44 +113,264 @@ public class ServerController {
 	private byte[] byteArray;
 	private byte[] byteBlock;
 	private int len;
-	private int numencblock;
-	private int unencgap;
+	private static int numencblock;
+	private static int unencgap;
 	private boolean onceStarted;
 	private static final int NONCE_LEN = 12; // 96 bits, 12 bytes
 	private static final int MAC_LEN = 16; // 128 bits, 16 bytes
-	ChaCha20 cipherCC20 = new ChaCha20();
+	static ChaCha20 cipherCC20 = new ChaCha20();
 	ChaCha20Poly1305 cipherCCP = new ChaCha20Poly1305();
 	SecretKey key;
-	SecretKey key20;
-	byte[] nonce20; // 96-bit nonce (12 bytes)
-	int counter20 = 1; // 32-bit initial count (8 bytes)
+	static SecretKey key20;
+	byte[] nonce20 = new byte[32]; // 96-bit nonce (12 bytes)
+	static int counter20 = 1; // 32-bit initial count (8 bytes)
 	private byte[] cText20;
-	private byte[] pText20;
+	private static byte[] pText20;
+	private ByteBuffer bb;
+	private byte[] nonce = new byte[12]; // 12 bytes , 96 bits
+	private byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
+	private byte[] counterArray = new byte[4]; // 4 bytes , 32 bits
 
 	private byte[] cText;
 	private byte[] pText;
-	private ByteBuffer bb;
-	private byte[] nonce = new byte[NONCE_LEN]; // 16 bytes , 128 bits
-	private byte[] mac = new byte[MAC_LEN]; // 12 bytes , 96 bits
+
 	private byte[] originalCText;
 
 	private OutputStream destStream;
 	private InetAddress receiverAddress;
 
-	private static class service extends ScheduledService<byte[]> {
-		private ServerSocket serverSocket;
-//		private Socket clientSocket;
-		private ImageView currentFrame;
+//	private static class service extends ScheduledService<byte[]> {
+//		private ServerSocket serverSocket;
+//
+//		public service(ServerSocket serverSocket) {
+//			this.serverSocket = serverSocket;
+//		}
+//
+//		@Override
+//		protected Task<byte[]> createTask() {
+//			return new Task<byte[]>() {
+//
+//				public byte[] readBytes(Socket socket) {
+//					// Again, probably better to store these objects references in the support class
+//					InputStream in = null;
+//					try {
+//						in = socket.getInputStream();
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						System.out.println("Can't read bytes from socket");
+//						e.printStackTrace();
+//					}
+//					DataInputStream dis = new DataInputStream(in);
+//
+//					int len = 0;
+//					try {
+//						len = dis.readInt();
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						System.out.println("Can't read length of array from bytes");
+//						e.printStackTrace();
+//					}
+//					byte[] data = new byte[len];
+//					if (len > 0) {
+//						try {
+//							dis.readFully(data);
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							System.out.println("Can't read transmitted bytes");
+//							e.printStackTrace();
+//						}
+//					}
+//					return data;
+//
+//				}
+//
+////				private void updateImageView(ImageView view, Image image) {
+////					Utils.onFXThread(view.imageProperty(), image);
+////				}
+//
+//				@Override
+//				protected byte[] call() {
+////					DatagramSocket datagramSocket = new DatagramSocket(80);
+//					byte[] buffer = new byte[100000];
+////					DatagramPacket packet = null;
+//
+////					while (true) {
+////						packet = new DatagramPacket(buffer, buffer.length);
+////					private ServerSocket serverSocket = new ServerSocket(3000);
+//					Socket clientSocket = null;
+//					while (true) {
+//						try {
+//							clientSocket = serverSocket.accept();
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							System.out.println("Some error while waiting for connection");
+//							e.printStackTrace();
+//						}
+//						// Step 3 : revieve the data in byte buffer.
+////							datagramSocket.receive(packet);
+//
+//						buffer = readBytes(clientSocket);
+////						System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
+//						System.out.println("Transmission done");
+//						ByteBuffer bb = ByteBuffer.wrap(buffer);
+//						byte[] encryptedText = new byte[buffer.length - 48];
+//						byte[] nonce20 = new byte[12]; // 12 bytes , 96 bits
+//						byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
+//						byte[] counterArray = new byte[4]; // 4 bytes , 32 bits
+//						bb.get(encryptedText);
+//						bb.get(keyArray);
+//						bb.get(nonce20);
+//						bb.get(counterArray);
+//						System.out.println("The transmitted image length is " + buffer.length);
+//						Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
+////						frameno++;
+////						 convert and show the frame
+//						Image imageToShow = Utils.mat2Image(frame);
+//						updateImageView(currentFrame, imageToShow);
+//
+//						int len = buffer.length;
+//						numencblock = (int) ((len * 6.25 + 6399) / 6400);
+//						unencgap = len / numencblock;
+//						key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
+//						bb = ByteBuffer.wrap(counterArray);
+//						counter20 = bb.getInt();
+//						System.out.println("\n---Decryption at user---");
+//
+//						try {
+//							pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap,
+//									numencblock);
+//						} catch (Exception e) {
+//							// TODO Auto-generated catch block
+//							System.out.println("Output cant be decrypted");
+//							e.printStackTrace();
+//						} // decrypt
+//						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+//						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+//						System.out.println("Counter        : " + counter20);
+//						Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
+//						if (!encMat.empty()) {
+//							Image imageToShow2 = Utils.mat2Image(encMat);
+//							updateImageView(encryptedFrame, imageToShow2);
+//						} else {
+//							System.out.println("The frame is too encrypted to show at user");
+//						}
+//
+//					}
+//
+//					// grab a frame every 33 ms (30 frames/sec)
+////							Runnable frameGrabber = new Runnable() {
+//					//
+////								@Override
+////								public void run() {
+//
+////								}
+////							};
+//					// effectively grab and process a single frame
+////					Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
+//////								frameno++;
+////					// convert and show the frame
+////					Image imageToShow = Utils.mat2Image(frame);
+////					updateImageView(currentFrame, imageToShow);
+////							
+////					}
+////					serverSocket.close();
+////					return buffer;
+//
+//				}
+//			};
+//
+//		}
+//	}
 
-		public service(ServerSocket serverSocket, ImageView currentFrame) {
-			this.serverSocket = serverSocket;
-//			this.clientSocket = clientSocket;
-			this.currentFrame = currentFrame;
+	public class GreetingServer extends Thread {
+		private ServerSocket serverSocket;
+
+		public GreetingServer(int port) throws IOException {
+			serverSocket = new ServerSocket(port);
+			serverSocket.setSoTimeout(10000);
 		}
 
-		@Override
-		protected Task<byte[]> createTask() {
-			return new MyTask(serverSocket, currentFrame);
+		public void run() {
+			while (true) {
+				try {
+					System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
+					Socket server = serverSocket.accept();
+
+					System.out.println("Just connected to " + server.getRemoteSocketAddress());
+					DataInputStream in = new DataInputStream(server.getInputStream());
+
+					int len = 0;
+					try {
+						len = in.readInt();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						System.out.println("Can't read length of array from bytes");
+						e.printStackTrace();
+					}
+					byte[] buffer = new byte[len];
+					if (len > 0) {
+						try {
+							in.readFully(buffer);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							System.out.println("Can't read transmitted bytes");
+							e.printStackTrace();
+						}
+					}
+
+					bb = ByteBuffer.wrap(buffer);
+					System.out.println("The transmitted image length is " + buffer.length);
+
+					byte[] encryptedText = new byte[buffer.length - 48];
+					bb.get(encryptedText);
+					bb.get(keyArray);
+					bb.get(nonce20);
+					bb.get(counterArray);
+					Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
+//				frameno++;
+					// convert and show the frame
+					Image imageToShow = Utils.mat2Image(frame);
+					updateImageView(currentFrame, imageToShow);
+
+					len = buffer.length;
+					numencblock = (int) ((len * 6.25 + 6399) / 6400);
+					unencgap = len / numencblock;
+					key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
+					bb = ByteBuffer.wrap(counterArray);
+					counter20 = bb.getInt();
+					System.out.println("\n---Decryption at user---");
+
+					try {
+						pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap,
+								numencblock);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						System.out.println("Output cant be decrypted");
+						e.printStackTrace();
+					} // decrypt
+					System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+					System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+					System.out.println("Counter        : " + counter20);
+					Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
+					if (!encMat.empty()) {
+						Image imageToShow2 = Utils.mat2Image(encMat);
+						updateImageView(encryptedFrame, imageToShow2);
+					} else {
+						System.out.println("The frame is too encrypted to show at user");
+					}
+
+					DataOutputStream out = new DataOutputStream(server.getOutputStream());
+					out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress() + "\nGoodbye!");
+//		            server.close();
+
+				} catch (SocketTimeoutException s) {
+					System.out.println("Socket timed out!");
+					break;
+				} catch (IOException e) {
+					e.printStackTrace();
+					break;
+				}
+			}
 		}
 	}
 
@@ -187,38 +407,80 @@ public class ServerController {
 			}
 		});
 
+		try {
+			Thread t = new GreetingServer(3000);
+			t.setDaemon(true);
+			t.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 //		Thread thread = new Thread(task);
 //		thread.setDaemon(true);
 //		thread.start();
 //		service.setDelay(Duration.seconds(5));
 
-		ServerSocket serverSocket = new ServerSocket(3000);
+//		ServerSocket serverSocket = new ServerSocket(3000);
 
-		service service = new service(serverSocket, currentFrame);
-		service.setPeriod(Duration.millis(33));
-//		service.setMaximumFailureCount(5);
-		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-
-			@Override
-			public void handle(WorkerStateEvent arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("Transmission successful");
-				Mat frame = Imgcodecs.imdecode(new MatOfByte(service.getValue()), Imgcodecs.IMREAD_UNCHANGED);
-//				frameno++;
-				// convert and show the frame
-				Image imageToShow = Utils.mat2Image(frame);
-				updateImageView(currentFrame, imageToShow);
-			}
-		});
-
-		service.start();
+//		service service = new service(serverSocket);
+//		service.setPeriod(Duration.seconds(1));
+////		service.restartOnFailure(true);
+//		service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+//
+//			@Override
+//			public void handle(WorkerStateEvent arg0) {
+//				// TODO Auto-generated method stub
+//				System.out.println("Transmission successful");
+////				bb = ByteBuffer.wrap(service.getValue());
+////				byte[] encryptedText = new byte[service.getValue().length - 48];
+////				bb.get(encryptedText);
+////				bb.get(keyArray);
+////				bb.get(nonce20);
+////				bb.get(counterArray);
+////				System.out.println("The transmitted image length is " + service.getValue().length);
+////				Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
+//////				frameno++;
+////				// convert and show the frame
+////				Image imageToShow = Utils.mat2Image(frame);
+////				updateImageView(currentFrame, imageToShow);
+////
+////				len = service.getValue().length;
+////				numencblock = (int) ((len * 6.25 + 6399) / 6400);
+////				unencgap = len / numencblock;
+////				key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
+////				bb = ByteBuffer.wrap(counterArray);
+////				counter20 = bb.getInt();
+////				System.out.println("\n---Decryption at user---");
+////
+////				try {
+////					pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap, numencblock);
+////				} catch (Exception e) {
+////					// TODO Auto-generated catch block
+////					System.out.println("Output cant be decrypted");
+////					e.printStackTrace();
+////				} // decrypt
+////				System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+////				System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+////				System.out.println("Counter        : " + counter20);
+////				Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
+////				if (!encMat.empty()) {
+////					Image imageToShow2 = Utils.mat2Image(encMat);
+////					updateImageView(encryptedFrame, imageToShow2);
+////				} else {
+////					System.out.println("The frame is too encrypted to show at user");
+////				}
+////				service.restart();
+//			}
+//		});
+//
+//		service.start();
 		// update the button content
 //		if (onceStarted) {
 //			service.restart();
 //		} else {
 //			service.start();
 //			onceStarted = true;
-//			button.setText("Restart");
+		button.setText("Restart");
 //		}
 //		this.button.setText("Stop Camera");
 
@@ -242,92 +504,109 @@ public class ServerController {
 		if (logoCheckBox.isSelected())
 			this.logo = Imgcodecs.imread("resources/Poli.png");
 	}
-
-	Task<byte[]> task = new Task<byte[]>() {
-		@Override
-		protected byte[] call() throws Exception {
-//			DatagramSocket datagramSocket = new DatagramSocket(80);
-			byte[] buffer = new byte[100000];
-//			DatagramPacket packet = null;
-			ServerSocket serverSocket = new ServerSocket(3000);
-			Socket clientSocket = serverSocket.accept();
-//			while (true) {
-//				packet = new DatagramPacket(buffer, buffer.length);
-
-			// Step 3 : revieve the data in byte buffer.
-//				datagramSocket.receive(packet);
-
-			buffer = readBytes(clientSocket);
-//				System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
-			// grab a frame every 33 ms (30 frames/sec)
-//					Runnable frameGrabber = new Runnable() {
-			//
-//						@Override
-//						public void run() {
-
-//						}
-//					};
-			// effectively grab and process a single frame
-			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
-//						frameno++;
-			// convert and show the frame
-			Image imageToShow = Utils.mat2Image(frame);
-			updateImageView(currentFrame, imageToShow);
-//					
-//			}
-			serverSocket.close();
-			return buffer;
-		}
-
-		@Override
-		protected void succeeded() {
-			super.succeeded();
-			updateMessage("Done!");
-		}
-
-		@Override
-		protected void cancelled() {
-			super.cancelled();
-			updateMessage("Cancelled!");
-		}
-
-		@Override
-		protected void failed() {
-			super.failed();
-			updateMessage("Failed!");
-		}
-	};
+//
+//	Task<byte[]> task = new Task<byte[]>() {
+//		@Override
+//		protected byte[] call() throws Exception {
+////			DatagramSocket datagramSocket = new DatagramSocket(80);
+//			byte[] buffer = new byte[100000];
+////			DatagramPacket packet = null;
+//			ServerSocket serverSocket = new ServerSocket(3000);
+//			Socket clientSocket = serverSocket.accept();
+////			while (true) {
+////				packet = new DatagramPacket(buffer, buffer.length);
+//
+//			// Step 3 : revieve the data in byte buffer.
+////				datagramSocket.receive(packet);
+//
+//			buffer = readBytes(clientSocket);
+////				System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
+//			// grab a frame every 33 ms (30 frames/sec)
+////					Runnable frameGrabber = new Runnable() {
+//			//
+////						@Override
+////						public void run() {
+//
+////						}
+////					};
+//			// effectively grab and process a single frame
+//			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
+////						frameno++;
+//			// convert and show the frame
+//			Image imageToShow = Utils.mat2Image(frame);
+//			updateImageView(currentFrame, imageToShow);
+////					
+////			}
+//			serverSocket.close();
+//			return buffer;
+//		}
+//
+//		@Override
+//		protected void succeeded() {
+//			super.succeeded();
+//			updateMessage("Done!");
+//		}
+//
+//		@Override
+//		protected void cancelled() {
+//			super.cancelled();
+//			updateMessage("Cancelled!");
+//		}
+//
+//		@Override
+//		protected void failed() {
+//			super.failed();
+//			updateMessage("Failed!");
+//		}
+//	};
 
 	private static class MyTask extends Task<byte[]> {
 		private ServerSocket serverSocket;
-//		private Socket clientSocket;
-		private ImageView currentFrame;
 
-		public MyTask(ServerSocket serverSocket, ImageView currentFrame) {
+		public MyTask(ServerSocket serverSocket) {
 			this.serverSocket = serverSocket;
-//			this.clientSocket = clientSocket;
-			this.currentFrame = currentFrame;
 		}
 
-		public byte[] readBytes(Socket socket) throws IOException {
+		public byte[] readBytes(Socket socket) {
 			// Again, probably better to store these objects references in the support class
-			InputStream in = socket.getInputStream();
+			InputStream in = null;
+			try {
+				in = socket.getInputStream();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't read bytes from socket");
+				e.printStackTrace();
+			}
 			DataInputStream dis = new DataInputStream(in);
 
-			int len = dis.readInt();
+			int len = 0;
+			try {
+				len = dis.readInt();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't read length of array from bytes");
+				e.printStackTrace();
+			}
 			byte[] data = new byte[len];
 			if (len > 0) {
-				dis.readFully(data);
+				try {
+					dis.readFully(data);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Can't read transmitted bytes");
+					e.printStackTrace();
+				}
 			}
 			return data;
+
 		}
 
-		private void updateImageView(ImageView view, Image image) {
-			Utils.onFXThread(view.imageProperty(), image);
-		}
+//		private void updateImageView(ImageView view, Image image) {
+//			Utils.onFXThread(view.imageProperty(), image);
+//		}
 
 		@Override
-		protected byte[] call() throws Exception {
+		protected byte[] call() {
 //			DatagramSocket datagramSocket = new DatagramSocket(80);
 			byte[] buffer = new byte[100000];
 //			DatagramPacket packet = null;
@@ -335,12 +614,62 @@ public class ServerController {
 //			while (true) {
 //				packet = new DatagramPacket(buffer, buffer.length);
 //			private ServerSocket serverSocket = new ServerSocket(3000);
-			Socket clientSocket = serverSocket.accept();
+			Socket clientSocket = null;
+			try {
+				clientSocket = serverSocket.accept();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Some error while waiting for connection");
+				e.printStackTrace();
+			}
 			// Step 3 : revieve the data in byte buffer.
 //				datagramSocket.receive(packet);
 
 			buffer = readBytes(clientSocket);
-//				System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
+//			System.out.println("Transmitted (hex): " + convertBytesToHex(buffer));
+			System.out.println("Transmission successful");
+			ByteBuffer bb = ByteBuffer.wrap(buffer);
+			byte[] encryptedText = new byte[buffer.length - 48];
+			byte[] nonce20 = new byte[12]; // 12 bytes , 96 bits
+			byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
+			byte[] counterArray = new byte[4]; // 4 bytes , 32 bits
+			bb.get(encryptedText);
+			bb.get(keyArray);
+			bb.get(nonce20);
+			bb.get(counterArray);
+			System.out.println("The transmitted image length is " + encryptedText.length);
+//			Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
+////			frameno++;
+//			// convert and show the frame
+//			Image imageToShow = Utils.mat2Image(frame);
+//			updateImageView(currentFrame, imageToShow);
+
+			int len = buffer.length;
+			numencblock = (int) ((len * 6.25 + 6399) / 6400);
+			unencgap = len / numencblock;
+			key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
+			bb = ByteBuffer.wrap(counterArray);
+			counter20 = bb.getInt();
+			System.out.println("\n---Decryption at user---");
+
+			try {
+				pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap, numencblock);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Output cant be decrypted");
+				e.printStackTrace();
+			} // decrypt
+			System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+			System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+			System.out.println("Counter        : " + counter20);
+//			Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
+//			if (!encMat.empty()) {
+//				Image imageToShow2 = Utils.mat2Image(encMat);
+//				updateImageView(encryptedFrame, imageToShow2);
+//			} else {
+//				System.out.println("The frame is too encrypted to show at user");
+//			}
+
 			// grab a frame every 33 ms (30 frames/sec)
 //					Runnable frameGrabber = new Runnable() {
 			//
@@ -384,11 +713,11 @@ public class ServerController {
 //					public void run() {
 
 			// effectively grab and process a single frame
-			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
-//						frameno++;
-			// convert and show the frame
-			Image imageToShow = Utils.mat2Image(frame);
-			updateImageView(currentFrame, imageToShow);
+//			Mat frame = Imgcodecs.imdecode(new MatOfByte(buffer), Imgcodecs.IMREAD_UNCHANGED);
+////						frameno++;
+//			// convert and show the frame
+//			Image imageToShow = Utils.mat2Image(frame);
+//			updateImageView(currentFrame, imageToShow);
 //					}
 //				};
 
@@ -591,7 +920,7 @@ public class ServerController {
 	 * @param view  the {@link ImageView} to update
 	 * @param image the {@link Image} to show
 	 */
-	private void updateImageView(ImageView view, Image image) {
+	private static void updateImageView(ImageView view, Image image) {
 		Utils.onFXThread(view.imageProperty(), image);
 	}
 
@@ -738,7 +1067,7 @@ public class ServerController {
 			Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
 	}
 
-	public static BufferedImage Mat2BufferedImage(Mat mat) throws IOException {
+	public static BufferedImage Mat2BufferedImage(Mat mat) {
 		// Encoding the image
 		MatOfByte matOfByte = new MatOfByte();
 		Imgcodecs.imencode(".jpg", mat, matOfByte);
@@ -746,11 +1075,18 @@ public class ServerController {
 		byte[] byteArray = matOfByte.toArray();
 		// Preparing the Buffered Image
 		InputStream in = new ByteArrayInputStream(byteArray);
-		BufferedImage bufImage = ImageIO.read(in);
+		BufferedImage bufImage = null;
+		try {
+			bufImage = ImageIO.read(in);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cant make mat to buffered image");
+			e.printStackTrace();
+		}
 		return bufImage;
 	}
 
-	public static byte[] Mat2byteArray(Mat mat) throws IOException {
+	public static byte[] Mat2byteArray(Mat mat) {
 		// Encoding the image
 		MatOfByte matOfByte = new MatOfByte();
 		Imgcodecs.imencode(".jpg", mat, matOfByte);
@@ -769,9 +1105,22 @@ public class ServerController {
 	}
 
 	// A 256-bit secret key (32 bytes)
-	private static SecretKey getKey() throws NoSuchAlgorithmException {
-		KeyGenerator keyGen = KeyGenerator.getInstance("ChaCha20");
-		keyGen.init(256, SecureRandom.getInstanceStrong());
+	private static SecretKey getKey() {
+		KeyGenerator keyGen = null;
+		try {
+			keyGen = KeyGenerator.getInstance("ChaCha20");
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("Problem in identifying algo in keygen");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			keyGen.init(256, SecureRandom.getInstanceStrong());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cannot init keygen");
+			e.printStackTrace();
+		}
 		return keyGen.generateKey();
 	}
 
@@ -782,15 +1131,35 @@ public class ServerController {
 		return newNonce;
 	}
 
-	public byte[] readBytes(Socket socket) throws IOException {
+	public byte[] readBytes(Socket socket) {
 		// Again, probably better to store these objects references in the support class
-		InputStream in = socket.getInputStream();
+		InputStream in = null;
+		try {
+			in = socket.getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read bytes from socket");
+			e.printStackTrace();
+		}
 		DataInputStream dis = new DataInputStream(in);
 
-		int len = dis.readInt();
+		int len = 0;
+		try {
+			len = dis.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read length of array from bytes");
+			e.printStackTrace();
+		}
 		byte[] data = new byte[len];
 		if (len > 0) {
-			dis.readFully(data);
+			try {
+				dis.readFully(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't read transmitted bytes");
+				e.printStackTrace();
+			}
 		}
 		return data;
 	}

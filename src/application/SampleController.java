@@ -6,13 +6,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -21,7 +16,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -124,9 +118,10 @@ public class SampleController {
 	SecretKey key;
 	SecretKey key20;
 	byte[] nonce20; // 96-bit nonce (12 bytes)
-	int counter20 = 1; // 32-bit initial count (8 bytes)
+	int counter20 = 0; // 32-bit initial count (8 bytes)
 	private byte[] cText20;
 	private byte[] pText20;
+	private byte[] sentBytes20;
 
 	private byte[] cText;
 	private byte[] pText;
@@ -145,7 +140,7 @@ public class SampleController {
 	protected void startCamera(ActionEvent event) throws IOException {
 		if (!this.cameraActive) {
 			// start the video capture
-			this.capture.open(cameraId);
+			this.capture.open(cameraId, 700);
 
 			// is the video stream available?
 			if (this.capture.isOpened()) {
@@ -153,7 +148,8 @@ public class SampleController {
 				this.haarClassifier.setSelected(true);
 				this.checkboxSelection(
 						"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
-
+				this.encPercent.setValue(6.25);
+				this.encText.setText("6.25");
 				encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
 					encText.setText(Double.toString(newValue.doubleValue()));
 				});
@@ -168,6 +164,7 @@ public class SampleController {
 				});
 
 				Socket socket = new Socket(InetAddress.getLocalHost(), 3000);
+				System.out.println("Just connected to " + socket.getRemoteSocketAddress());
 
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
@@ -250,7 +247,7 @@ public class SampleController {
 					this.showHistogram(frame, grayscale.isSelected());
 					// face detection
 					this.detectAndDisplay(frame);
-
+					System.out.println("----------------------------------------------------------------------------");
 					this.obj = Mat2BufferedImage(frame);
 					System.out.println(this.obj);
 					this.byteArray = Mat2byteArray(frame);
@@ -334,8 +331,10 @@ public class SampleController {
 //						}
 //						
 //					}
-						sendBytes(cText20, 0, cText20.length, socket);
-
+						sentBytes20 = ByteBuffer.allocate(cText20.length + 48).put(cText20).put(key20.getEncoded())
+								.put(nonce20).putInt(counter20).array();
+						sendBytes(sentBytes20, 0, sentBytes20.length, socket);
+						System.out.println("Bytes sent");
 						if (this.decryptCheck.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
@@ -361,6 +360,9 @@ public class SampleController {
 								System.out.println("The frame is too encrypted to show");
 							}
 						}
+						System.out.println(
+								"----------------------------------------------------------------------------");
+					System.out.println("\n\n");
 					}
 
 				}
