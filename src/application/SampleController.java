@@ -3,9 +3,11 @@ package application;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -130,6 +132,8 @@ public class SampleController {
 	private byte[] mac = new byte[MAC_LEN]; // 12 bytes , 96 bits
 	private byte[] originalCText;
 
+//	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
+	
 	/**
 	 * The action triggered by pushing the button on the GUI
 	 *
@@ -138,6 +142,11 @@ public class SampleController {
 	 */
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
+		File file = new File("Client.txt");
+	    //Instantiating the PrintStream class
+	    PrintStream stream = new PrintStream(file);
+	    System.out.println("From now on "+file.getAbsolutePath()+" will be your console");
+	    System.setOut(stream);
 		if (!this.cameraActive) {
 			// start the video capture
 			this.capture.open(cameraId, 700);

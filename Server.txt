@@ -1,0 +1,889 @@
+----------------------------------------------------------------------------
+Waiting for client on port 3000...
+Just connected to /192.168.192.33:12954
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+The transmitted image length is 80397
+
+---Decryption at user---
+Key       (hex): bfbc0349bfc0b979ad8a3d29685d7b2e16b44df08a8364655ec9a3728c7053b2
+Nonce     (hex): 2cb3be46182011f39bb7c058
+Counter        : 1
+----------------------------------------------------------------------------
+The transmitted image length is 81421
+
+---Decryption at user---
+Key       (hex): 6b490045c1bc4c0f2e418ce4694907d476be393e958479d430d65cccec68c9e0
+Nonce     (hex): c0bac6aec99c084c6e880a54
+Counter        : 2
+----------------------------------------------------------------------------
+The transmitted image length is 77252
+
+---Decryption at user---
+Key       (hex): 33f7115ae0a5a5056592f48732dc1655f320f220feed3adb0bfdb8e08fc8566d
+Nonce     (hex): 5fd24186ba1e12aaf51f2c39
+Counter        : 3
+----------------------------------------------------------------------------
+The transmitted image length is 74487
+
+---Decryption at user---
+Key       (hex): b6ae68fad1ddd5cde365634588a2e567579b0349a150d08d4a3fbbd90665c3b0
+Nonce     (hex): d925943f5fcb3579f4ac7ec3
+Counter        : 4
+----------------------------------------------------------------------------
+The transmitted image length is 71780
+
+---Decryption at user---
+Key       (hex): 782068c7673c9d9af4703f15c33bd3fa8c8aaec972040e219d48b1e65e48c76b
+Nonce     (hex): 15672b6a1e996e1376197a07
+Counter        : 5
+----------------------------------------------------------------------------
+The transmitted image length is 72019
+
+---Decryption at user---
+Key       (hex): 909570fc229cbdaf103c1a6958e1494e1ebd14c7148614a97271b670bfa8fc19
+Nonce     (hex): b6d960e7feaae59f2b70c85a
+Counter        : 6
+----------------------------------------------------------------------------
+The transmitted image length is 71604
+
+---Decryption at user---
+Key       (hex): 2618a8e4a8b9812e8236b48966e04ed1cec7c67161ae26d9fc9e62beab115b38
+Nonce     (hex): 319a32a9a31b3ac837476e38
+Counter        : 7
+----------------------------------------------------------------------------
+The transmitted image length is 72620
+
+---Decryption at user---
+Key       (hex): 6325c0f62992fc2bd987c5a73723d0f3ec42c9b3f15a8a0205c9af8e9ef70439
+Nonce     (hex): e1d0a36801c7fa02880fbf43
+Counter        : 8
+----------------------------------------------------------------------------
+The transmitted image length is 70745
+
+---Decryption at user---
+Key       (hex): f5b45d4d99940b94690b5ad855dae41d535049570a56756c7cb5e2b15d2f1ca5
+Nonce     (hex): 3b1770ee68349375a513c04b
+Counter        : 9
+----------------------------------------------------------------------------
+The transmitted image length is 71133
+
+---Decryption at user---
+Key       (hex): 7cfa483631f2b21973de9e94aa4e3d47f28a7abb23095566b07da584e651f35a
+Nonce     (hex): 60d8d483a02bb205d8968d4b
+Counter        : 10
+----------------------------------------------------------------------------
+The transmitted image length is 68094
+
+---Decryption at user---
+Key       (hex): 3a275b7124436403ed9592e9d7d15444fc22bb3ce067183c52f77cd9e11f6f12
+Nonce     (hex): cc95ca456a5315aa6ac26489
+Counter        : 11
+----------------------------------------------------------------------------
+The transmitted image length is 68835
+
+---Decryption at user---
+Key       (hex): 5a6073f0e1e13b683e1cff772d3bfe318c56c8429ce38466d9eb88fe5bf95a32
+Nonce     (hex): 054ae790f1b53bf145c49000
+Counter        : 12
+----------------------------------------------------------------------------
+The transmitted image length is 69970
+
+---Decryption at user---
+Key       (hex): c62afdbff336d522a82be0f26cc7dc64810e8ba270de9f23fc1b9db4b432cc81
+Nonce     (hex): ff9c85c492dc11918af615a0
+Counter        : 13
+----------------------------------------------------------------------------
+The transmitted image length is 66350
+
+---Decryption at user---
+Key       (hex): 1f1c308bbb124d777cfd03b28a0565cd4035053cbbdeb3f584614096e5fcbf6d
+Nonce     (hex): 5732b0fd61186882afae9962
+Counter        : 14
+----------------------------------------------------------------------------
+The transmitted image length is 69537
+
+---Decryption at user---
+Key       (hex): c89e9e96110d368138c666433b1426e340a2f57c29f2e2411ee231771f9449b1
+Nonce     (hex): d2826a5670f0cb495fed48d0
+Counter        : 15
+----------------------------------------------------------------------------
+The transmitted image length is 68035
+
+---Decryption at user---
+Key       (hex): 309d15acf6c72fb44f89df0ab052bb977225fc508ae36070776d104272f39a82
+Nonce     (hex): 0ebcb5932884292caa302b29
+Counter        : 16
+----------------------------------------------------------------------------
+The transmitted image length is 67987
+
+---Decryption at user---
+Key       (hex): a57da264dea677061a9da7ad8589f75a9eab21948577629efbfeb2437fac95e9
+Nonce     (hex): bb85878a3af61f2df7fd46f6
+Counter        : 17
+----------------------------------------------------------------------------
+The transmitted image length is 68334
+
+---Decryption at user---
+Key       (hex): d3c886640a8698de7306764e7b1267d39daaf88ac011f7ab5fe08034b0b97ff1
+Nonce     (hex): b2115fb9b76710e47fcebd19
+Counter        : 18
+----------------------------------------------------------------------------
+The transmitted image length is 72373
+
+---Decryption at user---
+Key       (hex): 62e460acf3e7feafe3ca4faa5191f4d7ac0957e5bc1bb3958303548278873a7a
+Nonce     (hex): a3e2d0750705174b5dd290e5
+Counter        : 19
+----------------------------------------------------------------------------
+The transmitted image length is 68550
+
+---Decryption at user---
+Key       (hex): e8de981ced910bd1066101376150897fb518ca8f0e24759ac2a220ece69a7667
+Nonce     (hex): 463bd5c37611384f62e6d799
+Counter        : 20
+----------------------------------------------------------------------------
+The transmitted image length is 69845
+
+---Decryption at user---
+Key       (hex): 22e09f0f820f3bd4068f7beefa40cf52ff335e080963e65900874bc3fafe3aeb
+Nonce     (hex): 900d0b88364cee2883cfa117
+Counter        : 21
+----------------------------------------------------------------------------
+The transmitted image length is 69243
+
+---Decryption at user---
+Key       (hex): a9fe20b23c7e05163a5e006b8b284205bc720f51d5461aa2b78e8b31e0aa4210
+Nonce     (hex): 7f67136d457cae8787d355dc
+Counter        : 22
+----------------------------------------------------------------------------
+The transmitted image length is 67926
+
+---Decryption at user---
+Key       (hex): 610ff23a3555f27d6b60d498e5303d7216c7f6955a75d005a36cbc25a7f288cf
+Nonce     (hex): 89c26be6410a2c125dd7a5a5
+Counter        : 23
+----------------------------------------------------------------------------
+The transmitted image length is 67157
+
+---Decryption at user---
+Key       (hex): 574bf98214446fbfd5e89b9f292308b5f9e262ed8249510c245dfd785352fd3c
+Nonce     (hex): d8a2fcd6af77ddc06a14f1c8
+Counter        : 24
+----------------------------------------------------------------------------
+The transmitted image length is 67104
+
+---Decryption at user---
+Key       (hex): 3777ae310ce125ba9695fced333315bd155b5ddf4efb5e8ede235efd9ba15fb3
+Nonce     (hex): a376501df8d859e3d706932c
+Counter        : 25
+----------------------------------------------------------------------------
+The transmitted image length is 67755
+
+---Decryption at user---
+Key       (hex): c5fa6bcba18f92e400a4bfea38e983de4ef456ad8abfb2c9b7514fb96138c8cf
+Nonce     (hex): 1af8962638ba5f640370a9d5
+Counter        : 26
+----------------------------------------------------------------------------
+The transmitted image length is 68444
+
+---Decryption at user---
+Key       (hex): 9c18aee1632857bb75f336f2d57626fc852be10003fa849102f648c9086fc288
+Nonce     (hex): e0e5664b3b29ff1445ca5d11
+Counter        : 27
+----------------------------------------------------------------------------
+The transmitted image length is 69935
+
+---Decryption at user---
+Key       (hex): 6f3877eced4b651c559e9bab9b498628f3e5e56fef3d0280de5c4103a264ed97
+Nonce     (hex): cbc5717b06ea3916b443c547
+Counter        : 28
+----------------------------------------------------------------------------
+The transmitted image length is 70024
+
+---Decryption at user---
+Key       (hex): 29a6fdf167588f120e198808657df2d40b52fa4def1fa54dca219fb1ab0722c6
+Nonce     (hex): f6462c3662bfe0c2e9468f21
+Counter        : 29
+----------------------------------------------------------------------------
+The transmitted image length is 69155
+
+---Decryption at user---
+Key       (hex): 24085eec14147c5484d179811e8c603fffbd2d9ba3e7c85f2171d0943dfdedb0
+Nonce     (hex): bdcfc748388fe40da685be42
+Counter        : 30
+----------------------------------------------------------------------------
+The transmitted image length is 68082
+
+---Decryption at user---
+Key       (hex): 9e8d49a8d120be21e6a195e324a4e4909e376aa84c258170d4aac42b8dfb0176
+Nonce     (hex): adca8395a7aca0944c188db6
+Counter        : 31
+----------------------------------------------------------------------------
+The transmitted image length is 67727
+
+---Decryption at user---
+Key       (hex): d149d3fb61e3a08ba31aca980fa90e0d72205471e87fcd23ea62a108b6f34488
+Nonce     (hex): c8e1e991b0c95f575fdf1601
+Counter        : 32
+----------------------------------------------------------------------------
+The transmitted image length is 67387
+
+---Decryption at user---
+Key       (hex): 027594cfb4ccd419752934276f65505e7659318e082ffade1981ed023c8591b2
+Nonce     (hex): 02e8b887cd89b81c22331c3e
+Counter        : 33
+----------------------------------------------------------------------------
+The transmitted image length is 74401
+
+---Decryption at user---
+Key       (hex): 818a6efffc6f3686bb0ece06357525cb808a07460df4e7cee445056e121d05e8
+Nonce     (hex): 2e51253fd6fb45ccbbf252a6
+Counter        : 34
+----------------------------------------------------------------------------
+The transmitted image length is 69709
+
+---Decryption at user---
+Key       (hex): e3874ba1e1d5c627530b79fe1e36742050adb74a00f8986d5134c2b42c7daaaf
+Nonce     (hex): 27bca0605d92a45bc451c5bd
+Counter        : 35
+----------------------------------------------------------------------------
+The transmitted image length is 70269
+
+---Decryption at user---
+Key       (hex): bda2d5c6ae89b95ecefb13e7621247953cc5508b35edebe32ae2664690a452f5
+Nonce     (hex): cb0a09369851acbf7aa94ff8
+Counter        : 36
+----------------------------------------------------------------------------
+The transmitted image length is 71407
+
+---Decryption at user---
+Key       (hex): f0ab06e63558f5d709cab5c331432486cc26c8f4f4ccf32b6d05fbc0c73414c4
+Nonce     (hex): bf501aa2748c7655e419bb2b
+Counter        : 37
+----------------------------------------------------------------------------
+The transmitted image length is 72146
+
+---Decryption at user---
+Key       (hex): f5bca783f435c7a6612b147ce5681c5861d479812f212e352277fc59a9b2b0d9
+Nonce     (hex): 39cd906535b857fcfd790044
+Counter        : 38
+----------------------------------------------------------------------------
+The transmitted image length is 71514
+
+---Decryption at user---
+Key       (hex): 385f141ec1eacd21bc6f061a5a7a7d431442f7bc2da8d155e45a8b6545c7aeff
+Nonce     (hex): 499b92a0c815617685e43364
+Counter        : 39
+----------------------------------------------------------------------------
+The transmitted image length is 67502
+
+---Decryption at user---
+Key       (hex): 43b121774dc36e0970d41f9a1b9ae5bbc4163de1908bba64b3e5bcdbda184a0a
+Nonce     (hex): c40243494194268646bcc748
+Counter        : 40
+----------------------------------------------------------------------------
+The transmitted image length is 68975
+
+---Decryption at user---
+Key       (hex): 4eefe3b492b2a54e3ab92e18c9f61c106f8a781c40e8b3c4c5b41bacca7ee926
+Nonce     (hex): 1a9d3d9c20430c58f9460813
+Counter        : 41
+----------------------------------------------------------------------------
+The transmitted image length is 68276
+
+---Decryption at user---
+Key       (hex): ce733574584112c0a4d3bc54199c4c95576574575458dea9c178e43ac0278a04
+Nonce     (hex): 99c99fcbf2d48e7fb39b96e5
+Counter        : 42
+----------------------------------------------------------------------------
+The transmitted image length is 74457
+
+---Decryption at user---
+Key       (hex): 02145451c54a58b7c7fa651d3c3e93ee1725a6c893979888cda75f8683275abe
+Nonce     (hex): 59aa464fc3b91df9d5a3012b
+Counter        : 43
+----------------------------------------------------------------------------
+The transmitted image length is 71593
+
+---Decryption at user---
+Key       (hex): 0fbb071d5402de6feef2f6e8350e87745cc86c3c2f3b2dd5d01ee18e3036ced1
+Nonce     (hex): a90b21626a4ea334de1a0b92
+Counter        : 44
+----------------------------------------------------------------------------
+The transmitted image length is 72396
+
+---Decryption at user---
+Key       (hex): 24ff0eaa21f74d15018ee2f1b71b0092c23793d1c2f31dadb6c07eca396ff976
+Nonce     (hex): 1da064c6144f8c54eb8dd29a
+Counter        : 45
+----------------------------------------------------------------------------
+The transmitted image length is 72451
+
+---Decryption at user---
+Key       (hex): e680faab0e1c914a77ff080da0fb625b79d501610336a5501e22277d6f5a7111
+Nonce     (hex): b05f4a424a46edd7eb87c1ae
+Counter        : 46
+----------------------------------------------------------------------------
+The transmitted image length is 79182
+
+---Decryption at user---
+Key       (hex): df226633258bd76e17eeb93f7afefdcf1e830713eb5aa2df9c91041db96b6d7b
+Nonce     (hex): e2de359e9f155b77fa07f96c
+Counter        : 47
+----------------------------------------------------------------------------
+The transmitted image length is 72621
+
+---Decryption at user---
+Key       (hex): dfdab0085978129fda5d34270be7a58340b57b84bd5f98fa9b8e1cdde88ed009
+Nonce     (hex): dc258b45c4158d8890f6c3fd
+Counter        : 48
+----------------------------------------------------------------------------
+The transmitted image length is 71049
+
+---Decryption at user---
+Key       (hex): 2bf35cfd84efea5c215ca202f59c2989671d029f555a3ebf34ab5ba26ffb8b9b
+Nonce     (hex): 536790a5e587cb387872f0c5
+Counter        : 49
+----------------------------------------------------------------------------
+The transmitted image length is 68842
+
+---Decryption at user---
+Key       (hex): 4afc64e39cd9fa8e18c00b5ccdb3b7875b84b9858e37680100b537090a89e33e
+Nonce     (hex): fb8fd3d9fd9c38bd99592452
+Counter        : 50
+----------------------------------------------------------------------------
+The transmitted image length is 66351
+
+---Decryption at user---
+Key       (hex): 552c122615da011ca05953f5954bbd8865e48133613daa8c98f3280c612e4f4c
+Nonce     (hex): c2883139c66463cbfe01fde2
+Counter        : 51
+----------------------------------------------------------------------------
+The transmitted image length is 65382
+
+---Decryption at user---
+Key       (hex): 61e660726a5bb67a58fc65bb42fd26395f4b6a5a0bfdece8a257aa9af3c0ad13
+Nonce     (hex): 2a543dfb8ec7fee1630b1653
+Counter        : 52
+----------------------------------------------------------------------------
+The transmitted image length is 59901
+
+---Decryption at user---
+Key       (hex): cceef46d20e3a278d0d52d40d4efbfb42e33d2de374e079109389b348dfc8323
+Nonce     (hex): 09d5b428f7ec76b67b9e669d
+Counter        : 53
+----------------------------------------------------------------------------
+The transmitted image length is 66106
+
+---Decryption at user---
+Key       (hex): 2aad221be084c505371ca5b5c0c54d3b0b8ad04718721e45eb1e4db288235161
+Nonce     (hex): 80f4f549d12f912f56a7bd35
+Counter        : 54
+----------------------------------------------------------------------------
+The transmitted image length is 67807
+
+---Decryption at user---
+Key       (hex): 1e51c2e900b9eabac508dd081a2adfbcd8a3add2ce29b11619098f2abc0bf20a
+Nonce     (hex): 77d6c977c437b921d2955f78
+Counter        : 55
+----------------------------------------------------------------------------
+The transmitted image length is 62861
+
+---Decryption at user---
+Key       (hex): 868867b26ea71880753e714840dc39944aa33a4004926dba0052d4e926e2d977
+Nonce     (hex): 91636f971547104c97770186
+Counter        : 56
+----------------------------------------------------------------------------
+The transmitted image length is 67048
+
+---Decryption at user---
+Key       (hex): e41fd850b3a34986701709c55f539771b5d2d49867ce9aab07b24b0a77251d09
+Nonce     (hex): 57fc98eedfb3f2352be51e9b
+Counter        : 57
+----------------------------------------------------------------------------
+The transmitted image length is 68238
+
+---Decryption at user---
+Key       (hex): f640f53b1a5fc9b4dd565e930f90751bde1314708b796bb419a6efadffd33041
+Nonce     (hex): 62e64ea10006dfc892021df2
+Counter        : 58
+----------------------------------------------------------------------------
+The transmitted image length is 70381
+
+---Decryption at user---
+Key       (hex): d3bf9c352f2a84466a4afa19c3414269f852425d8d5a2329dad2a2557927ed3e
+Nonce     (hex): be881825577a078250b80927
+Counter        : 59
+----------------------------------------------------------------------------
+The transmitted image length is 70570
+
+---Decryption at user---
+Key       (hex): 6285a64afb79062349f34bd52101e1df54ca31232d58b6db7bd6a543a47b8858
+Nonce     (hex): f55f2b0e3ae4d73da4fad5d8
+Counter        : 60
+----------------------------------------------------------------------------
+The transmitted image length is 69955
+
+---Decryption at user---
+Key       (hex): 027fc195ffd5880667f407fc07036a1094f8b28b19e9b697b89f48384cf0884d
+Nonce     (hex): be09245bd0582606ba9bacde
+Counter        : 61
+----------------------------------------------------------------------------
+The transmitted image length is 69909
+
+---Decryption at user---
+Key       (hex): fea8f34f959f6279a96afe27aa5bcee8f32852e58941058435990fb7651494e3
+Nonce     (hex): e46d273be295faaf7c16aea7
+Counter        : 62
+----------------------------------------------------------------------------
+The transmitted image length is 70557
+
+---Decryption at user---
+Key       (hex): 850b843a533231ab37bbca56df6172df7aebdd62db969e16838b63d75675cb5b
+Nonce     (hex): f60f49dc65b604e2cdee6c88
+Counter        : 63
+----------------------------------------------------------------------------
+The transmitted image length is 70408
+
+---Decryption at user---
+Key       (hex): 008fb56924008e17a6a4b9d9319abce97bf3f2035d363bd0973d8bba6d17591b
+Nonce     (hex): 8162872ef842d100036894bb
+Counter        : 64
+----------------------------------------------------------------------------
+The transmitted image length is 72089
+
+---Decryption at user---
+Key       (hex): 237b8f67cb3e08fad300839bf44a90418dbcf5e824d0277ab45b8994526d67b9
+Nonce     (hex): 56810f9688824a3bb5246439
+Counter        : 65
+----------------------------------------------------------------------------
+The transmitted image length is 73220
+
+---Decryption at user---
+Key       (hex): af45418194ce91d2cf98d6ee2bc1a14c3ee179d8c895056a43aa570ac3714eed
+Nonce     (hex): 2b36cf295c8183a6dcd11128
+Counter        : 66
+----------------------------------------------------------------------------
+The transmitted image length is 73559
+
+---Decryption at user---
+Key       (hex): 9c12e344243497f3d828ebfd91993b8a4a25b32802720eca8130126381a7cb2c
+Nonce     (hex): f005a8aa27d1696077e6fdf9
+Counter        : 67
+----------------------------------------------------------------------------
+The transmitted image length is 72214
+
+---Decryption at user---
+Key       (hex): ec4b7a5b39429248b37548316995496f255846fc86bce4297deb001558da0835
+Nonce     (hex): 74ec99f701535d3103a2263b
+Counter        : 68
+----------------------------------------------------------------------------
+The transmitted image length is 72662
+
+---Decryption at user---
+Key       (hex): 3b88d71a77510e9e841c70be04592f7ef48f54e1c14d2d607dfa9b2c10d85e91
+Nonce     (hex): 4fc58905746cc070ddd5dd4f
+Counter        : 69
+----------------------------------------------------------------------------
+The transmitted image length is 73501
+
+---Decryption at user---
+Key       (hex): e35e988684dbb9a8c077c236b144a1689109d1be123490b34db95a4aa658919a
+Nonce     (hex): 1eaedb27a69a4b414c206392
+Counter        : 70
+----------------------------------------------------------------------------
+The transmitted image length is 72290
+
+---Decryption at user---
+Key       (hex): 6f6b0a006e9b1acf2c3669b2c204a471d2b8b2725e49fe03977274d4de90e596
+Nonce     (hex): 2f67eebae569c6f1a3dd5101
+Counter        : 71
+----------------------------------------------------------------------------
+The transmitted image length is 74557
+
+---Decryption at user---
+Key       (hex): 67ae5fc28d1e1b94db164130bd71e96d3e99c2fbba098f392621446032c60cc2
+Nonce     (hex): 6a50516d88b7417ceb3b5ae6
+Counter        : 72
+----------------------------------------------------------------------------
+The transmitted image length is 73252
+
+---Decryption at user---
+Key       (hex): 56553d2197a2d4ad49389a06e8b952ddeb6313699fdf8c9ca2566bc0e727e6d5
+Nonce     (hex): cc3d6deaac24fd726324fd6a
+Counter        : 73
+----------------------------------------------------------------------------
+The transmitted image length is 73304
+
+---Decryption at user---
+Key       (hex): ad2efba4813043e01bd8706a4db572197cd0f928cf46a60e1c6b23de0e399595
+Nonce     (hex): 2cd84a513f099d21dabfac0f
+Counter        : 74
+----------------------------------------------------------------------------
+The transmitted image length is 73725
+
+---Decryption at user---
+Key       (hex): e27f21b8debdc94e55b845a174f2f7344d48078789cca0c2a3565c200ca357c9
+Nonce     (hex): de695e12e1c24388a9039b3d
+Counter        : 75
+----------------------------------------------------------------------------
+The transmitted image length is 72677
+
+---Decryption at user---
+Key       (hex): 8df5dab1e38f077966ad1778a6e02c7c4e84643be52575c8f7c2ee26f69e5bdf
+Nonce     (hex): 101c76270d2fad245a6d939b
+Counter        : 76
+----------------------------------------------------------------------------
+The transmitted image length is 71617
+
+---Decryption at user---
+Key       (hex): 24d1e26299b0651d3becc4dc60cafc9220e00fc54175287199a16704f8218ca6
+Nonce     (hex): fed1f6c45f581ae77c4c6b17
+Counter        : 77
+----------------------------------------------------------------------------
+The transmitted image length is 72460
+
+---Decryption at user---
+Key       (hex): 61bf5ab53e415226baf531317385df54988c1fab4a88a987161fa75967f3b61f
+Nonce     (hex): b7f7eec39fb217dd1337fa9f
+Counter        : 78
+----------------------------------------------------------------------------
+The transmitted image length is 72585
+
+---Decryption at user---
+Key       (hex): cf0beb2ee00ca3ce8085816d78fca2c9619eee4a6f05879768a591ac74ab8455
+Nonce     (hex): 96e724e106b4d389649324ff
+Counter        : 79
+----------------------------------------------------------------------------
+The transmitted image length is 71266
+
+---Decryption at user---
+Key       (hex): 9d6b8ddf580ad6df6aa09a5b5f1283d9ba47310b00905753f98c43925a84a292
+Nonce     (hex): 0d565dde48906c95cd3fde69
+Counter        : 80
+----------------------------------------------------------------------------
+The transmitted image length is 71243
+
+---Decryption at user---
+Key       (hex): 0c1274089f1342d245fbb3a4bf245c0e83e339f2eca0ca8e0220eb2f5166c265
+Nonce     (hex): 417cec2f4f8bab1856b09a11
+Counter        : 81
+----------------------------------------------------------------------------
+The transmitted image length is 71744
+
+---Decryption at user---
+Key       (hex): 1d1f3901cadd8fbd824cea6a8c61e71a196c4d1ed2c4dc645125cbf3d7238039
+Nonce     (hex): 45f7d5a13410527f920517d4
+Counter        : 82
+----------------------------------------------------------------------------
+The transmitted image length is 70969
+
+---Decryption at user---
+Key       (hex): b895fce5d05056fed1162fd61b3206a3b40b5bb0208795a92a3afde9ad31f538
+Nonce     (hex): 1d3e5e63e54399c411a99a76
+Counter        : 83
+----------------------------------------------------------------------------
+The transmitted image length is 70601
+
+---Decryption at user---
+Key       (hex): 92ea19dd390b601b824dce1c5de4051715da4a78724a4dc6d310f9dc64ac9d66
+Nonce     (hex): 52d8f74cc69584c3f4f84fe6
+Counter        : 84
+----------------------------------------------------------------------------
+The transmitted image length is 70432
+
+---Decryption at user---
+Key       (hex): e0dcda64259ce9ae9fcff26788575a9b3f3c0c47505a8e40031e829c2d0d1d58
+Nonce     (hex): 1daff900f5f8b37ef418fa2c
+Counter        : 85
+----------------------------------------------------------------------------
+The transmitted image length is 72390
+
+---Decryption at user---
+Key       (hex): ad9d5492cc17ec2fbdebb99c93a477bcd485ca4c963e42d25ad7a102805530b4
+Nonce     (hex): d7a3a77cfa931fc75efd2073
+Counter        : 86
+----------------------------------------------------------------------------
+The transmitted image length is 71878
+
+---Decryption at user---
+Key       (hex): bddfb531068195792ea7a5597e02e967177dd30859b0aa4f074b12a1e535a834
+Nonce     (hex): cc4d3bca068536ecae414489
+Counter        : 87
+----------------------------------------------------------------------------
+The transmitted image length is 69951
+
+---Decryption at user---
+Key       (hex): a17a91663862f2aacd59757cba82b70dd4f9a4957b3285209a75187afebe5a60
+Nonce     (hex): 98b568d8f9dbf56b8f60e304
+Counter        : 88
+----------------------------------------------------------------------------
+The transmitted image length is 72301
+
+---Decryption at user---
+Key       (hex): 88650c5b2ddd54e7fad1aae12f6170f7b7b9bd93e9c332e6afed9364ce05db6b
+Nonce     (hex): dd6ae9c6366f4d5cecbd55de
+Counter        : 89
+----------------------------------------------------------------------------
+The transmitted image length is 70970
+
+---Decryption at user---
+Key       (hex): 809fa679973bab042126ad3fd316fbc2629cfee943537a228b568b8f5c66cd33
+Nonce     (hex): 79ff869b93a0d1148bc01c97
+Counter        : 90
+----------------------------------------------------------------------------
+The transmitted image length is 70202
+
+---Decryption at user---
+Key       (hex): c9b83b651dcd3627b537f4cc7434fbab089e46e69d4fc6ea40a3bd8a7c856839
+Nonce     (hex): e13e424b2834d908d152a84d
+Counter        : 91
+----------------------------------------------------------------------------
+The transmitted image length is 67852
+
+---Decryption at user---
+Key       (hex): bfca9bd5d2a7becf1bcdfbaa4c3cf77503a429f0618d649fd58395e4a069246e
+Nonce     (hex): c0f22cbd02d8e3fa62b5ef61
+Counter        : 92
+----------------------------------------------------------------------------
+The transmitted image length is 65488
+
+---Decryption at user---
+Key       (hex): ca71fc93f47bb0acc75e3fb6553bfaf5ca59163030cf6ce7dba3dfe442eb79bc
+Nonce     (hex): 496ba7d67a302a5b3b648885
+Counter        : 93
+----------------------------------------------------------------------------
+The transmitted image length is 67685
+
+---Decryption at user---
+Key       (hex): ed34d215396f7f665bfb50b61045fd4141fd7d89da86692df415ed953e1c7e85
+Nonce     (hex): 83a336248b61f97f16acf594
+Counter        : 94
+----------------------------------------------------------------------------
+The transmitted image length is 68783
+
+---Decryption at user---
+Key       (hex): 0a20e395760323aa3ec5c5c96420923fe3c15a2953ae3587fa9957750bd70b3e
+Nonce     (hex): 23406778b7e9b797609115eb
+Counter        : 95
+----------------------------------------------------------------------------
+The transmitted image length is 71433
+
+---Decryption at user---
+Key       (hex): 16fc12f3fb3ef7f13c0c2861f2ddb53ad64b7765d192471821aef000d3f1745b
+Nonce     (hex): af84d4a4f3d8ff8f0863a1c2
+Counter        : 96
+----------------------------------------------------------------------------
+The transmitted image length is 69837
+
+---Decryption at user---
+Key       (hex): a831af0c03933dfe834f29d20909be6c4c213f3e134278d278d358f9e12741fc
+Nonce     (hex): cc0e1f8aec5f850b01f0e4ba
+Counter        : 97
+----------------------------------------------------------------------------
+The transmitted image length is 71279
+
+---Decryption at user---
+Key       (hex): d032c0c2c96eab23efc8d50549542bc9f3cfc5c83be4368142b878730ccf20d4
+Nonce     (hex): e9cce074e4fc836ab6b2e706
+Counter        : 98
+----------------------------------------------------------------------------
+The transmitted image length is 62757
+
+---Decryption at user---
+Key       (hex): 7b2489d2ce963f9c1ccff9876a700abd1ba0850a720d50c271ea95af581c41b6
+Nonce     (hex): 2153eb10ac38d3948bfe1785
+Counter        : 99
+----------------------------------------------------------------------------
+The transmitted image length is 63206
+
+---Decryption at user---
+Key       (hex): f1999e0d5dd044ef01a5fadb5d8d374c9674ceda5907e39a5587fe49aa805f16
+Nonce     (hex): c08ed28d7a1b56ff5813764d
+Counter        : 100
+----------------------------------------------------------------------------
+The transmitted image length is 64955
+
+---Decryption at user---
+Key       (hex): 5e58552e08a2ff01af3e2b2ecd0825264eab934eb8db40e1c46bebdefd33b2b4
+Nonce     (hex): 5fdc7b427f2caf8efac15701
+Counter        : 101
+----------------------------------------------------------------------------
+The transmitted image length is 63862
+
+---Decryption at user---
+Key       (hex): 56d7ab23714cd6e111eafad77391379491863ad6594c78215ef842820c046d31
+Nonce     (hex): 16934adbd09601eb49ebb1ee
+Counter        : 102
+----------------------------------------------------------------------------
+The transmitted image length is 63099
+
+---Decryption at user---
+Key       (hex): 03c390912d8da5e90137588c2848004d6620aed681b9ae121e0a67929b280e57
+Nonce     (hex): 8cd9c20d2f91171308009629
+Counter        : 103
+----------------------------------------------------------------------------
+The transmitted image length is 67137
+
+---Decryption at user---
+Key       (hex): bd8dde20dfc520ca22c2c0191fdbca14e28d14c7d6653cc330be9c9bfcccc2f4
+Nonce     (hex): 683cb2bfdb46669be0062582
+Counter        : 104
+----------------------------------------------------------------------------
+The transmitted image length is 63995
+
+---Decryption at user---
+Key       (hex): 6a98889ee53441f63eb6c88334b0a3099743dc8d87df9464e6307ba7c2b422c5
+Nonce     (hex): f1a8ee9abef0b2a526879cf6
+Counter        : 105
+----------------------------------------------------------------------------
+The transmitted image length is 62434
+
+---Decryption at user---
+Key       (hex): c4defccda5f36bceaec98338b0f384ab091bf5b26c180c65159cbbc18f179e36
+Nonce     (hex): 6a5c46c0b1ed9db7c2a2b5a2
+Counter        : 106
+----------------------------------------------------------------------------
+The transmitted image length is 66764
+
+---Decryption at user---
+Key       (hex): d7b0a0bd75b4a4f25505009921ac2bb45bebcc4154963314520fbf156d28f467
+Nonce     (hex): e3c1edf564a0b6ae143ebc0d
+Counter        : 107
+----------------------------------------------------------------------------
+The transmitted image length is 67768
+
+---Decryption at user---
+Key       (hex): 4a1f08fef7106491af3b95a9cc0a6a331d8e1f436fdc5ccbe79ee06a438a91b2
+Nonce     (hex): 17bc64bb230f600996c86398
+Counter        : 108
+----------------------------------------------------------------------------
+The transmitted image length is 69762
+
+---Decryption at user---
+Key       (hex): d8383ca8bdb554a5eda04a70233ad53456599c03cb3fdfbbdc758c50ca5adcd2
+Nonce     (hex): 1956da5c1f2f4d654c4454a2
+Counter        : 109
+----------------------------------------------------------------------------
+The transmitted image length is 70047
+
+---Decryption at user---
+Key       (hex): 736e9d277a17bd9fd93c88b9e3aac670194e1313984ed8055a2b5f109d80494f
+Nonce     (hex): 37f56c7cf974db5ec703eed6
+Counter        : 110
+----------------------------------------------------------------------------
+The transmitted image length is 70386
+
+---Decryption at user---
+Key       (hex): 2eb3a62afc4e38df70133f77c5ca5931a4e6a3fb6d72f921e76aeed65466c593
+Nonce     (hex): d3a3fbdd26b411c5f98694e5
+Counter        : 111
+----------------------------------------------------------------------------
+The transmitted image length is 72023
+
+---Decryption at user---
+Key       (hex): 2e0755630e0b1b92f75eac4cb9aebe562efa969d1e1f148dd98ed7ce67c93b5f
+Nonce     (hex): 994723d302ae4f1f2c393396
+Counter        : 112
+----------------------------------------------------------------------------
+The transmitted image length is 70516
+
+---Decryption at user---
+Key       (hex): 9a2be25941d21f96a0e64e967ebb842a12ad9852a0ac5bdd71f640410b5a3508
+Nonce     (hex): dfaf3d67180522dcb23945e6
+Counter        : 113
+----------------------------------------------------------------------------
+The transmitted image length is 71155
+
+---Decryption at user---
+Key       (hex): be4389be2c848914140e841f8d044fb3b6d9b2b37f1bf34a244402a7e02235f0
+Nonce     (hex): 9f94c20eb2896c313df9e74c
+Counter        : 114
+----------------------------------------------------------------------------
+The transmitted image length is 66370
+
+---Decryption at user---
+Key       (hex): d226c53f51eebbfc1a41d9dd7659154df1a960de4d16237557f24901f7e2ddeb
+Nonce     (hex): f591d85b7a0c9a51fea3bf2b
+Counter        : 115
+----------------------------------------------------------------------------
+The transmitted image length is 64701
+
+---Decryption at user---
+Key       (hex): cf8aa0a0bc55a6b37f308c5a510262752da173de763a6af156999ed2d9eb8b29
+Nonce     (hex): 02358fa6b79cd43e5661fd0f
+Counter        : 116
+----------------------------------------------------------------------------
+The transmitted image length is 64659
+
+---Decryption at user---
+Key       (hex): f7ab0d79d42d3fac4c572be97dd61c37fb85931dd69f60dd8bbc5f88f3583955
+Nonce     (hex): 1b6636406b37ee651298932b
+Counter        : 117
+----------------------------------------------------------------------------
+The transmitted image length is 69183
+
+---Decryption at user---
+Key       (hex): 4842e5380eccfc2a0e40e4e539168fe1a3fc7679bb677623c1963adc0bff3222
+Nonce     (hex): 4cf4c8834f82d6413a8f7d0c
+Counter        : 118
+----------------------------------------------------------------------------
+The transmitted image length is 66364
+
+---Decryption at user---
+Key       (hex): aaaae779f03319155c456d39478f023e3b1668601a01cc78e5c382959c2ef39d
+Nonce     (hex): 367a3c7f65c418512e3f5f33
+Counter        : 119
+----------------------------------------------------------------------------
+The transmitted image length is 69257
+
+---Decryption at user---
+Key       (hex): d11ccda116d8e869a9c0449a73ed34868e278913e2c5c55e4e8b4aba27a0d96e
+Nonce     (hex): d478b1b0ec20f408479b87f8
+Counter        : 120
+----------------------------------------------------------------------------
+The transmitted image length is 68602
+
+---Decryption at user---
+Key       (hex): 3175ef489d4eccee56b3cf67864b80adb9ce033d1f5b374392bcfac56d1ab4bb
+Nonce     (hex): 78df5e41d45b997543e8230c
+Counter        : 121
+----------------------------------------------------------------------------
+The transmitted image length is 70428
+
+---Decryption at user---
+Key       (hex): 26aa8e7fdfa180f94aa2330d9f769274ac6fd27a492573f6b5e951c92f1923c4
+Nonce     (hex): b8b8afc1492db73ac2a9b213
+Counter        : 122
+----------------------------------------------------------------------------
+The transmitted image length is 67907
+
+---Decryption at user---
+Key       (hex): 6fe7f8c64ec9b0a9387ee372cb87926da4c65f2d596f38d58cc51429cd1b9762
+Nonce     (hex): db1dbc68aae3e29967d99f92
+Counter        : 123
+----------------------------------------------------------------------------
+The transmitted image length is 71547
+
+---Decryption at user---
+Key       (hex): 87558c5defa87c0b0c96a9b7976bd54cc7f9819c553c47b8e4c6963520d49fdd
+Nonce     (hex): beecedf75dd46cf5c1b48b19
+Counter        : 124
+----------------------------------------------------------------------------
+The transmitted image length is 69397
+
+---Decryption at user---
+Key       (hex): c549b600597bf93eea831186b3f4ed204115a8edf75edf58af48d01523e17ca3
+Nonce     (hex): 60d13a2f09a70b55f1283270
+Counter        : 125
+----------------------------------------------------------------------------
+The transmitted image length is 71181
+
+---Decryption at user---
+Key       (hex): 84e08cfc507844d169de0c05293e7f1b954a93a6404946148f019d9c865401c0
+Nonce     (hex): de5dceb66182affe4db871b2
+Counter        : 126
+Can't read length of array from bytes
+----------------------------------------------------------------------------
+The transmitted image length is 0

@@ -4,9 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -45,10 +47,8 @@ import org.opencv.videoio.VideoCapture;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -56,7 +56,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
 
 /**
  * The controller for our application, where the application logic is
@@ -139,6 +138,8 @@ public class ServerController {
 	private OutputStream destStream;
 	private InetAddress receiverAddress;
 
+
+	
 //	private static class service extends ScheduledService<byte[]> {
 //		private ServerSocket serverSocket;
 //
@@ -429,6 +430,13 @@ public class ServerController {
 //			client = new EchoClient();
 		// is the video stream available?
 //		if (this.capture.isOpened()) {
+		//Instantiating the File class
+	    File file = new File("Server.txt");
+	    //Instantiating the PrintStream class
+	    PrintStream stream = new PrintStream(file);
+	    System.out.println("From now on "+file.getAbsolutePath()+" will be your console");
+	    System.setOut(stream);
+		
 		this.cameraActive = true;
 		this.haarClassifier.setSelected(true);
 		this.checkboxSelection(
