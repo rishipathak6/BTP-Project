@@ -142,12 +142,12 @@ public class SampleController {
 	 */
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
-		File file = new File("Client.txt");
-		// Instantiating the PrintStream class
-		PrintStream stream = new PrintStream(file);
-		System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
-		System.setOut(stream);
 		if (!this.cameraActive) {
+			File file = new File("Client.txt");
+			// Instantiating the PrintStream class
+			PrintStream stream = new PrintStream(file);
+			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
+			System.setOut(stream);
 			// start the video capture
 			this.capture.open(cameraId, 700);
 
@@ -260,7 +260,9 @@ public class SampleController {
 					this.obj = Mat2BufferedImage(frame);
 					System.out.println(this.obj);
 					this.byteArray = Mat2byteArray(frame);
-					System.out.println(this.byteArray.length);
+					System.out.println("");
+					System.out.println("The transmitted image length is " + this.byteArray.length);
+					System.out.println("");
 
 					///////////////////////////////////// ChaCha20-Poly1305 Code
 					///////////////////////////////////// ////////////////////////////////////////
@@ -371,7 +373,7 @@ public class SampleController {
 						}
 						System.out.println(
 								"----------------------------------------------------------------------------");
-						System.out.println("\n\n");
+						System.out.println("\n");
 					}
 
 				}
@@ -399,7 +401,7 @@ public class SampleController {
 				System.err.println("Exception in stopping the frame capture, trying to release the camera now... " + e);
 			}
 		}
-		
+
 		try {
 			socket.close();
 		} catch (IOException e) {

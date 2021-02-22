@@ -332,7 +332,7 @@ public class ServerController {
 						System.out.println(
 								"----------------------------------------------------------------------------");
 						bb = ByteBuffer.wrap(buffer);
-						System.out.println("The transmitted image length is " + buffer.length);
+						System.out.println("The Recieved image length is " + buffer.length);
 
 						byte[] encryptedText = new byte[buffer.length - 48];
 						bb.get(encryptedText);
@@ -354,6 +354,12 @@ public class ServerController {
 						unencgap = len / numencblock;
 						key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
 						counter20 = ByteBuffer.wrap(counterArray).getInt();
+
+						System.out.println("\n---Encrypted bytes recieved at user---");
+						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+						System.out.println("Counter        : " + counter20);
+
 						System.out.println("\n---Decryption at user---");
 
 						try {
@@ -389,15 +395,18 @@ public class ServerController {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						System.out.println(
+								"----------------------------------------------------------------------------");
+						System.out.println("\n");
 
 					}
 				};
 
 				timer = Executors.newSingleThreadScheduledExecutor();
 				timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
-
-//					server.close();
 				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("\n");
+//					server.close();
 
 			} catch (SocketTimeoutException s) {
 				System.out.println("Socket timed out!");
