@@ -138,8 +138,6 @@ public class ServerController {
 	private OutputStream destStream;
 	private InetAddress receiverAddress;
 
-
-	
 //	private static class service extends ScheduledService<byte[]> {
 //		private ServerSocket serverSocket;
 //
@@ -285,12 +283,10 @@ public class ServerController {
 
 	public class GreetingServer extends Thread {
 		private ServerSocket serverSocket;
-		private ScheduledExecutorService timer;
 
-		public GreetingServer(int port, ScheduledExecutorService timer) throws IOException {
+		public GreetingServer(int port) throws IOException {
 			serverSocket = new ServerSocket(port);
 //			serverSocket.setSoTimeout(10000);
-			this.timer = timer;
 		}
 
 		public void run() {
@@ -397,8 +393,8 @@ public class ServerController {
 					}
 				};
 
-				this.timer = Executors.newSingleThreadScheduledExecutor();
-				this.timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
+				timer = Executors.newSingleThreadScheduledExecutor();
+				timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
 
 //					server.close();
 				System.out.println("----------------------------------------------------------------------------");
@@ -423,47 +419,47 @@ public class ServerController {
 
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
-//		if (!this.cameraActive) {
-		// start the video capture
+		if (!this.cameraActive) {
+			// start the video capture
 //			this.capture.open(cameraId);
 //			new EchoServer().start();
 //			client = new EchoClient();
-		// is the video stream available?
+			// is the video stream available?
 //		if (this.capture.isOpened()) {
-		//Instantiating the File class
-	    File file = new File("Server.txt");
-	    //Instantiating the PrintStream class
-	    PrintStream stream = new PrintStream(file);
-	    System.out.println("From now on "+file.getAbsolutePath()+" will be your console");
-	    System.setOut(stream);
-		
-		this.cameraActive = true;
-		this.haarClassifier.setSelected(true);
-		this.checkboxSelection(
-				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
+			// Instantiating the File class
+			File file = new File("Server.txt");
+			// Instantiating the PrintStream class
+			PrintStream stream = new PrintStream(file);
+			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
+			System.setOut(stream);
 
-		encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
-			encText.setText(Double.toString(newValue.doubleValue()));
-		});
-		encText.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
-					encPercent.setValue(Double.parseDouble(newValue));
+			this.cameraActive = true;
+			this.haarClassifier.setSelected(true);
+			this.checkboxSelection(
+					"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
+
+			encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
+				encText.setText(Double.toString(newValue.doubleValue()));
+			});
+			encText.textProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+					if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
+						encPercent.setValue(Double.parseDouble(newValue));
+					}
 				}
-			}
-		});
+			});
 
-		try {
-			Thread t = new GreetingServer(3000, this.timer);
-			t.setDaemon(true);
-			t.start();
+			try {
+				Thread t = new GreetingServer(3000);
+				t.setDaemon(true);
+				t.start();
 //			GreetingServer frameReceiver = new GreetingServer(3000);
 //			this.timer = Executors.newSingleThreadScheduledExecutor();
 //			this.timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 //		Thread thread = new Thread(task);
 //		thread.setDaemon(true);
@@ -524,13 +520,13 @@ public class ServerController {
 //		});
 //
 //		service.start();
-		// update the button content
+			// update the button content
 //		if (onceStarted) {
 //			service.restart();
 //		} else {
 //			service.start();
 //			onceStarted = true;
-		button.setText("Restart");
+			button.setText("Stop Camera");
 //		}
 //		this.button.setText("Stop Camera");
 
@@ -538,15 +534,15 @@ public class ServerController {
 //			// log the error
 //			System.err.println("Transmission not started yet...");
 //		}
-//		} else {
-//			// the camera is not active at this point
-//			this.cameraActive = false;
-//			// update again the button content
-//			this.button.setText("Start Camera");
-//
-//			// stop the timer
-//			this.stopAcquisition();
-//		}
+		} else {
+			// the camera is not active at this point
+			this.cameraActive = false;
+			// update again the button content
+			this.button.setText("Start Camera");
+
+			// stop the timer
+			this.stopAcquisition();
+		}
 	}
 
 	@FXML

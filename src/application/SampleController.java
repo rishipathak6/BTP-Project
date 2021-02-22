@@ -124,7 +124,7 @@ public class SampleController {
 	private byte[] cText20;
 	private byte[] pText20;
 	private byte[] sentBytes20;
-
+	private Socket socket;
 	private byte[] cText;
 	private byte[] pText;
 	private ByteBuffer bb;
@@ -133,7 +133,7 @@ public class SampleController {
 	private byte[] originalCText;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
-	
+
 	/**
 	 * The action triggered by pushing the button on the GUI
 	 *
@@ -143,10 +143,10 @@ public class SampleController {
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
 		File file = new File("Client.txt");
-	    //Instantiating the PrintStream class
-	    PrintStream stream = new PrintStream(file);
-	    System.out.println("From now on "+file.getAbsolutePath()+" will be your console");
-	    System.setOut(stream);
+		// Instantiating the PrintStream class
+		PrintStream stream = new PrintStream(file);
+		System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
+		System.setOut(stream);
 		if (!this.cameraActive) {
 			// start the video capture
 			this.capture.open(cameraId, 700);
@@ -172,7 +172,7 @@ public class SampleController {
 					}
 				});
 
-				Socket socket = new Socket(InetAddress.getLocalHost(), 3000);
+				socket = new Socket(InetAddress.getLocalHost(), 3000);
 				System.out.println("Just connected to " + socket.getRemoteSocketAddress());
 
 				// grab a frame every 33 ms (30 frames/sec)
@@ -371,7 +371,7 @@ public class SampleController {
 						}
 						System.out.println(
 								"----------------------------------------------------------------------------");
-					System.out.println("\n\n");
+						System.out.println("\n\n");
 					}
 
 				}
@@ -398,6 +398,13 @@ public class SampleController {
 				// log any exception
 				System.err.println("Exception in stopping the frame capture, trying to release the camera now... " + e);
 			}
+		}
+		
+		try {
+			socket.close();
+		} catch (IOException e) {
+			System.out.println("Connection not open to close");
+			e.printStackTrace();
 		}
 
 		if (this.capture.isOpened()) {
