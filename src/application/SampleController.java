@@ -256,13 +256,19 @@ public class SampleController {
 					this.showHistogram(frame, grayscale.isSelected());
 					// face detection
 					this.detectAndDisplay(frame);
-					System.out.println("----------------------------------------------------------------------------");
+
 					this.obj = Mat2BufferedImage(frame);
-					System.out.println(this.obj);
 					this.byteArray = Mat2byteArray(frame);
-					System.out.println("");
+					System.out.println("----------------------------------------------------------------------------");
 					System.out.println("The transmitted image length is " + this.byteArray.length);
 					System.out.println("");
+					System.out.println(this.obj);
+					System.out.println("");
+					if (!dataIsValidJPEG(byteArray)) {
+						System.out.println("The original image is not a valid JPEG");
+					}
+					System.out.println("The first two bytes of original image are " + byteArray[0] + byteArray[1]
+							+ " The last two bytes are " + byteArray[byteArray.length - 2] + byteArray[byteArray.length - 1]);
 
 					///////////////////////////////////// ChaCha20-Poly1305 Code
 					///////////////////////////////////// ////////////////////////////////////////
@@ -566,6 +572,17 @@ public class SampleController {
 		Rect[] facesArray = faces.toArray();
 		for (int i = 0; i < facesArray.length; i++)
 			Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
+	}
+
+	private boolean dataIsValidJPEG(byte[] data) {
+		if (data == null || data.length < 2)
+			return false;
+
+		int totalBytes = data.length;
+		String bytes = convertBytesToHex(data);
+
+		return (bytes.charAt(0) == (char) 0xff && bytes.charAt(1) == (char) 0xd8
+				&& bytes.charAt(totalBytes - 2) == (char) 0xff && bytes.charAt(totalBytes - 1) == (char) 0xd9);
 	}
 
 	public static BufferedImage Mat2BufferedImage(Mat mat) throws IOException {
