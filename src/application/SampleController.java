@@ -2,6 +2,7 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +10,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -40,6 +43,7 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
+import application.ServerController.DataServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 //import it.polito.elite.teachingg.cv.utils.Utils;
@@ -133,6 +137,52 @@ public class SampleController {
 	private byte[] originalCText;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
+	public class ControlServer extends Thread {
+		private ServerSocket serverSocket;
+
+		public ControlServer(int port) throws IOException {
+			serverSocket = new ServerSocket(port);
+//			serverSocket.setSoTimeout(10000);
+		}
+
+		public void run() {
+			while (true) {
+				try {
+					System.out.println("----------------------------------------------------------------------------");
+					System.out.println(
+							"Waiting for client to send instructions on port " + serverSocket.getLocalPort() + "...");
+					Socket server = serverSocket.accept();
+					System.out.println("Just connected to " + server.getRemoteSocketAddress());
+					DataInputStream in = new DataInputStream(server.getInputStream());
+
+					String msg = in.readUTF();
+					System.out.println("msg = " + msg);
+					if (msg.equals("Start Camera")) {
+						button.fire();
+					}
+//					server.close();
+
+				} catch (SocketTimeoutException s) {
+					System.out.println("Socket timed out!");
+//					break;
+				} catch (IOException e) {
+					e.printStackTrace();
+//					break;
+				}
+			}
+		}
+	}
+
+	@FXML
+	public void initialize() {
+		try {
+			Thread t = new ControlServer(8080);
+			t.setDaemon(true);
+			t.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * The action triggered by pushing the button on the GUI
@@ -265,58 +315,9 @@ public class SampleController {
 					System.out.println(this.obj);
 					System.out.println("");
 					if (!dataIsValidJPEG(byteArray)) {
-						System.out.println("The original image is not a valid JPEG");
+//						System.out.println("The original image is not a valid JPEG");
 					}
-					System.out.println("The first two bytes of original image are " + byteArray[0] + byteArray[1]
-							+ " The last two bytes are " + byteArray[byteArray.length - 2] + byteArray[byteArray.length - 1]);
 
-					///////////////////////////////////// ChaCha20-Poly1305 Code
-					///////////////////////////////////// ////////////////////////////////////////
-					// key = getKey(); // 256-bit secret key (32 bytes)
-					//
-					// System.out.println("Input : " + byteArray);
-					//// System.out.println("Input (hex): " + convertBytesToHex(byteArray));
-					//
-					// System.out.println("\n---Encryption---");
-					// cText = cipherCCP.encrypt(byteArray, key); // encrypt
-					//
-					// System.out.println("Key (hex): " + convertBytesToHex(key.getEncoded()));
-					//// System.out.println("Encrypted (hex): " + convertBytesToHex(cText));
-					//
-					// System.out.println("\n---Print Mac and Nonce---");
-					//
-					// bb = ByteBuffer.wrap(cText);
-					// // This cText contains chacha20 ciphertext + poly1305 MAC + nonce
-					//
-					// // ChaCha20 encrypted the plaintext into a ciphertext of equal length.
-					// originalCText = new byte[byteArray.length];
-					//
-					//
-					// bb.get(originalCText);
-					// bb.get(mac);
-					// bb.get(nonce);
-					//
-					//// System.out.println("Cipher (original) (hex): " +
-					///////////////////////////////////// convertBytesToHex(originalCText));
-					// System.out.println("MAC (hex): " + convertBytesToHex(mac));
-					// System.out.println("Nonce (hex): " + convertBytesToHex(nonce));
-					//
-					// System.out.println("\n---Decryption---");
-					//// System.out.println("Input (hex): " + convertBytesToHex(cText));
-					//
-					// pText = cipherCCP.decrypt(cText, key); // decrypt
-					//
-					// System.out.println("Key (hex): " + convertBytesToHex(key.getEncoded()));
-					//// System.out.println("Decrypted (hex): " + convertBytesToHex(pText));
-					//// System.out.println("Decrypted : " + new String(pText));
-					// Mat encMat = Imgcodecs.imdecode(new MatOfByte(cText),
-					///////////////////////////////////// Imgcodecs.IMREAD_UNCHANGED);
-					// if (!encMat.empty()) {
-					// Image imageToShow = Utils.mat2Image(encMat);
-					// updateImageView(encryptedFrame, imageToShow);
-					// }
-					///////////////////////////////////// ChaCha20 Code
-					///////////////////////////////////// ////////////////////////////////////////
 					percentage = encPercent.getValue();
 					len = byteArray.length;
 					key20 = getKey(); // 256-bit secret key (32 bytes)
@@ -580,6 +581,9 @@ public class SampleController {
 
 		int totalBytes = data.length;
 		String bytes = convertBytesToHex(data);
+		System.out.println("The first two bytes of original image are " + bytes.charAt(0) + bytes.charAt(1) + " "
+				+ bytes.charAt(2) + bytes.charAt(3) + " The last two bytes are " + bytes.charAt(totalBytes - 4)
+				+ bytes.charAt(totalBytes - 3) + " " + bytes.charAt(totalBytes - 2) + bytes.charAt(totalBytes - 1));
 
 		return (bytes.charAt(0) == (char) 0xff && bytes.charAt(1) == (char) 0xd8
 				&& bytes.charAt(totalBytes - 2) == (char) 0xff && bytes.charAt(totalBytes - 1) == (char) 0xd9);

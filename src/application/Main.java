@@ -16,7 +16,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		isserver = false;
+		isserver = true;
 
 		try {
 			if (!isserver) {
