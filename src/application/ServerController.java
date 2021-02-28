@@ -253,7 +253,14 @@ public class ServerController {
 			this.cameraActive = false;
 			// update again the button content
 			this.button.setText("Start Camera");
+			controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
+					+ " for sending start camera instruction");
+			OutputStream outToServer = controlSocket.getOutputStream();
+			DataOutputStream out = new DataOutputStream(outToServer);
 
+			out.writeUTF("Stop Camera");
+			controlSocket.close();
 			// stop the timer
 			this.stopAcquisition();
 		}

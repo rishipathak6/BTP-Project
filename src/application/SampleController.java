@@ -160,6 +160,9 @@ public class SampleController {
 					if (msg.equals("Start Camera")) {
 						button.fire();
 					}
+					else if(msg.equals("Stop Camera")) {
+						button.fire();
+					}
 //					server.close();
 
 				} catch (SocketTimeoutException s) {
