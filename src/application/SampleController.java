@@ -159,9 +159,14 @@ public class SampleController {
 					System.out.println("msg = " + msg);
 					if (msg.equals("Start Camera")) {
 						button.fire();
-					}
-					else if(msg.equals("Stop Camera")) {
+					} else if (msg.equals("Stop Camera")) {
 						button.fire();
+					} else if (msg.equals("showGray")) {
+						if (!grayscale.isSelected())
+							grayscale.setSelected(true);
+					} else if (msg.equals("revertGray")) {
+						if (grayscale.isSelected())
+							grayscale.setSelected(false);
 					}
 //					server.close();
 
@@ -556,7 +561,9 @@ public class SampleController {
 		Mat grayFrame = new Mat();
 
 		// convert the frame in gray scale
-		Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
+		if(!grayscale.isSelected()) {
+			Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
+		}
 		// equalize the frame histogram to improve the result
 		Imgproc.equalizeHist(grayFrame, grayFrame);
 

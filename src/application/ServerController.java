@@ -13,6 +13,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -139,9 +140,12 @@ public class ServerController {
 	private InetAddress receiverAddress;
 
 	private Socket controlSocket;
+	private Thread t;
 
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
+		private Socket controlSocket;
+		private volatile boolean exit = false;
 
 		public DataServer(int port) throws IOException {
 			serverSocket = new ServerSocket(port);
@@ -149,41 +153,83 @@ public class ServerController {
 		}
 
 		public void run() {
-//			while (true) {
-			try {
-				System.out.println("----------------------------------------------------------------------------");
-				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
-				Socket server = serverSocket.accept();
-				System.out.println("Just connected to " + server.getRemoteSocketAddress());
+			if (!exit) {
+				try {
+					System.out.println("----------------------------------------------------------------------------");
+					System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
+					Socket server = serverSocket.accept();
+					System.out.println("Just connected to " + server.getRemoteSocketAddress());
 
-				// grab a frame every 33 ms (30 frames/sec)
-				Runnable frameReceiver = new Runnable() {
+//					this.controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+//					System.out.println("Just connected to " + this.controlSocket.getRemoteSocketAddress()
+//							+ " for sending other instructions");
+//					OutputStream outToServer = this.controlSocket.getOutputStream();
+//					DataOutputStream out = new DataOutputStream(outToServer);
 
-					@Override
-					public void run() {
+					// grab a frame every 33 ms (30 frames/sec)
+					Runnable frameReceiver = new Runnable() {
+						
+						@Override
+						public void run() {
+							Socket controlSocket = null;
+							try {
+								controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
+									+ " for sending other instructions");
+							OutputStream outToServer = null;
+							try {
+								outToServer = controlSocket.getOutputStream();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							DataOutputStream out = new DataOutputStream(outToServer);
+							
+							Mat frame = recieveAndDecryptFrame(server, out);
+							frameno++;
+							// convert and show the frame
+							Image imageToShow = Utils.mat2Image(frame);
+							updateImageView(encryptedFrame, imageToShow);
+							System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
+							+ " after sending other instruction");
+							try {
+								controlSocket.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
 
-						Mat frame = recieveAndDecryptFrame(server);
-						frameno++;
-						// convert and show the frame
-						Image imageToShow = Utils.mat2Image(frame);
-						updateImageView(encryptedFrame, imageToShow);
-					}
-				};
+					timer = Executors.newSingleThreadScheduledExecutor();
+					timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
+//					System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
+//					+ " after sending other instructions");
+//					this.controlSocket.close();
 
-				timer = Executors.newSingleThreadScheduledExecutor();
-				timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
-				System.out.println("----------------------------------------------------------------------------");
-				System.out.println("\n");
+					System.out.println("----------------------------------------------------------------------------");
+					System.out.println("\n");
 //					server.close();
 
-			} catch (SocketTimeoutException s) {
-				System.out.println("Socket timed out!");
+				} catch (SocketTimeoutException s) {
+					System.out.println("Socket timed out!");
 //					break;
-			} catch (IOException e) {
-				e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 //					break;
+				}
 			}
-//			}
+		}
+
+		public void stopServer() {
+			exit = true;
 		}
 	}
 
@@ -196,14 +242,8 @@ public class ServerController {
 
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
+
 		if (!this.cameraActive) {
-			// start the video capture
-//			this.capture.open(cameraId);
-//			new EchoServer().start();
-//			client = new EchoClient();
-			// is the video stream available?
-//		if (this.capture.isOpened()) {
-			// Instantiating the File class
 			File file = new File("Server.txt");
 			// Instantiating the PrintStream class
 			PrintStream stream = new PrintStream(file);
@@ -217,6 +257,8 @@ public class ServerController {
 			DataOutputStream out = new DataOutputStream(outToServer);
 
 			out.writeUTF("Start Camera");
+			System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
+			+ " after sending start camera instruction");
 			controlSocket.close();
 
 			this.cameraActive = true;
@@ -238,13 +280,14 @@ public class ServerController {
 			});
 
 			try {
-				Thread t = new DataServer(3000);
+				t = new DataServer(3000);
 				t.setDaemon(true);
 				t.start();
 //			DataServer frameReceiver = new DataServer(3000);
 //			this.timer = Executors.newSingleThreadScheduledExecutor();
 //			this.timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
 			} catch (IOException e) {
+				System.out.println("Cannot start new Data server thread");
 				e.printStackTrace();
 			}
 			this.button.setText("Stop Camera");
@@ -255,14 +298,17 @@ public class ServerController {
 			this.button.setText("Start Camera");
 			controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
-					+ " for sending start camera instruction");
+					+ " for sending stop camera instruction");
 			OutputStream outToServer = controlSocket.getOutputStream();
 			DataOutputStream out = new DataOutputStream(outToServer);
 
 			out.writeUTF("Stop Camera");
-			controlSocket.close();
 			// stop the timer
 			this.stopAcquisition();
+			((DataServer) t).stopServer();
+			System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
+			+ " after sending stop camera instruction");
+			controlSocket.close();
 		}
 	}
 
@@ -272,7 +318,7 @@ public class ServerController {
 			this.logo = Imgcodecs.imread("resources/Poli.png");
 	}
 
-	private Mat recieveAndDecryptFrame(Socket server) {
+	private Mat recieveAndDecryptFrame(Socket server, DataOutputStream controlOut) {
 		DataInputStream in = null;
 		try {
 			in = new DataInputStream(server.getInputStream());
@@ -361,16 +407,31 @@ public class ServerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("----------------------------------------------------------------------------");
-		System.out.println("\n");
+
 		if (grayscale.isSelected()) {
+			try {
+				controlOut.writeUTF("showGray");
+			} catch (IOException e) {
+				System.out.println("Can't send showGray instr");
+				e.printStackTrace();
+			}
 			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
+		} else {
+			try {
+				controlOut.writeUTF("revertGray");
+			} catch (IOException e) {
+				System.out.println("Can't send revertGray instr");
+				e.printStackTrace();
+			}
 		}
 
 		// show the histogram
 		this.showHistogram(encMat, grayscale.isSelected());
 		// face detection
 		this.detectAndDisplay(encMat);
+
+		System.out.println("----------------------------------------------------------------------------");
+		System.out.println("\n");
 		return encMat;
 	}
 
@@ -526,7 +587,10 @@ public class ServerController {
 		Mat grayFrame = new Mat();
 
 		// convert the frame in gray scale
-		Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
+		if(!grayscale.isSelected()) {
+			Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
+		}
+		
 		// equalize the frame histogram to improve the result
 		Imgproc.equalizeHist(grayFrame, grayFrame);
 
