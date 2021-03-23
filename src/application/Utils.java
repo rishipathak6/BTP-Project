@@ -7,6 +7,7 @@ import org.opencv.core.Mat;
 
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
@@ -85,5 +86,12 @@ public final class Utils
 		System.arraycopy(sourcePixels, 0, targetPixels, 0, sourcePixels.length);
 		
 		return image;
+	}
+
+	public static void onFXThread(StringProperty textProperty, String string) {
+		// TODO Auto-generated method stub
+		Platform.runLater(() -> {
+			textProperty.set(string);
+		});
 	}
 }

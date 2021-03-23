@@ -184,7 +184,7 @@ public class SampleController {
 	@FXML
 	public void initialize() {
 		try {
-			Thread t = new ControlServer(8080);
+			Thread t = new ControlServer(8000);
 			t.setDaemon(true);
 			t.start();
 		} catch (IOException e) {
@@ -251,7 +251,8 @@ public class SampleController {
 				this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
 
 				// update the button content
-				this.button.setText("Stop Camera");
+				Utils.onFXThread(this.button.textProperty(), "Stop Camera");
+//				this.button.setText("Stop Camera");
 			} else {
 				// log the error
 				System.err.println("Impossible to open the camera connection...");
@@ -260,7 +261,7 @@ public class SampleController {
 			// the camera is not active at this point
 			this.cameraActive = false;
 			// update again the button content
-			this.button.setText("Start Camera");
+			Utils.onFXThread(this.button.textProperty(), "Start Camera");
 
 			// stop the timer
 			this.stopAcquisition();
