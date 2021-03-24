@@ -45,6 +45,7 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
+import application.SampleController.ControlServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -140,18 +141,20 @@ public class ServerController {
 	private InetAddress receiverAddress;
 
 	private Socket controlSocket;
+	private OutputStream outToServer;
+	private DataOutputStream out;
 	private Thread t;
 
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
-		private Socket control;
+//		private Socket control;
 		private volatile boolean exit = false;
 		private long startTime;
 		private long previousTime = System.nanoTime();
 
-		public DataServer(int port, Socket controlSocket) throws IOException {
+		public DataServer(int port) throws IOException {
 			serverSocket = new ServerSocket(port);
-			control = controlSocket;
+//			control = controlSocket;
 //			control = new Socket(InetAddress.getLocalHost(), 8000);
 //			serverSocket.setSoTimeout(10000);
 		}
@@ -170,52 +173,52 @@ public class ServerController {
 //							+ " for sending other instructions");
 //					Runnable frameReceiver = createRunnable(server, control);
 //					
-					Runnable frameReceiver = () -> {
-						// volatile boolean controlled from the GUI
-						while (!control.isClosed() && control.isConnected()) {
-							// retrieve start time
-							startTime = System.nanoTime();
-							// time since commProtocol was last called
-							long timeDiff = startTime - previousTime;
-
-							// if at least 5 milliseconds has passed
-							if (timeDiff >= 33000000) {
-								// handle communication
-								Mat frame = recieveAndDecryptFrame(server, control);
-								frameno++;
-								// convert and show the frame
-								Image imageToShow = Utils.mat2Image(frame);
-								updateImageView(encryptedFrame, imageToShow);
-								// store the start time for comparison
-								previousTime = startTime;
-							}
-							Thread.yield();
-						}
-					};
-
-//					Runnable frameReceiver = new Runnable() {
-////						private Socket server;
+//					Runnable frameReceiver = () -> {
+//						// volatile boolean controlled from the GUI
+//						while (!controlSocket.isClosed() && controlSocket.isConnected()) {
+//							// retrieve start time
+//							startTime = System.nanoTime();
+//							// time since commProtocol was last called
+//							long timeDiff = startTime - previousTime;
 //
-////						public frameReceiver(Socket server, Socket controlSocket) {
-////							this.server = server;
-////							this.control = controlSocket;
-////						}
-//
-//						@Override
-//						public void run() {
-//							Mat frame = recieveAndDecryptFrame(server,control);
-//							frameno++;
-//							// convert and show the frame
-//							Image imageToShow = Utils.mat2Image(frame);
-//							updateImageView(encryptedFrame, imageToShow);
+//							// if at least 5 milliseconds has passed
+//							if (timeDiff >= 33000000) {
+//								// handle communication
+//								Mat frame = recieveAndDecryptFrame(server);
+//								frameno++;
+//								// convert and show the frame
+//								Image imageToShow = Utils.mat2Image(frame);
+//								updateImageView(encryptedFrame, imageToShow);
+//								// store the start time for comparison
+//								previousTime = startTime;
+//							}
+//							Thread.yield();
 //						}
-//
 //					};
+
+					Runnable frameReceiver = new Runnable() {
+//						private Socket server;
+
+//						public frameReceiver(Socket server, Socket controlSocket) {
+//							this.server = server;
+//							this.control = controlSocket;
+//						}
+
+						@Override
+						public void run() {
+							Mat frame = recieveAndDecryptFrame(server);
+							frameno++;
+							// convert and show the frame
+							Image imageToShow = Utils.mat2Image(frame);
+							updateImageView(encryptedFrame, imageToShow);
+						}
+
+					};
 					// grab a frame every 33 ms (30 frames/sec)
 //					frameReceiver frameReceive = new frameReceiver(server, controlSocket);
 					timer = Executors.newSingleThreadScheduledExecutor();
-					timer.execute(frameReceiver);
-//					timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
+//					timer.execute(frameReceiver);
+					timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
 //					System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
 //					+ " after sending other instructions");
 //					this.controlSocket.close();
@@ -234,7 +237,7 @@ public class ServerController {
 			}
 		}
 
-		private Mat recieveAndDecryptFrame(Socket server, Socket control2) {
+		private Mat recieveAndDecryptFrame(Socket server) {
 			DataInputStream in = null;
 			try {
 				in = new DataInputStream(server.getInputStream());
@@ -310,15 +313,15 @@ public class ServerController {
 			System.out.println("Counter        : " + counter20);
 			Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 
-			OutputStream outToServer = null;
-			try {
-				outToServer = control.getOutputStream();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				System.out.println("Cannot get OutputStream");
-				e1.printStackTrace();
-			}
-			DataOutputStream out = new DataOutputStream(outToServer);
+//			OutputStream outToServer = null;
+//			try {
+//				outToServer = control.getOutputStream();
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				System.out.println("Cannot get OutputStream");
+//				e1.printStackTrace();
+//			}
+//			DataOutputStream out = new DataOutputStream(outToServer);
 
 			if (grayscale.isSelected()) {
 				try {
@@ -357,6 +360,40 @@ public class ServerController {
 
 	}
 
+	public class InstrServer extends Thread {
+		private Socket controlSocket;
+
+		public InstrServer() throws IOException {
+			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
+			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
+					+ " for sending start camera instruction");
+		}
+
+		public void run() {
+
+			try {
+				outToServer = controlSocket.getOutputStream();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Cannot get output stream of instr server");
+				e.printStackTrace();
+			}
+
+			out = new DataOutputStream(outToServer);
+		}
+	}
+
+	@FXML
+	public void initialize() {
+		try {
+			Thread th = new InstrServer();
+			th.setDaemon(true);
+			th.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * The action triggered by pushing the button on the GUI
 	 *
@@ -373,12 +410,6 @@ public class ServerController {
 			PrintStream stream = new PrintStream(file);
 			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
 			System.setOut(stream);
-
-			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
-			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
-					+ " for sending start camera instruction");
-			OutputStream outToServer = controlSocket.getOutputStream();
-			DataOutputStream out = new DataOutputStream(outToServer);
 
 			out.writeUTF("Start Camera");
 //			System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
@@ -405,7 +436,7 @@ public class ServerController {
 			});
 
 			try {
-				t = new DataServer(3000, controlSocket);
+				t = new DataServer(3000);
 				t.setDaemon(true);
 				t.start();
 //			DataServer frameReceiver = new DataServer(3000);

@@ -1,6 +1,1807 @@
 ----------------------------------------------------------------------------
 Waiting for client on port 3000...
-Just connected to /192.168.190.33:3439
+Just connected to /192.168.43.81:2356
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 97013
+
+---Encrypted bytes recieved at user---
+Key       (hex): b304ef3735ad58fe7c444c94e8dd665e7594a0f268bc4dc4abda4aff1c668623
+Nonce     (hex): fd344b95b01d4c25c351f3f2
+Counter        : 1
+The first two bytes of decrypted image are ff d8 The last two bytes are ab 39
+
+---Decryption at user---
+Key       (hex): b304ef3735ad58fe7c444c94e8dd665e7594a0f268bc4dc4abda4aff1c668623
+Nonce     (hex): fd344b95b01d4c25c351f3f2
+Counter        : 1
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 96988
+
+---Encrypted bytes recieved at user---
+Key       (hex): e62a4c585d49dd825c9b7fd5fffef4d23a9303fe792128f3563e2f0025979e31
+Nonce     (hex): c3a224c92d25d4fa104a4ba9
+Counter        : 2
+The first two bytes of decrypted image are ff d8 The last two bytes are 1c 5a
+
+---Decryption at user---
+Key       (hex): e62a4c585d49dd825c9b7fd5fffef4d23a9303fe792128f3563e2f0025979e31
+Nonce     (hex): c3a224c92d25d4fa104a4ba9
+Counter        : 2
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78815
+
+---Encrypted bytes recieved at user---
+Key       (hex): e5a024592fb6930c789fd322de4eaf08901107b50f33d3f1e3e770007c220c72
+Nonce     (hex): 7eee217c14ae1268618e5ff4
+Counter        : 3
+The first two bytes of decrypted image are ff d8 The last two bytes are 1f 19
+
+---Decryption at user---
+Key       (hex): e5a024592fb6930c789fd322de4eaf08901107b50f33d3f1e3e770007c220c72
+Nonce     (hex): 7eee217c14ae1268618e5ff4
+Counter        : 3
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81938
+
+---Encrypted bytes recieved at user---
+Key       (hex): 84fe8f3bc6649bdce28cee9a8fe3b65e746bc9cebed50185e2b01033881f70e0
+Nonce     (hex): a0b88f7135ac43c0d753e449
+Counter        : 4
+The first two bytes of decrypted image are ff d8 The last two bytes are f3 da
+
+---Decryption at user---
+Key       (hex): 84fe8f3bc6649bdce28cee9a8fe3b65e746bc9cebed50185e2b01033881f70e0
+Nonce     (hex): a0b88f7135ac43c0d753e449
+Counter        : 4
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82636
+
+---Encrypted bytes recieved at user---
+Key       (hex): ad86b6a0932138a85d63400ed927acd62357a6fac2471dea97bef3b2eceb13bc
+Nonce     (hex): 595a06d3e17a859f394b6b1d
+Counter        : 5
+The first two bytes of decrypted image are ff d8 The last two bytes are 55 01
+
+---Decryption at user---
+Key       (hex): ad86b6a0932138a85d63400ed927acd62357a6fac2471dea97bef3b2eceb13bc
+Nonce     (hex): 595a06d3e17a859f394b6b1d
+Counter        : 5
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 77996
+
+---Encrypted bytes recieved at user---
+Key       (hex): edfc4063e3d05d9df599a1b7ce93cd1c2064942f57319bc942b96feb663fbbca
+Nonce     (hex): 0c41d5baf56b5f655c351569
+Counter        : 6
+The first two bytes of decrypted image are ff d8 The last two bytes are c3 0d
+
+---Decryption at user---
+Key       (hex): edfc4063e3d05d9df599a1b7ce93cd1c2064942f57319bc942b96feb663fbbca
+Nonce     (hex): 0c41d5baf56b5f655c351569
+Counter        : 6
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81435
+
+---Encrypted bytes recieved at user---
+Key       (hex): 483cb99b3ddf870d484ff9e37a3b1b0982fa7f6918764a49a54cf49ffe11df22
+Nonce     (hex): a13ad8a1ec3cffa08d1ef4b1
+Counter        : 7
+The first two bytes of decrypted image are ff d8 The last two bytes are 4b af
+
+---Decryption at user---
+Key       (hex): 483cb99b3ddf870d484ff9e37a3b1b0982fa7f6918764a49a54cf49ffe11df22
+Nonce     (hex): a13ad8a1ec3cffa08d1ef4b1
+Counter        : 7
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 83066
+
+---Encrypted bytes recieved at user---
+Key       (hex): 531be05bdb8365004205978eb447c041dcc36e6ab9086596ca94b9d2b30a6aa6
+Nonce     (hex): cba22088d19186df05a580e4
+Counter        : 8
+The first two bytes of decrypted image are ff d8 The last two bytes are f9 86
+
+---Decryption at user---
+Key       (hex): 531be05bdb8365004205978eb447c041dcc36e6ab9086596ca94b9d2b30a6aa6
+Nonce     (hex): cba22088d19186df05a580e4
+Counter        : 8
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 85231
+
+---Encrypted bytes recieved at user---
+Key       (hex): b4686337a9f5e196b9460fa9c889ef7fde169ba9347a8d21c52578d541fb7d93
+Nonce     (hex): 9b5cd68055f7b8204405d384
+Counter        : 9
+The first two bytes of decrypted image are ff d8 The last two bytes are 77 b9
+
+---Decryption at user---
+Key       (hex): b4686337a9f5e196b9460fa9c889ef7fde169ba9347a8d21c52578d541fb7d93
+Nonce     (hex): 9b5cd68055f7b8204405d384
+Counter        : 9
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 83788
+
+---Encrypted bytes recieved at user---
+Key       (hex): 1a4bf26e49999b9417e869e19ee665f99974d4f72e3f2a9496613cf65f22f2ec
+Nonce     (hex): 08771fc01f37d97a67adcd9c
+Counter        : 10
+The first two bytes of decrypted image are ff d8 The last two bytes are 7e 82
+
+---Decryption at user---
+Key       (hex): 1a4bf26e49999b9417e869e19ee665f99974d4f72e3f2a9496613cf65f22f2ec
+Nonce     (hex): 08771fc01f37d97a67adcd9c
+Counter        : 10
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 84688
+
+---Encrypted bytes recieved at user---
+Key       (hex): bcb656343905bd450e81755043e48cf1943a4c7b634711cbd77b87a408b130ba
+Nonce     (hex): 6489a219959857f1d594afd8
+Counter        : 11
+The first two bytes of decrypted image are ff d8 The last two bytes are 7f b3
+
+---Decryption at user---
+Key       (hex): bcb656343905bd450e81755043e48cf1943a4c7b634711cbd77b87a408b130ba
+Nonce     (hex): 6489a219959857f1d594afd8
+Counter        : 11
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 83540
+
+---Encrypted bytes recieved at user---
+Key       (hex): 8edcb39da06d5015df50adf582089ead6936b192689951d422bf08dafc9dfecb
+Nonce     (hex): ae7fc66116339936b89b934d
+Counter        : 12
+The first two bytes of decrypted image are ff d8 The last two bytes are 9e 0f
+
+---Decryption at user---
+Key       (hex): 8edcb39da06d5015df50adf582089ead6936b192689951d422bf08dafc9dfecb
+Nonce     (hex): ae7fc66116339936b89b934d
+Counter        : 12
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 85429
+
+---Encrypted bytes recieved at user---
+Key       (hex): a3e1c792b43c74dffd9861cc80616775369a823158936acf768ff626c70ef72a
+Nonce     (hex): 43e6b40c87aba5ab12e05f1a
+Counter        : 13
+The first two bytes of decrypted image are ff d8 The last two bytes are 97 c5
+
+---Decryption at user---
+Key       (hex): a3e1c792b43c74dffd9861cc80616775369a823158936acf768ff626c70ef72a
+Nonce     (hex): 43e6b40c87aba5ab12e05f1a
+Counter        : 13
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 84739
+
+---Encrypted bytes recieved at user---
+Key       (hex): 753d2a266bce60b9e675b05867a41e78032d4e5201f0f6f5b1b2cae8de70265e
+Nonce     (hex): 32785244abc369020e1fddbb
+Counter        : 14
+The first two bytes of decrypted image are ff d8 The last two bytes are f8 1a
+
+---Decryption at user---
+Key       (hex): 753d2a266bce60b9e675b05867a41e78032d4e5201f0f6f5b1b2cae8de70265e
+Nonce     (hex): 32785244abc369020e1fddbb
+Counter        : 14
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 84866
+
+---Encrypted bytes recieved at user---
+Key       (hex): a691d2519fd0111d0c19e121e8945ea74f94353d947d7d1c2b7386ca2ce98387
+Nonce     (hex): 915ab05cf7de12bbfde1fa03
+Counter        : 15
+The first two bytes of decrypted image are ff d8 The last two bytes are 6b fe
+
+---Decryption at user---
+Key       (hex): a691d2519fd0111d0c19e121e8945ea74f94353d947d7d1c2b7386ca2ce98387
+Nonce     (hex): 915ab05cf7de12bbfde1fa03
+Counter        : 15
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 84201
+
+---Encrypted bytes recieved at user---
+Key       (hex): 6eacb173be882b2fca9e1a9cd377d9abf2b3ea27d723c97052b2ba9a33e8dac9
+Nonce     (hex): 7d260f18d8ec895d2208a273
+Counter        : 16
+The first two bytes of decrypted image are ff d8 The last two bytes are 3c 70
+
+---Decryption at user---
+Key       (hex): 6eacb173be882b2fca9e1a9cd377d9abf2b3ea27d723c97052b2ba9a33e8dac9
+Nonce     (hex): 7d260f18d8ec895d2208a273
+Counter        : 16
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 84870
+
+---Encrypted bytes recieved at user---
+Key       (hex): 9f5a88a206ea4719c502017a2f4d2c455395f6d26d7f1685e3ba3b6f2b71918a
+Nonce     (hex): 62cceb73b12e399e1d34d902
+Counter        : 17
+The first two bytes of decrypted image are ff d8 The last two bytes are f6 8d
+
+---Decryption at user---
+Key       (hex): 9f5a88a206ea4719c502017a2f4d2c455395f6d26d7f1685e3ba3b6f2b71918a
+Nonce     (hex): 62cceb73b12e399e1d34d902
+Counter        : 17
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 84236
+
+---Encrypted bytes recieved at user---
+Key       (hex): 3fb7667fbaa5e633b99930f4b734a16563159bc8828a2f7f77f73c001a30e101
+Nonce     (hex): be77891389a7209e72e158ea
+Counter        : 18
+The first two bytes of decrypted image are ff d8 The last two bytes are 00 6c
+
+---Decryption at user---
+Key       (hex): 3fb7667fbaa5e633b99930f4b734a16563159bc8828a2f7f77f73c001a30e101
+Nonce     (hex): be77891389a7209e72e158ea
+Counter        : 18
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82402
+
+---Encrypted bytes recieved at user---
+Key       (hex): c9c1c851988ec7dde29b76d88100b6f41970d44a4d84172442496b5778808e39
+Nonce     (hex): 3a91b4a2dedcf3ddd43c117a
+Counter        : 19
+The first two bytes of decrypted image are ff d8 The last two bytes are d1 bf
+
+---Decryption at user---
+Key       (hex): c9c1c851988ec7dde29b76d88100b6f41970d44a4d84172442496b5778808e39
+Nonce     (hex): 3a91b4a2dedcf3ddd43c117a
+Counter        : 19
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80968
+
+---Encrypted bytes recieved at user---
+Key       (hex): 172baa7a59e4b6b7c75dda89f0d6f73e48dd208263ca1fd34aa59437f574b61e
+Nonce     (hex): ab310b96a38a2aa552e89463
+Counter        : 20
+The first two bytes of decrypted image are ff d8 The last two bytes are e8 74
+
+---Decryption at user---
+Key       (hex): 172baa7a59e4b6b7c75dda89f0d6f73e48dd208263ca1fd34aa59437f574b61e
+Nonce     (hex): ab310b96a38a2aa552e89463
+Counter        : 20
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80806
+
+---Encrypted bytes recieved at user---
+Key       (hex): a6576b51e96ea7f188f1e546e98a793610a27793aa3807280da8385da25d277e
+Nonce     (hex): d5ed11b39cfe2ecb0d556d85
+Counter        : 21
+The first two bytes of decrypted image are ff d8 The last two bytes are f3 1e
+
+---Decryption at user---
+Key       (hex): a6576b51e96ea7f188f1e546e98a793610a27793aa3807280da8385da25d277e
+Nonce     (hex): d5ed11b39cfe2ecb0d556d85
+Counter        : 21
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78128
+
+---Encrypted bytes recieved at user---
+Key       (hex): 3eceefdee883eec37fa9ed17911554bb930c1349b31c22619df085dc5febc738
+Nonce     (hex): 2b013616ea0f2556726409e8
+Counter        : 22
+The first two bytes of decrypted image are ff d8 The last two bytes are e7 68
+
+---Decryption at user---
+Key       (hex): 3eceefdee883eec37fa9ed17911554bb930c1349b31c22619df085dc5febc738
+Nonce     (hex): 2b013616ea0f2556726409e8
+Counter        : 22
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81798
+
+---Encrypted bytes recieved at user---
+Key       (hex): 30ee9c62bd7ce22e65ac9e92d4c09eac71ef183e24e749d6e5c07f09bdef9da8
+Nonce     (hex): fbfdaecd8c831efd626bd0f4
+Counter        : 23
+The first two bytes of decrypted image are ff d8 The last two bytes are 26 ba
+
+---Decryption at user---
+Key       (hex): 30ee9c62bd7ce22e65ac9e92d4c09eac71ef183e24e749d6e5c07f09bdef9da8
+Nonce     (hex): fbfdaecd8c831efd626bd0f4
+Counter        : 23
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80091
+
+---Encrypted bytes recieved at user---
+Key       (hex): 574aaa25b50317584c9d8f386377c2e29066437ec782dfc6e7a4660e4ee10741
+Nonce     (hex): f1664b4b4e970bf337254f96
+Counter        : 24
+The first two bytes of decrypted image are ff d8 The last two bytes are 23 71
+
+---Decryption at user---
+Key       (hex): 574aaa25b50317584c9d8f386377c2e29066437ec782dfc6e7a4660e4ee10741
+Nonce     (hex): f1664b4b4e970bf337254f96
+Counter        : 24
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80174
+
+---Encrypted bytes recieved at user---
+Key       (hex): 147f9ff0c8bb39d0222b9e1f30b277bf89fcdcb7ce9f41083528ddbf1ec1e900
+Nonce     (hex): 09ecff8ec3171c62d69fd9b5
+Counter        : 25
+The first two bytes of decrypted image are ff d8 The last two bytes are 92 57
+
+---Decryption at user---
+Key       (hex): 147f9ff0c8bb39d0222b9e1f30b277bf89fcdcb7ce9f41083528ddbf1ec1e900
+Nonce     (hex): 09ecff8ec3171c62d69fd9b5
+Counter        : 25
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80454
+
+---Encrypted bytes recieved at user---
+Key       (hex): 6cec12b37f7e6414e531dd9a4d8b10025d46847d5fb4ee83bb34a5ffa4712723
+Nonce     (hex): 3869ddda4aeb44f7ce0b1a43
+Counter        : 26
+The first two bytes of decrypted image are ff d8 The last two bytes are d8 76
+
+---Decryption at user---
+Key       (hex): 6cec12b37f7e6414e531dd9a4d8b10025d46847d5fb4ee83bb34a5ffa4712723
+Nonce     (hex): 3869ddda4aeb44f7ce0b1a43
+Counter        : 26
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80540
+
+---Encrypted bytes recieved at user---
+Key       (hex): db018384d0e3cc59fd1f2e19c8ab1cf9f991dc047e4788ef240bd749dad44c4b
+Nonce     (hex): dc95869af976f63e1b78189b
+Counter        : 27
+The first two bytes of decrypted image are ff d8 The last two bytes are 73 ce
+
+---Decryption at user---
+Key       (hex): db018384d0e3cc59fd1f2e19c8ab1cf9f991dc047e4788ef240bd749dad44c4b
+Nonce     (hex): dc95869af976f63e1b78189b
+Counter        : 27
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80044
+
+---Encrypted bytes recieved at user---
+Key       (hex): 02e7774164884b71532611ad484fe20ece92d38942dd0080f1a534bda3ad09a5
+Nonce     (hex): bf49b75f610843548f238f93
+Counter        : 28
+The first two bytes of decrypted image are ff d8 The last two bytes are 6d 8c
+
+---Decryption at user---
+Key       (hex): 02e7774164884b71532611ad484fe20ece92d38942dd0080f1a534bda3ad09a5
+Nonce     (hex): bf49b75f610843548f238f93
+Counter        : 28
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79976
+
+---Encrypted bytes recieved at user---
+Key       (hex): d6d62a54d31861f5ea496fef0eb55b2c587c1783b7c1031d33206de62a749d38
+Nonce     (hex): 5f79aef6118fc61e908cf1b2
+Counter        : 29
+The first two bytes of decrypted image are ff d8 The last two bytes are b5 b3
+
+---Decryption at user---
+Key       (hex): d6d62a54d31861f5ea496fef0eb55b2c587c1783b7c1031d33206de62a749d38
+Nonce     (hex): 5f79aef6118fc61e908cf1b2
+Counter        : 29
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80802
+
+---Encrypted bytes recieved at user---
+Key       (hex): 869b8406c5afc9681f869fbc3cfab155f2ac73b72da15a7bfc5ff61032c3ef95
+Nonce     (hex): bd6ad5de0b683d635de6dee2
+Counter        : 30
+The first two bytes of decrypted image are ff d8 The last two bytes are 5d a5
+
+---Decryption at user---
+Key       (hex): 869b8406c5afc9681f869fbc3cfab155f2ac73b72da15a7bfc5ff61032c3ef95
+Nonce     (hex): bd6ad5de0b683d635de6dee2
+Counter        : 30
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79655
+
+---Encrypted bytes recieved at user---
+Key       (hex): 056dd656c7989516cf3e1cb9c870a614bbe983b144be82461218c2a3b2a9e907
+Nonce     (hex): 69d0c6803fb794f3029655ca
+Counter        : 31
+The first two bytes of decrypted image are ff d8 The last two bytes are f8 ed
+
+---Decryption at user---
+Key       (hex): 056dd656c7989516cf3e1cb9c870a614bbe983b144be82461218c2a3b2a9e907
+Nonce     (hex): 69d0c6803fb794f3029655ca
+Counter        : 31
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 76830
+
+---Encrypted bytes recieved at user---
+Key       (hex): d65636524cd2d10b5bed90dcc1604801531f2bfe4c144ad3ee086512c3a70fc2
+Nonce     (hex): b40d9fde10dcb00ab60d25fd
+Counter        : 32
+The first two bytes of decrypted image are ff d8 The last two bytes are 72 ae
+
+---Decryption at user---
+Key       (hex): d65636524cd2d10b5bed90dcc1604801531f2bfe4c144ad3ee086512c3a70fc2
+Nonce     (hex): b40d9fde10dcb00ab60d25fd
+Counter        : 32
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81003
+
+---Encrypted bytes recieved at user---
+Key       (hex): ab53e9238480ec77288484bfbb573fd2747d44c8069cb3dd44a208d1db1347a2
+Nonce     (hex): 6fc02baa39fa21f90271adc2
+Counter        : 33
+The first two bytes of decrypted image are ff d8 The last two bytes are 1d 4f
+
+---Decryption at user---
+Key       (hex): ab53e9238480ec77288484bfbb573fd2747d44c8069cb3dd44a208d1db1347a2
+Nonce     (hex): 6fc02baa39fa21f90271adc2
+Counter        : 33
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 76794
+
+---Encrypted bytes recieved at user---
+Key       (hex): 31812bae45e675ce2c424fb81e21f96f2c83c8968cbf56a0c3e2989807c62bfd
+Nonce     (hex): a4371ef247816ecfab3dd29c
+Counter        : 34
+The first two bytes of decrypted image are ff d8 The last two bytes are ae b2
+
+---Decryption at user---
+Key       (hex): 31812bae45e675ce2c424fb81e21f96f2c83c8968cbf56a0c3e2989807c62bfd
+Nonce     (hex): a4371ef247816ecfab3dd29c
+Counter        : 34
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80946
+
+---Encrypted bytes recieved at user---
+Key       (hex): 1895b8dff87fd537233bca5aee65a2a586a7d53a179ae150dc819ddfcb30f096
+Nonce     (hex): dbf7610a471132ac04253a77
+Counter        : 35
+The first two bytes of decrypted image are ff d8 The last two bytes are 5b 89
+
+---Decryption at user---
+Key       (hex): 1895b8dff87fd537233bca5aee65a2a586a7d53a179ae150dc819ddfcb30f096
+Nonce     (hex): dbf7610a471132ac04253a77
+Counter        : 35
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79925
+
+---Encrypted bytes recieved at user---
+Key       (hex): 89b696c25d2a394816e31eec1e5de4bd59c49ad42cc92d31574b4e7e034f6933
+Nonce     (hex): 2e34281fbd7079485dfe5406
+Counter        : 36
+The first two bytes of decrypted image are ff d8 The last two bytes are 54 72
+
+---Decryption at user---
+Key       (hex): 89b696c25d2a394816e31eec1e5de4bd59c49ad42cc92d31574b4e7e034f6933
+Nonce     (hex): 2e34281fbd7079485dfe5406
+Counter        : 36
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80572
+
+---Encrypted bytes recieved at user---
+Key       (hex): 0d03eeae3892d87392fb71e9a6ba21d7c0b1d7ca70e2de69c5a7cfefe79dfff0
+Nonce     (hex): 07b66639658c814f67209f5a
+Counter        : 37
+The first two bytes of decrypted image are ff d8 The last two bytes are 51 20
+
+---Decryption at user---
+Key       (hex): 0d03eeae3892d87392fb71e9a6ba21d7c0b1d7ca70e2de69c5a7cfefe79dfff0
+Nonce     (hex): 07b66639658c814f67209f5a
+Counter        : 37
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81084
+
+---Encrypted bytes recieved at user---
+Key       (hex): 691ca365f0f90793ccc35ecc031dabd8f4ec829a90fae9eab7e516be3465fcc4
+Nonce     (hex): 7da83ae51dd4a44e4427c1fb
+Counter        : 38
+The first two bytes of decrypted image are ff d8 The last two bytes are 70 cb
+
+---Decryption at user---
+Key       (hex): 691ca365f0f90793ccc35ecc031dabd8f4ec829a90fae9eab7e516be3465fcc4
+Nonce     (hex): 7da83ae51dd4a44e4427c1fb
+Counter        : 38
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81839
+
+---Encrypted bytes recieved at user---
+Key       (hex): 3796089efcfdcf883ac132e877ef19474fae3833ff87b9ab4145ade85b263bc1
+Nonce     (hex): 9071c0d6137f78f77d25ce0d
+Counter        : 39
+The first two bytes of decrypted image are ff d8 The last two bytes are f5 a7
+
+---Decryption at user---
+Key       (hex): 3796089efcfdcf883ac132e877ef19474fae3833ff87b9ab4145ade85b263bc1
+Nonce     (hex): 9071c0d6137f78f77d25ce0d
+Counter        : 39
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81297
+
+---Encrypted bytes recieved at user---
+Key       (hex): c4fdf4d8b2c97875c549512ed289e2bc0a8022ccf4ace37717155e6630a0215c
+Nonce     (hex): 383f6350036a943be2992810
+Counter        : 40
+The first two bytes of decrypted image are ff d8 The last two bytes are 7a dd
+
+---Decryption at user---
+Key       (hex): c4fdf4d8b2c97875c549512ed289e2bc0a8022ccf4ace37717155e6630a0215c
+Nonce     (hex): 383f6350036a943be2992810
+Counter        : 40
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81457
+
+---Encrypted bytes recieved at user---
+Key       (hex): 9f16b126f668d1ddff1b39d3f26c971650112261d0f475812933f5e1a6f6dd3c
+Nonce     (hex): a71983f86ed0779f3866b76b
+Counter        : 41
+The first two bytes of decrypted image are ff d8 The last two bytes are 96 20
+
+---Decryption at user---
+Key       (hex): 9f16b126f668d1ddff1b39d3f26c971650112261d0f475812933f5e1a6f6dd3c
+Nonce     (hex): a71983f86ed0779f3866b76b
+Counter        : 41
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81058
+
+---Encrypted bytes recieved at user---
+Key       (hex): eedcf2fa690d9ddde3c432615d6740f0b17e248734e5c22669c6d4a9aa6bad24
+Nonce     (hex): fe9d45ed2ab39f5d8e54b1e8
+Counter        : 42
+The first two bytes of decrypted image are ff d8 The last two bytes are 13 a8
+
+---Decryption at user---
+Key       (hex): eedcf2fa690d9ddde3c432615d6740f0b17e248734e5c22669c6d4a9aa6bad24
+Nonce     (hex): fe9d45ed2ab39f5d8e54b1e8
+Counter        : 42
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81471
+
+---Encrypted bytes recieved at user---
+Key       (hex): 018b55bfeb32252d136b03b474e1681d4d25764d991ae9f5de1c8739313c6ce6
+Nonce     (hex): 982347602ffe219f4554889f
+Counter        : 43
+The first two bytes of decrypted image are ff d8 The last two bytes are 1f c9
+
+---Decryption at user---
+Key       (hex): 018b55bfeb32252d136b03b474e1681d4d25764d991ae9f5de1c8739313c6ce6
+Nonce     (hex): 982347602ffe219f4554889f
+Counter        : 43
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 80928
+
+---Encrypted bytes recieved at user---
+Key       (hex): fd91f410f41d1560b3dd2de9e5a30db8495dae702fd26617b55944ae319efbce
+Nonce     (hex): 3e21c6c7f2e8b15d0d5191d4
+Counter        : 44
+The first two bytes of decrypted image are ff d8 The last two bytes are db 1f
+
+---Decryption at user---
+Key       (hex): fd91f410f41d1560b3dd2de9e5a30db8495dae702fd26617b55944ae319efbce
+Nonce     (hex): 3e21c6c7f2e8b15d0d5191d4
+Counter        : 44
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81849
+
+---Encrypted bytes recieved at user---
+Key       (hex): ffb7c19823b96f4d3982dc161073e2d4821357388d371d5393951acd0d44550f
+Nonce     (hex): 812ed09465eaff42a2938491
+Counter        : 45
+The first two bytes of decrypted image are ff d8 The last two bytes are 96 9a
+
+---Decryption at user---
+Key       (hex): ffb7c19823b96f4d3982dc161073e2d4821357388d371d5393951acd0d44550f
+Nonce     (hex): 812ed09465eaff42a2938491
+Counter        : 45
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81656
+
+---Encrypted bytes recieved at user---
+Key       (hex): 345e206e7ebc1629b7872524d745c377cb632846bcb54b7684d3a7bf318273c3
+Nonce     (hex): e98a3b046a1a247f5f88b311
+Counter        : 46
+The first two bytes of decrypted image are ff d8 The last two bytes are a0 c9
+
+---Decryption at user---
+Key       (hex): 345e206e7ebc1629b7872524d745c377cb632846bcb54b7684d3a7bf318273c3
+Nonce     (hex): e98a3b046a1a247f5f88b311
+Counter        : 46
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81872
+
+---Encrypted bytes recieved at user---
+Key       (hex): 8fd89d0614b673e4b47318b7ade9d92fa564df0cb1e472d96b9b9a866aed6152
+Nonce     (hex): d6a01f473dc06e9d8cfd8c6b
+Counter        : 47
+The first two bytes of decrypted image are ff d8 The last two bytes are 20 ac
+
+---Decryption at user---
+Key       (hex): 8fd89d0614b673e4b47318b7ade9d92fa564df0cb1e472d96b9b9a866aed6152
+Nonce     (hex): d6a01f473dc06e9d8cfd8c6b
+Counter        : 47
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81886
+
+---Encrypted bytes recieved at user---
+Key       (hex): 0226e3930ba9ec9c06aa785176b3e674b9ac312ddc8b66f65eacc18ff08604d5
+Nonce     (hex): 3e98e41cb16bbdf8d65460f9
+Counter        : 48
+The first two bytes of decrypted image are ff d8 The last two bytes are ae dd
+
+---Decryption at user---
+Key       (hex): 0226e3930ba9ec9c06aa785176b3e674b9ac312ddc8b66f65eacc18ff08604d5
+Nonce     (hex): 3e98e41cb16bbdf8d65460f9
+Counter        : 48
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78509
+
+---Encrypted bytes recieved at user---
+Key       (hex): 6c9b81b84475c04472d51449ea1cf7254082fed34ddd8af0b1e9f829bd3d1e25
+Nonce     (hex): bd6d213219f9684b70147d9d
+Counter        : 49
+The first two bytes of decrypted image are ff d8 The last two bytes are e3 93
+
+---Decryption at user---
+Key       (hex): 6c9b81b84475c04472d51449ea1cf7254082fed34ddd8af0b1e9f829bd3d1e25
+Nonce     (hex): bd6d213219f9684b70147d9d
+Counter        : 49
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78922
+
+---Encrypted bytes recieved at user---
+Key       (hex): 1198084821e6784871d388e2dd962045e3234d561ed4d0556b0076ff74b2dc10
+Nonce     (hex): d7a64e697052fe9df6e8c410
+Counter        : 50
+The first two bytes of decrypted image are ff d8 The last two bytes are 73 c4
+
+---Decryption at user---
+Key       (hex): 1198084821e6784871d388e2dd962045e3234d561ed4d0556b0076ff74b2dc10
+Nonce     (hex): d7a64e697052fe9df6e8c410
+Counter        : 50
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78767
+
+---Encrypted bytes recieved at user---
+Key       (hex): 0c0b04e97f67ca74c1382b63deb7131b71e228e3a10afac4c36659f1ec97a97b
+Nonce     (hex): d52bb1dfade1f4dd059bad62
+Counter        : 51
+The first two bytes of decrypted image are ff d8 The last two bytes are a1 52
+
+---Decryption at user---
+Key       (hex): 0c0b04e97f67ca74c1382b63deb7131b71e228e3a10afac4c36659f1ec97a97b
+Nonce     (hex): d52bb1dfade1f4dd059bad62
+Counter        : 51
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79073
+
+---Encrypted bytes recieved at user---
+Key       (hex): a7de6d50099de2c9a3f67b153e2063a5f4826276fa5eed378d4341bf371d376a
+Nonce     (hex): 33bfa4ceb44edaa914561032
+Counter        : 52
+The first two bytes of decrypted image are ff d8 The last two bytes are 58 fe
+
+---Decryption at user---
+Key       (hex): a7de6d50099de2c9a3f67b153e2063a5f4826276fa5eed378d4341bf371d376a
+Nonce     (hex): 33bfa4ceb44edaa914561032
+Counter        : 52
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78918
+
+---Encrypted bytes recieved at user---
+Key       (hex): 915aa06f4822dab374966fa8518478d2911e397fa025c19649af6ea18f2931e9
+Nonce     (hex): 78d6ec3d07e2f22d7a52d381
+Counter        : 53
+The first two bytes of decrypted image are ff d8 The last two bytes are d8 c5
+
+---Decryption at user---
+Key       (hex): 915aa06f4822dab374966fa8518478d2911e397fa025c19649af6ea18f2931e9
+Nonce     (hex): 78d6ec3d07e2f22d7a52d381
+Counter        : 53
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79060
+
+---Encrypted bytes recieved at user---
+Key       (hex): 1a80171aed435b8bdc52a4f2c5bbbf3e87d3950687fa8658cf3eff2781fa8673
+Nonce     (hex): 30cb47f9ea3193f995713e2c
+Counter        : 54
+The first two bytes of decrypted image are ff d8 The last two bytes are 35 ac
+
+---Decryption at user---
+Key       (hex): 1a80171aed435b8bdc52a4f2c5bbbf3e87d3950687fa8658cf3eff2781fa8673
+Nonce     (hex): 30cb47f9ea3193f995713e2c
+Counter        : 54
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82680
+
+---Encrypted bytes recieved at user---
+Key       (hex): e6e5bec951c904a1e8f51bad7dc003fcf22f601426251cc0676b049de69633e7
+Nonce     (hex): 5335de38538b964a9dc63aba
+Counter        : 55
+The first two bytes of decrypted image are ff d8 The last two bytes are e6 74
+
+---Decryption at user---
+Key       (hex): e6e5bec951c904a1e8f51bad7dc003fcf22f601426251cc0676b049de69633e7
+Nonce     (hex): 5335de38538b964a9dc63aba
+Counter        : 55
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78925
+
+---Encrypted bytes recieved at user---
+Key       (hex): 38f27d7fe9eb5a4ac3a20a72bf1809c114e5ec43cb5cf99f40d42be8cc156a68
+Nonce     (hex): 1688080152eadc5da2bf04a6
+Counter        : 56
+The first two bytes of decrypted image are ff d8 The last two bytes are 36 0d
+
+---Decryption at user---
+Key       (hex): 38f27d7fe9eb5a4ac3a20a72bf1809c114e5ec43cb5cf99f40d42be8cc156a68
+Nonce     (hex): 1688080152eadc5da2bf04a6
+Counter        : 56
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78734
+
+---Encrypted bytes recieved at user---
+Key       (hex): 9e9098f0d1cead9b3a21475ab31794e7fb9e9ec42762d645da6f3f106a8b7b72
+Nonce     (hex): bd0103c68783eadcaac7b64c
+Counter        : 57
+The first two bytes of decrypted image are ff d8 The last two bytes are 0e 58
+
+---Decryption at user---
+Key       (hex): 9e9098f0d1cead9b3a21475ab31794e7fb9e9ec42762d645da6f3f106a8b7b72
+Nonce     (hex): bd0103c68783eadcaac7b64c
+Counter        : 57
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82733
+
+---Encrypted bytes recieved at user---
+Key       (hex): 82065ad948c858a36f4bb17e4151a889bd43393b4f9f18b52256549591e8e2a5
+Nonce     (hex): 15770f4ea5ab03ff4dca8fe3
+Counter        : 58
+The first two bytes of decrypted image are ff d8 The last two bytes are 77 1c
+
+---Decryption at user---
+Key       (hex): 82065ad948c858a36f4bb17e4151a889bd43393b4f9f18b52256549591e8e2a5
+Nonce     (hex): 15770f4ea5ab03ff4dca8fe3
+Counter        : 58
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78746
+
+---Encrypted bytes recieved at user---
+Key       (hex): 3004ae5756630fc6b8b3237080ff98ae2f3049ed61c69bb337e248f7e97a89ff
+Nonce     (hex): 72c6f1cfcc7a8b7f4c675e72
+Counter        : 59
+The first two bytes of decrypted image are ff d8 The last two bytes are c5 be
+
+---Decryption at user---
+Key       (hex): 3004ae5756630fc6b8b3237080ff98ae2f3049ed61c69bb337e248f7e97a89ff
+Nonce     (hex): 72c6f1cfcc7a8b7f4c675e72
+Counter        : 59
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78625
+
+---Encrypted bytes recieved at user---
+Key       (hex): 3f39de39a47b12d5ae2606dc3f567e2acc81fb0954b577d54e58811f4be7b339
+Nonce     (hex): 3844a2ac487b57d1a78c4d33
+Counter        : 60
+The first two bytes of decrypted image are ff d8 The last two bytes are a2 eb
+
+---Decryption at user---
+Key       (hex): 3f39de39a47b12d5ae2606dc3f567e2acc81fb0954b577d54e58811f4be7b339
+Nonce     (hex): 3844a2ac487b57d1a78c4d33
+Counter        : 60
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82165
+
+---Encrypted bytes recieved at user---
+Key       (hex): 03af55fb40688a6a4399549394e6709a68d3dd605fd5e9b7811c1fe97b8ef375
+Nonce     (hex): 1b913e941dfc872620099229
+Counter        : 61
+The first two bytes of decrypted image are ff d8 The last two bytes are d2 b1
+
+---Decryption at user---
+Key       (hex): 03af55fb40688a6a4399549394e6709a68d3dd605fd5e9b7811c1fe97b8ef375
+Nonce     (hex): 1b913e941dfc872620099229
+Counter        : 61
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82253
+
+---Encrypted bytes recieved at user---
+Key       (hex): 25dde57d2b8e8496be8c97e6a05c4c42315e2f4c6bd43c9c7880243668b91758
+Nonce     (hex): d61ed2136702ce2e7e7d7fe8
+Counter        : 62
+The first two bytes of decrypted image are ff d8 The last two bytes are 52 f2
+
+---Decryption at user---
+Key       (hex): 25dde57d2b8e8496be8c97e6a05c4c42315e2f4c6bd43c9c7880243668b91758
+Nonce     (hex): d61ed2136702ce2e7e7d7fe8
+Counter        : 62
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78672
+
+---Encrypted bytes recieved at user---
+Key       (hex): f201b1f5a944e110eb31ff82b3a436f5af6790d13e3099ab3d21df1269b6a571
+Nonce     (hex): fc7ba9f5013b63e12bc3bb74
+Counter        : 63
+The first two bytes of decrypted image are ff d8 The last two bytes are e9 5a
+
+---Decryption at user---
+Key       (hex): f201b1f5a944e110eb31ff82b3a436f5af6790d13e3099ab3d21df1269b6a571
+Nonce     (hex): fc7ba9f5013b63e12bc3bb74
+Counter        : 63
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78787
+
+---Encrypted bytes recieved at user---
+Key       (hex): 27f18f28ffbc2a1bedb8eaf709e3150700eab215aae0533047493f56f787da7d
+Nonce     (hex): b48cfd9b87eb601b453e56ad
+Counter        : 64
+The first two bytes of decrypted image are ff d8 The last two bytes are 54 ce
+
+---Decryption at user---
+Key       (hex): 27f18f28ffbc2a1bedb8eaf709e3150700eab215aae0533047493f56f787da7d
+Nonce     (hex): b48cfd9b87eb601b453e56ad
+Counter        : 64
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82980
+
+---Encrypted bytes recieved at user---
+Key       (hex): 66691ea0888c996fc64cb68bbaa91c843043d6195660031cec908ff4ed00d188
+Nonce     (hex): 340bdaf26abad17dd19d6903
+Counter        : 65
+The first two bytes of decrypted image are ff d8 The last two bytes are e9 d7
+
+---Decryption at user---
+Key       (hex): 66691ea0888c996fc64cb68bbaa91c843043d6195660031cec908ff4ed00d188
+Nonce     (hex): 340bdaf26abad17dd19d6903
+Counter        : 65
+Can't send revertGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78739
+
+---Encrypted bytes recieved at user---
+Key       (hex): 570ab3cc1710235470b554f29b5d2efe17af2cad7cbcc3ef858a2d7d7dde0ab1
+Nonce     (hex): 84d4e595be18c3c4e726950f
+Counter        : 66
+The first two bytes of decrypted image are ff d8 The last two bytes are 29 9a
+
+---Decryption at user---
+Key       (hex): 570ab3cc1710235470b554f29b5d2efe17af2cad7cbcc3ef858a2d7d7dde0ab1
+Nonce     (hex): 84d4e595be18c3c4e726950f
+Counter        : 66
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78737
+
+---Encrypted bytes recieved at user---
+Key       (hex): 21e2c0650ef5b4de10bc2d5897e86f84b587fadd432a0e0e36f442a3cac4a936
+Nonce     (hex): da4ec9c37ef09244fbb25f2b
+Counter        : 67
+The first two bytes of decrypted image are ff d8 The last two bytes are 62 e2
+
+---Decryption at user---
+Key       (hex): 21e2c0650ef5b4de10bc2d5897e86f84b587fadd432a0e0e36f442a3cac4a936
+Nonce     (hex): da4ec9c37ef09244fbb25f2b
+Counter        : 67
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 83657
+
+---Encrypted bytes recieved at user---
+Key       (hex): 9d686d75ec7cca0d998a6660dc3619c39bfd49a32c98ae631ad6e11576c37d38
+Nonce     (hex): b626ed4d439e9cef11026ef4
+Counter        : 68
+The first two bytes of decrypted image are ff d8 The last two bytes are ec 9a
+
+---Decryption at user---
+Key       (hex): 9d686d75ec7cca0d998a6660dc3619c39bfd49a32c98ae631ad6e11576c37d38
+Nonce     (hex): b626ed4d439e9cef11026ef4
+Counter        : 68
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78871
+
+---Encrypted bytes recieved at user---
+Key       (hex): 891b1d12909d35bd0b666f928acda842d5a5aec7c479f00a82e8da4796b2a559
+Nonce     (hex): 50746c590d283d840a19141d
+Counter        : 69
+The first two bytes of decrypted image are ff d8 The last two bytes are e8 01
+
+---Decryption at user---
+Key       (hex): 891b1d12909d35bd0b666f928acda842d5a5aec7c479f00a82e8da4796b2a559
+Nonce     (hex): 50746c590d283d840a19141d
+Counter        : 69
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79024
+
+---Encrypted bytes recieved at user---
+Key       (hex): 3b1255b9497e463618a91f30e61af44d2d4a1478ca0a9826370965d27782d8d8
+Nonce     (hex): 9269872dc235c1fc7a23e1c8
+Counter        : 70
+The first two bytes of decrypted image are ff d8 The last two bytes are 63 91
+
+---Decryption at user---
+Key       (hex): 3b1255b9497e463618a91f30e61af44d2d4a1478ca0a9826370965d27782d8d8
+Nonce     (hex): 9269872dc235c1fc7a23e1c8
+Counter        : 70
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82763
+
+---Encrypted bytes recieved at user---
+Key       (hex): efaa5a3c9d827addc960344d1893ae7e247f4d8b50fc5b69befdc9c36164ec76
+Nonce     (hex): a0fa0a003c8cc1404ad946f5
+Counter        : 71
+The first two bytes of decrypted image are ff d8 The last two bytes are 25 4c
+
+---Decryption at user---
+Key       (hex): efaa5a3c9d827addc960344d1893ae7e247f4d8b50fc5b69befdc9c36164ec76
+Nonce     (hex): a0fa0a003c8cc1404ad946f5
+Counter        : 71
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78841
+
+---Encrypted bytes recieved at user---
+Key       (hex): 408d2475356e5cebd05514995dd55c79642a5ac1538ba60d772c7bf10a0694ce
+Nonce     (hex): 7fc6d4a3b057df9801457f88
+Counter        : 72
+The first two bytes of decrypted image are ff d8 The last two bytes are e0 fa
+
+---Decryption at user---
+Key       (hex): 408d2475356e5cebd05514995dd55c79642a5ac1538ba60d772c7bf10a0694ce
+Nonce     (hex): 7fc6d4a3b057df9801457f88
+Counter        : 72
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82976
+
+---Encrypted bytes recieved at user---
+Key       (hex): e29c0decd20395ff84f47f5aa34c8fd5b30eba4578cb3f3e2d9f5ba72d102c7a
+Nonce     (hex): bca4c821a1a367a00e8b2b79
+Counter        : 73
+The first two bytes of decrypted image are ff d8 The last two bytes are 86 d3
+
+---Decryption at user---
+Key       (hex): e29c0decd20395ff84f47f5aa34c8fd5b30eba4578cb3f3e2d9f5ba72d102c7a
+Nonce     (hex): bca4c821a1a367a00e8b2b79
+Counter        : 73
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 81876
+
+---Encrypted bytes recieved at user---
+Key       (hex): 51c425d0f93fb523c0d63babfc3c413190a47067d0f4ad8708574a52c86097ae
+Nonce     (hex): 92856aa59ded00b1dba4037b
+Counter        : 74
+The first two bytes of decrypted image are ff d8 The last two bytes are 08 cb
+
+---Decryption at user---
+Key       (hex): 51c425d0f93fb523c0d63babfc3c413190a47067d0f4ad8708574a52c86097ae
+Nonce     (hex): 92856aa59ded00b1dba4037b
+Counter        : 74
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82880
+
+---Encrypted bytes recieved at user---
+Key       (hex): 6352ca755cf3e473e9ed12243934a24f2dcedcae0dfdd18c6a36ffe04e480acf
+Nonce     (hex): e68db9a231011bdcb89ae8cb
+Counter        : 75
+The first two bytes of decrypted image are ff d8 The last two bytes are ce cd
+
+---Decryption at user---
+Key       (hex): 6352ca755cf3e473e9ed12243934a24f2dcedcae0dfdd18c6a36ffe04e480acf
+Nonce     (hex): e68db9a231011bdcb89ae8cb
+Counter        : 75
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82654
+
+---Encrypted bytes recieved at user---
+Key       (hex): aa199d84a8becfbc7a5482fb899f3abbf5087167b7000249dd5bd7f8f0f28680
+Nonce     (hex): 1c4d068be41ed17cc3658856
+Counter        : 76
+The first two bytes of decrypted image are ff d8 The last two bytes are a2 c6
+
+---Decryption at user---
+Key       (hex): aa199d84a8becfbc7a5482fb899f3abbf5087167b7000249dd5bd7f8f0f28680
+Nonce     (hex): 1c4d068be41ed17cc3658856
+Counter        : 76
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82608
+
+---Encrypted bytes recieved at user---
+Key       (hex): 65d43c4351844e2864b2e57637e8318c4a8d9aa47cadd839d09ee59a06cfcc0e
+Nonce     (hex): e778d8c64c88bb60d64d4fdd
+Counter        : 77
+The first two bytes of decrypted image are ff d8 The last two bytes are 32 33
+
+---Decryption at user---
+Key       (hex): 65d43c4351844e2864b2e57637e8318c4a8d9aa47cadd839d09ee59a06cfcc0e
+Nonce     (hex): e778d8c64c88bb60d64d4fdd
+Counter        : 77
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82969
+
+---Encrypted bytes recieved at user---
+Key       (hex): 79aec280288c0280e99df061f3d6fda149922b156487b459c23cc7f8b83246dc
+Nonce     (hex): ab01d7edc8ed92d744114aba
+Counter        : 78
+The first two bytes of decrypted image are ff d8 The last two bytes are 78 da
+
+---Decryption at user---
+Key       (hex): 79aec280288c0280e99df061f3d6fda149922b156487b459c23cc7f8b83246dc
+Nonce     (hex): ab01d7edc8ed92d744114aba
+Counter        : 78
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 83270
+
+---Encrypted bytes recieved at user---
+Key       (hex): c9e01f286fefd3b10649af322ceb2b6976c2ab7d98b69d5bb132eeed3db764c0
+Nonce     (hex): e6e9ff2add161dcab2263a85
+Counter        : 79
+The first two bytes of decrypted image are ff d8 The last two bytes are 9a b7
+
+---Decryption at user---
+Key       (hex): c9e01f286fefd3b10649af322ceb2b6976c2ab7d98b69d5bb132eeed3db764c0
+Nonce     (hex): e6e9ff2add161dcab2263a85
+Counter        : 79
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82603
+
+---Encrypted bytes recieved at user---
+Key       (hex): 9ab1e54a0080756292a890db8dec66536131c5101613d8310fd5487ef7880f7c
+Nonce     (hex): 49101fbc8fe7b9ad4ae1da59
+Counter        : 80
+The first two bytes of decrypted image are ff d8 The last two bytes are 2b fb
+
+---Decryption at user---
+Key       (hex): 9ab1e54a0080756292a890db8dec66536131c5101613d8310fd5487ef7880f7c
+Nonce     (hex): 49101fbc8fe7b9ad4ae1da59
+Counter        : 80
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82699
+
+---Encrypted bytes recieved at user---
+Key       (hex): 4b8c7d91bba335cea0489661f469e4aa3f46271501430fa033772d077da567d3
+Nonce     (hex): 1c44e0974baceb0d09e9b77f
+Counter        : 81
+The first two bytes of decrypted image are ff d8 The last two bytes are 23 38
+
+---Decryption at user---
+Key       (hex): 4b8c7d91bba335cea0489661f469e4aa3f46271501430fa033772d077da567d3
+Nonce     (hex): 1c44e0974baceb0d09e9b77f
+Counter        : 81
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82656
+
+---Encrypted bytes recieved at user---
+Key       (hex): 52fe0921bbf5bdf648cb256406d6673b6e0f08bc3b659d75f2b9febbaf45fe0d
+Nonce     (hex): 270087fdbd5dfceec1b3b1e5
+Counter        : 82
+The first two bytes of decrypted image are ff d8 The last two bytes are 14 c2
+
+---Decryption at user---
+Key       (hex): 52fe0921bbf5bdf648cb256406d6673b6e0f08bc3b659d75f2b9febbaf45fe0d
+Nonce     (hex): 270087fdbd5dfceec1b3b1e5
+Counter        : 82
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82506
+
+---Encrypted bytes recieved at user---
+Key       (hex): 9b60a409fdaf5a86a9484aeda69e9109203594d88bc83449599ab84450e2a05f
+Nonce     (hex): 31b8975ebf89a2bc95024c56
+Counter        : 83
+The first two bytes of decrypted image are ff d8 The last two bytes are d0 8a
+
+---Decryption at user---
+Key       (hex): 9b60a409fdaf5a86a9484aeda69e9109203594d88bc83449599ab84450e2a05f
+Nonce     (hex): 31b8975ebf89a2bc95024c56
+Counter        : 83
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82995
+
+---Encrypted bytes recieved at user---
+Key       (hex): 641d883602cec5907f585dd62bcfb15ce42b96dc9c4a3c40fd5f70323f4e8bcb
+Nonce     (hex): 171292c5e8476479959c9419
+Counter        : 84
+The first two bytes of decrypted image are ff d8 The last two bytes are ee e3
+
+---Decryption at user---
+Key       (hex): 641d883602cec5907f585dd62bcfb15ce42b96dc9c4a3c40fd5f70323f4e8bcb
+Nonce     (hex): 171292c5e8476479959c9419
+Counter        : 84
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82255
+
+---Encrypted bytes recieved at user---
+Key       (hex): f0e686a05f39fcd1fa98a766c014d78f5b55e05ed02314e69010d427017490ac
+Nonce     (hex): 3cb6f2018b82f653832bcc18
+Counter        : 85
+The first two bytes of decrypted image are ff d8 The last two bytes are 2a 94
+
+---Decryption at user---
+Key       (hex): f0e686a05f39fcd1fa98a766c014d78f5b55e05ed02314e69010d427017490ac
+Nonce     (hex): 3cb6f2018b82f653832bcc18
+Counter        : 85
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82085
+
+---Encrypted bytes recieved at user---
+Key       (hex): 696f417815654b4a0e024591e0c750780741d210f8e40c731121adce8116478b
+Nonce     (hex): bd7329413d41d400dd94f258
+Counter        : 86
+The first two bytes of decrypted image are ff d8 The last two bytes are f6 8a
+
+---Decryption at user---
+Key       (hex): 696f417815654b4a0e024591e0c750780741d210f8e40c731121adce8116478b
+Nonce     (hex): bd7329413d41d400dd94f258
+Counter        : 86
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82095
+
+---Encrypted bytes recieved at user---
+Key       (hex): 84cbae0bce4013327116d3168cead6fd8686f3a9cf3688726b8de9a96ce90ee2
+Nonce     (hex): 0fbd51992693cf20354061fb
+Counter        : 87
+The first two bytes of decrypted image are ff d8 The last two bytes are 8e 48
+
+---Decryption at user---
+Key       (hex): 84cbae0bce4013327116d3168cead6fd8686f3a9cf3688726b8de9a96ce90ee2
+Nonce     (hex): 0fbd51992693cf20354061fb
+Counter        : 87
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82851
+
+---Encrypted bytes recieved at user---
+Key       (hex): 13916812104328fd4e9cd6a0bbdaf3ea72d3ad10305930871dd38f824f3905a4
+Nonce     (hex): 049b51f9b2a3a51bdb35bf8f
+Counter        : 88
+The first two bytes of decrypted image are ff d8 The last two bytes are 9e 37
+
+---Decryption at user---
+Key       (hex): 13916812104328fd4e9cd6a0bbdaf3ea72d3ad10305930871dd38f824f3905a4
+Nonce     (hex): 049b51f9b2a3a51bdb35bf8f
+Counter        : 88
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79015
+
+---Encrypted bytes recieved at user---
+Key       (hex): 36a9db7ad15e2dd0c6f4009d5f7e51136545f9611348df5c8249aabcc098c2aa
+Nonce     (hex): 4bd4f022fb80ec5b759c7ee5
+Counter        : 89
+The first two bytes of decrypted image are ff d8 The last two bytes are 0a 4e
+
+---Decryption at user---
+Key       (hex): 36a9db7ad15e2dd0c6f4009d5f7e51136545f9611348df5c8249aabcc098c2aa
+Nonce     (hex): 4bd4f022fb80ec5b759c7ee5
+Counter        : 89
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78999
+
+---Encrypted bytes recieved at user---
+Key       (hex): e714e0db81b95f954709182fa44cbe7023240215de17084859a111237c672e43
+Nonce     (hex): aed8bd0cafd2f1d20d750eb2
+Counter        : 90
+The first two bytes of decrypted image are ff d8 The last two bytes are fd a5
+
+---Decryption at user---
+Key       (hex): e714e0db81b95f954709182fa44cbe7023240215de17084859a111237c672e43
+Nonce     (hex): aed8bd0cafd2f1d20d750eb2
+Counter        : 90
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78895
+
+---Encrypted bytes recieved at user---
+Key       (hex): 8322395a15d21d0b68854e3daa39bae182b7af924eacbe5a00c892899753926e
+Nonce     (hex): b05ed6233c28daf84fb46170
+Counter        : 91
+The first two bytes of decrypted image are ff d8 The last two bytes are 4e 92
+
+---Decryption at user---
+Key       (hex): 8322395a15d21d0b68854e3daa39bae182b7af924eacbe5a00c892899753926e
+Nonce     (hex): b05ed6233c28daf84fb46170
+Counter        : 91
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 79115
+
+---Encrypted bytes recieved at user---
+Key       (hex): 263f1c7fad5a7b095f15a44cdc0649c3bb3b1080e1e65740dbaf279cc9ae1182
+Nonce     (hex): a7c22b09d7d6a258878a52de
+Counter        : 92
+The first two bytes of decrypted image are ff d8 The last two bytes are 48 0f
+
+---Decryption at user---
+Key       (hex): 263f1c7fad5a7b095f15a44cdc0649c3bb3b1080e1e65740dbaf279cc9ae1182
+Nonce     (hex): a7c22b09d7d6a258878a52de
+Counter        : 92
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78901
+
+---Encrypted bytes recieved at user---
+Key       (hex): 48b7c47873bac506e19e7f474ad519956f1d0b40665177054229062be73cdee4
+Nonce     (hex): cff90a62c7ab806aed89994a
+Counter        : 93
+The first two bytes of decrypted image are ff d8 The last two bytes are 31 8e
+
+---Decryption at user---
+Key       (hex): 48b7c47873bac506e19e7f474ad519956f1d0b40665177054229062be73cdee4
+Nonce     (hex): cff90a62c7ab806aed89994a
+Counter        : 93
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78823
+
+---Encrypted bytes recieved at user---
+Key       (hex): 86dd3ca95d03924b8cc809fe61c730c93ac9233ad31eb4023acc2ae6fbfe4f97
+Nonce     (hex): f4d3c060cef8b78b917b952b
+Counter        : 94
+The first two bytes of decrypted image are ff d8 The last two bytes are c1 3c
+
+---Decryption at user---
+Key       (hex): 86dd3ca95d03924b8cc809fe61c730c93ac9233ad31eb4023acc2ae6fbfe4f97
+Nonce     (hex): f4d3c060cef8b78b917b952b
+Counter        : 94
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78604
+
+---Encrypted bytes recieved at user---
+Key       (hex): e3bc9be4f0a6d86c306b91f773d364ff123d9149f21a6030a4d763e8ef12b5f4
+Nonce     (hex): cc84bd96143560ea370c4645
+Counter        : 95
+The first two bytes of decrypted image are ff d8 The last two bytes are 1c 57
+
+---Decryption at user---
+Key       (hex): e3bc9be4f0a6d86c306b91f773d364ff123d9149f21a6030a4d763e8ef12b5f4
+Nonce     (hex): cc84bd96143560ea370c4645
+Counter        : 95
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78687
+
+---Encrypted bytes recieved at user---
+Key       (hex): 6a88a06fcdaa55cff47a8a0692a13bad8ef85d8686e693e6203ca71a56e75b95
+Nonce     (hex): 2ad35d9339b4b0ada437e974
+Counter        : 96
+The first two bytes of decrypted image are ff d8 The last two bytes are e3 39
+
+---Decryption at user---
+Key       (hex): 6a88a06fcdaa55cff47a8a0692a13bad8ef85d8686e693e6203ca71a56e75b95
+Nonce     (hex): 2ad35d9339b4b0ada437e974
+Counter        : 96
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78597
+
+---Encrypted bytes recieved at user---
+Key       (hex): 62f879ecb2fea016de18930291b784d26a6456b6d07d452f9e55e4303db90498
+Nonce     (hex): 0761b9355cb4f93d98cba003
+Counter        : 97
+The first two bytes of decrypted image are ff d8 The last two bytes are 4e 53
+
+---Decryption at user---
+Key       (hex): 62f879ecb2fea016de18930291b784d26a6456b6d07d452f9e55e4303db90498
+Nonce     (hex): 0761b9355cb4f93d98cba003
+Counter        : 97
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 82265
+
+---Encrypted bytes recieved at user---
+Key       (hex): b5ee622a7e922e4a08548b740ff407c49baea7725a1a3a19c7771081c6fc32d2
+Nonce     (hex): 8d089a0231578f0cd8cba4ac
+Counter        : 98
+The first two bytes of decrypted image are ff d8 The last two bytes are 63 2d
+
+---Decryption at user---
+Key       (hex): b5ee622a7e922e4a08548b740ff407c49baea7725a1a3a19c7771081c6fc32d2
+Nonce     (hex): 8d089a0231578f0cd8cba4ac
+Counter        : 98
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78582
+
+---Encrypted bytes recieved at user---
+Key       (hex): b8aac29ffb1c52a055f84a87972f4620d59284733351ba1450bd2772e59ad50c
+Nonce     (hex): 19ab39097fe54eec81109b71
+Counter        : 99
+The first two bytes of decrypted image are ff d8 The last two bytes are 6a 4c
+
+---Decryption at user---
+Key       (hex): b8aac29ffb1c52a055f84a87972f4620d59284733351ba1450bd2772e59ad50c
+Nonce     (hex): 19ab39097fe54eec81109b71
+Counter        : 99
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78462
+
+---Encrypted bytes recieved at user---
+Key       (hex): e6a0341baf98d90fb39fa21e0a2cbe471338056bac94026f6994bac29b494ada
+Nonce     (hex): 13e46ca7af34c0709c90c095
+Counter        : 100
+The first two bytes of decrypted image are ff d8 The last two bytes are c2 dd
+
+---Decryption at user---
+Key       (hex): e6a0341baf98d90fb39fa21e0a2cbe471338056bac94026f6994bac29b494ada
+Nonce     (hex): 13e46ca7af34c0709c90c095
+Counter        : 100
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78394
+
+---Encrypted bytes recieved at user---
+Key       (hex): 12c0620e48c3af81a16c8f167f3d9e6c28c74ba050475c897811b76ef3572927
+Nonce     (hex): 40dddb765737d738e168e53c
+Counter        : 101
+The first two bytes of decrypted image are ff d8 The last two bytes are 0f ff
+
+---Decryption at user---
+Key       (hex): 12c0620e48c3af81a16c8f167f3d9e6c28c74ba050475c897811b76ef3572927
+Nonce     (hex): 40dddb765737d738e168e53c
+Counter        : 101
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78647
+
+---Encrypted bytes recieved at user---
+Key       (hex): 5d05f37e89f7a05985792abdb75fa53fb2ad9cd5e5af5ab9ef2966f27248e952
+Nonce     (hex): 2ef017ee04df6733343f277b
+Counter        : 102
+The first two bytes of decrypted image are ff d8 The last two bytes are a2 ba
+
+---Decryption at user---
+Key       (hex): 5d05f37e89f7a05985792abdb75fa53fb2ad9cd5e5af5ab9ef2966f27248e952
+Nonce     (hex): 2ef017ee04df6733343f277b
+Counter        : 102
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78652
+
+---Encrypted bytes recieved at user---
+Key       (hex): cb7e331728cd297e66be298b0a3576f05e10105bc293c0177474bcaf8811be98
+Nonce     (hex): aa0707b39e6dfb911d90fa53
+Counter        : 103
+The first two bytes of decrypted image are ff d8 The last two bytes are 0b 29
+
+---Decryption at user---
+Key       (hex): cb7e331728cd297e66be298b0a3576f05e10105bc293c0177474bcaf8811be98
+Nonce     (hex): aa0707b39e6dfb911d90fa53
+Counter        : 103
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78817
+
+---Encrypted bytes recieved at user---
+Key       (hex): d61fe632d9fec0d65b168cf549cad36b0694dcafcca01b7446ba1de36c047d35
+Nonce     (hex): 490ec46db1addd28a20f8ed4
+Counter        : 104
+The first two bytes of decrypted image are ff d8 The last two bytes are e0 a2
+
+---Decryption at user---
+Key       (hex): d61fe632d9fec0d65b168cf549cad36b0694dcafcca01b7446ba1de36c047d35
+Nonce     (hex): 490ec46db1addd28a20f8ed4
+Counter        : 104
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78799
+
+---Encrypted bytes recieved at user---
+Key       (hex): 11ceacf604f41fea00327209a77371ca009a7c8539e6b66525c3606f53d52852
+Nonce     (hex): d6928a758ebff5b9f6aafa20
+Counter        : 105
+The first two bytes of decrypted image are ff d8 The last two bytes are d5 c2
+
+---Decryption at user---
+Key       (hex): 11ceacf604f41fea00327209a77371ca009a7c8539e6b66525c3606f53d52852
+Nonce     (hex): d6928a758ebff5b9f6aafa20
+Counter        : 105
+Can't send showGray instr
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The Recieved image length is 78838
+
+---Encrypted bytes recieved at user---
+Key       (hex): 6f55238d8c0ef075cdf7ac5d7a58a0fad95758a446d6cec234b080b77cc3c123
+Nonce     (hex): 90caa3d699d0483735989dc3
+Counter        : 106
+The first two bytes of decrypted image are ff d8 The last two bytes are 9b 4b
+
+---Decryption at user---
+Key       (hex): 6f55238d8c0ef075cdf7ac5d7a58a0fad95758a446d6cec234b080b77cc3c123
+Nonce     (hex): 90caa3d699d0483735989dc3
+Counter        : 106
+Can't send showGray instr
 ----------------------------------------------------------------------------
 
 

@@ -1,965 +1,2461 @@
-Just connected to RiP-Laptop/192.168.190.33:3000
+Just connected to RiP-Laptop/192.168.43.81:3000
 ----------------------------------------------------------------------------
 Waiting for client to send instructions on port 8000...
 ----------------------------------------------------------------------------
-The transmitted image length is 62496
+The transmitted image length is 96965
 
 BufferedImage@641a6597: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 86 dd
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1008
+The first two bytes of original image are ff d8 The last two bytes are ab 39
+Percentage = 6.25 number of blocks encrypted = 95 Gap between encrypted blocks = 1020
 
 ---Encryption---
-Key       (hex): aa583c3903b5c1e96c96c5fd527c9dd1d4e333091946fb4d42d8985c83718da0
-Nonce     (hex): 8acdea09a0f5358f6f4b095e
+Key       (hex): b304ef3735ad58fe7c444c94e8dd665e7594a0f268bc4dc4abda4aff1c668623
+Nonce     (hex): fd344b95b01d4c25c351f3f2
 Counter        : 1
 
 ---Decryption---
-Key       (hex): aa583c3903b5c1e96c96c5fd527c9dd1d4e333091946fb4d42d8985c83718da0
-Nonce     (hex): 8acdea09a0f5358f6f4b095e
+Key       (hex): b304ef3735ad58fe7c444c94e8dd665e7594a0f268bc4dc4abda4aff1c668623
+Nonce     (hex): fd344b95b01d4c25c351f3f2
 Counter        : 1
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63790
+The transmitted image length is 96940
 
 BufferedImage@58c10d56: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 36 88
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1012
+The first two bytes of original image are ff d8 The last two bytes are 1c 5a
+Percentage = 6.25 number of blocks encrypted = 95 Gap between encrypted blocks = 1020
 
 ---Encryption---
-Key       (hex): 057d4f85e32c1435c54bd48c8a696137091840e5ac7b4ffd2b1da8d450414ade
-Nonce     (hex): 2d8c6646304aa1731303eb69
+Key       (hex): e62a4c585d49dd825c9b7fd5fffef4d23a9303fe792128f3563e2f0025979e31
+Nonce     (hex): c3a224c92d25d4fa104a4ba9
 Counter        : 2
 
 ---Decryption---
-Key       (hex): 057d4f85e32c1435c54bd48c8a696137091840e5ac7b4ffd2b1da8d450414ade
-Nonce     (hex): 2d8c6646304aa1731303eb69
+Key       (hex): e62a4c585d49dd825c9b7fd5fffef4d23a9303fe792128f3563e2f0025979e31
+Nonce     (hex): c3a224c92d25d4fa104a4ba9
 Counter        : 2
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 65481
+The transmitted image length is 78767
 
 BufferedImage@190840bb: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are b4 e7
-Percentage = 6.25 number of blocks encrypted = 64 Gap between encrypted blocks = 1023
+The first two bytes of original image are ff d8 The last two bytes are 1f 19
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
 
 ---Encryption---
-Key       (hex): 68f235131b03e55251d1cddc18e4473f6ebc4d1c3a58b9a3bad87fb15aaca8ce
-Nonce     (hex): 4f8b587ec47305f32cd43915
+Key       (hex): e5a024592fb6930c789fd322de4eaf08901107b50f33d3f1e3e770007c220c72
+Nonce     (hex): 7eee217c14ae1268618e5ff4
 Counter        : 3
 
 ---Decryption---
-Key       (hex): 68f235131b03e55251d1cddc18e4473f6ebc4d1c3a58b9a3bad87fb15aaca8ce
-Nonce     (hex): 4f8b587ec47305f32cd43915
+Key       (hex): e5a024592fb6930c789fd322de4eaf08901107b50f33d3f1e3e770007c220c72
+Nonce     (hex): 7eee217c14ae1268618e5ff4
 Counter        : 3
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 65742
+The transmitted image length is 81890
 
 BufferedImage@a0b48c2: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 51 bb
-Percentage = 6.25 number of blocks encrypted = 65 Gap between encrypted blocks = 1011
+The first two bytes of original image are ff d8 The last two bytes are f3 da
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1023
 
 ---Encryption---
-Key       (hex): 3d529cc72a9f8551fbd2650e1e25133b177ed622d2938cdd3dd84d9ad439ed75
-Nonce     (hex): a2e0eaf48d8aaf40612e1e11
+Key       (hex): 84fe8f3bc6649bdce28cee9a8fe3b65e746bc9cebed50185e2b01033881f70e0
+Nonce     (hex): a0b88f7135ac43c0d753e449
 Counter        : 4
 
 ---Decryption---
-Key       (hex): 3d529cc72a9f8551fbd2650e1e25133b177ed622d2938cdd3dd84d9ad439ed75
-Nonce     (hex): a2e0eaf48d8aaf40612e1e11
+Key       (hex): 84fe8f3bc6649bdce28cee9a8fe3b65e746bc9cebed50185e2b01033881f70e0
+Nonce     (hex): a0b88f7135ac43c0d753e449
 Counter        : 4
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 64559
+The transmitted image length is 82588
 
 BufferedImage@2eab2914: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 0b a7
-Percentage = 6.25 number of blocks encrypted = 64 Gap between encrypted blocks = 1008
+The first two bytes of original image are ff d8 The last two bytes are 55 01
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1019
 
 ---Encryption---
-Key       (hex): a5cef9c09a62784408e19b405de84a1ff699d3f221c6d6c5ba68b7c83402ec6a
-Nonce     (hex): ea0a3b0b0d14ee11e9b22bb0
+Key       (hex): ad86b6a0932138a85d63400ed927acd62357a6fac2471dea97bef3b2eceb13bc
+Nonce     (hex): 595a06d3e17a859f394b6b1d
 Counter        : 5
 
 ---Decryption---
-Key       (hex): a5cef9c09a62784408e19b405de84a1ff699d3f221c6d6c5ba68b7c83402ec6a
-Nonce     (hex): ea0a3b0b0d14ee11e9b22bb0
+Key       (hex): ad86b6a0932138a85d63400ed927acd62357a6fac2471dea97bef3b2eceb13bc
+Nonce     (hex): 595a06d3e17a859f394b6b1d
 Counter        : 5
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 64946
+The transmitted image length is 77948
 
 BufferedImage@7837982b: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are f9 1c
-Percentage = 6.25 number of blocks encrypted = 64 Gap between encrypted blocks = 1014
+The first two bytes of original image are ff d8 The last two bytes are c3 0d
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1012
 
 ---Encryption---
-Key       (hex): 7b72d434e821d7244a453c8220a248e70ace3441be701c3eb1defc2770137015
-Nonce     (hex): b14647be51d29a39d80cb4c2
+Key       (hex): edfc4063e3d05d9df599a1b7ce93cd1c2064942f57319bc942b96feb663fbbca
+Nonce     (hex): 0c41d5baf56b5f655c351569
 Counter        : 6
 
 ---Decryption---
-Key       (hex): 7b72d434e821d7244a453c8220a248e70ace3441be701c3eb1defc2770137015
-Nonce     (hex): b14647be51d29a39d80cb4c2
+Key       (hex): edfc4063e3d05d9df599a1b7ce93cd1c2064942f57319bc942b96feb663fbbca
+Nonce     (hex): 0c41d5baf56b5f655c351569
 Counter        : 6
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 66252
+The transmitted image length is 81387
 
 BufferedImage@1b96127f: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 54 92
-Percentage = 6.25 number of blocks encrypted = 65 Gap between encrypted blocks = 1019
+The first two bytes of original image are ff d8 The last two bytes are 4b af
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1017
 
 ---Encryption---
-Key       (hex): 6b2f8add61f24b44cbad2292bc5bc65b0a560cb04386b69c6784ac03ea717d91
-Nonce     (hex): a1cb3f4216a5ae433cc7c77d
+Key       (hex): 483cb99b3ddf870d484ff9e37a3b1b0982fa7f6918764a49a54cf49ffe11df22
+Nonce     (hex): a13ad8a1ec3cffa08d1ef4b1
 Counter        : 7
 
 ---Decryption---
-Key       (hex): 6b2f8add61f24b44cbad2292bc5bc65b0a560cb04386b69c6784ac03ea717d91
-Nonce     (hex): a1cb3f4216a5ae433cc7c77d
+Key       (hex): 483cb99b3ddf870d484ff9e37a3b1b0982fa7f6918764a49a54cf49ffe11df22
+Nonce     (hex): a13ad8a1ec3cffa08d1ef4b1
 Counter        : 7
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 61449
+The transmitted image length is 83018
 
 BufferedImage@64ce2317: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 6a 3b
-Percentage = 6.25 number of blocks encrypted = 61 Gap between encrypted blocks = 1007
+The first two bytes of original image are ff d8 The last two bytes are f9 86
+Percentage = 6.25 number of blocks encrypted = 82 Gap between encrypted blocks = 1012
 
 ---Encryption---
-Key       (hex): e27feda188aceb5f2069e03d49f7cf3ef2ec7085bb0e7fb82513c580d6ce7187
-Nonce     (hex): d38ccd1aa41daca3e1572971
+Key       (hex): 531be05bdb8365004205978eb447c041dcc36e6ab9086596ca94b9d2b30a6aa6
+Nonce     (hex): cba22088d19186df05a580e4
 Counter        : 8
 
 ---Decryption---
-Key       (hex): e27feda188aceb5f2069e03d49f7cf3ef2ec7085bb0e7fb82513c580d6ce7187
-Nonce     (hex): d38ccd1aa41daca3e1572971
+Key       (hex): 531be05bdb8365004205978eb447c041dcc36e6ab9086596ca94b9d2b30a6aa6
+Nonce     (hex): cba22088d19186df05a580e4
 Counter        : 8
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 61926
+The transmitted image length is 85183
 
 BufferedImage@1782151d: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 24 6e
-Percentage = 6.25 number of blocks encrypted = 61 Gap between encrypted blocks = 1015
+The first two bytes of original image are ff d8 The last two bytes are 77 b9
+Percentage = 6.25 number of blocks encrypted = 84 Gap between encrypted blocks = 1014
 
 ---Encryption---
-Key       (hex): e7f96cd5cf0640d9bdc31095fab622ce976435f607d8a78ec94ff195430a5360
-Nonce     (hex): 864c4ec76348c2c96ad80921
+Key       (hex): b4686337a9f5e196b9460fa9c889ef7fde169ba9347a8d21c52578d541fb7d93
+Nonce     (hex): 9b5cd68055f7b8204405d384
 Counter        : 9
 
 ---Decryption---
-Key       (hex): e7f96cd5cf0640d9bdc31095fab622ce976435f607d8a78ec94ff195430a5360
-Nonce     (hex): 864c4ec76348c2c96ad80921
+Key       (hex): b4686337a9f5e196b9460fa9c889ef7fde169ba9347a8d21c52578d541fb7d93
+Nonce     (hex): 9b5cd68055f7b8204405d384
 Counter        : 9
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62989
+The transmitted image length is 83740
 
 BufferedImage@4dddc6bf: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 2e 6d
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1015
+The first two bytes of original image are ff d8 The last two bytes are 7e 82
+Percentage = 6.25 number of blocks encrypted = 82 Gap between encrypted blocks = 1021
 
 ---Encryption---
-Key       (hex): a55c1b31b3e4f6278502bd9257446081f72304d7d1ecb24bcf016271a4358f85
-Nonce     (hex): c0fe6632ce8e1aac7e33853c
+Key       (hex): 1a4bf26e49999b9417e869e19ee665f99974d4f72e3f2a9496613cf65f22f2ec
+Nonce     (hex): 08771fc01f37d97a67adcd9c
 Counter        : 10
 
 ---Decryption---
-Key       (hex): a55c1b31b3e4f6278502bd9257446081f72304d7d1ecb24bcf016271a4358f85
-Nonce     (hex): c0fe6632ce8e1aac7e33853c
+Key       (hex): 1a4bf26e49999b9417e869e19ee665f99974d4f72e3f2a9496613cf65f22f2ec
+Nonce     (hex): 08771fc01f37d97a67adcd9c
 Counter        : 10
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 66287
+The transmitted image length is 84640
 
 BufferedImage@3ddafe75: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 9f 24
-Percentage = 6.25 number of blocks encrypted = 65 Gap between encrypted blocks = 1019
+The first two bytes of original image are ff d8 The last two bytes are 7f b3
+Percentage = 6.25 number of blocks encrypted = 83 Gap between encrypted blocks = 1019
 
 ---Encryption---
-Key       (hex): 962806a4b340b32452cb55cc3a4179519aea097783f7a9418f46fdcbf567cd5f
-Nonce     (hex): a22e7bfc49b54fe8cd61601c
+Key       (hex): bcb656343905bd450e81755043e48cf1943a4c7b634711cbd77b87a408b130ba
+Nonce     (hex): 6489a219959857f1d594afd8
 Counter        : 11
 
 ---Decryption---
-Key       (hex): 962806a4b340b32452cb55cc3a4179519aea097783f7a9418f46fdcbf567cd5f
-Nonce     (hex): a22e7bfc49b54fe8cd61601c
+Key       (hex): bcb656343905bd450e81755043e48cf1943a4c7b634711cbd77b87a408b130ba
+Nonce     (hex): 6489a219959857f1d594afd8
 Counter        : 11
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 66056
+The transmitted image length is 83492
 
 BufferedImage@7625d3e7: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are af 22
-Percentage = 6.25 number of blocks encrypted = 65 Gap between encrypted blocks = 1016
+The first two bytes of original image are ff d8 The last two bytes are 9e 0f
+Percentage = 6.25 number of blocks encrypted = 82 Gap between encrypted blocks = 1018
 
 ---Encryption---
-Key       (hex): 651b53c14594e4c4159503c144ca4b10a8fbd99ce012b865408801d25d7f006a
-Nonce     (hex): 9eab8be8f2476e402f0ca373
+Key       (hex): 8edcb39da06d5015df50adf582089ead6936b192689951d422bf08dafc9dfecb
+Nonce     (hex): ae7fc66116339936b89b934d
 Counter        : 12
 
 ---Decryption---
-Key       (hex): 651b53c14594e4c4159503c144ca4b10a8fbd99ce012b865408801d25d7f006a
-Nonce     (hex): 9eab8be8f2476e402f0ca373
+Key       (hex): 8edcb39da06d5015df50adf582089ead6936b192689951d422bf08dafc9dfecb
+Nonce     (hex): ae7fc66116339936b89b934d
 Counter        : 12
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 65635
+The transmitted image length is 85381
 
 BufferedImage@5c04806d: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are a6 87
-Percentage = 6.25 number of blocks encrypted = 65 Gap between encrypted blocks = 1009
+The first two bytes of original image are ff d8 The last two bytes are 97 c5
+Percentage = 6.25 number of blocks encrypted = 84 Gap between encrypted blocks = 1016
 
 ---Encryption---
-Key       (hex): 98bda43c4ee3170cae0b0b3a509df198e23b43257cafe15ef409c27c32dd4476
-Nonce     (hex): c410d3ecedac8a620914f741
+Key       (hex): a3e1c792b43c74dffd9861cc80616775369a823158936acf768ff626c70ef72a
+Nonce     (hex): 43e6b40c87aba5ab12e05f1a
 Counter        : 13
 
 ---Decryption---
-Key       (hex): 98bda43c4ee3170cae0b0b3a509df198e23b43257cafe15ef409c27c32dd4476
-Nonce     (hex): c410d3ecedac8a620914f741
+Key       (hex): a3e1c792b43c74dffd9861cc80616775369a823158936acf768ff626c70ef72a
+Nonce     (hex): 43e6b40c87aba5ab12e05f1a
 Counter        : 13
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 64890
+The transmitted image length is 84691
 
 BufferedImage@31fe0720: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 54 30
-Percentage = 6.25 number of blocks encrypted = 64 Gap between encrypted blocks = 1013
+The first two bytes of original image are ff d8 The last two bytes are f8 1a
+Percentage = 6.25 number of blocks encrypted = 83 Gap between encrypted blocks = 1020
 
 ---Encryption---
-Key       (hex): aab90ff8fb8d4f4cee06b653e38cbea5753db6d6ab3c743cdce64a5e36c85897
-Nonce     (hex): 90aed2477a7680dc431a7e96
+Key       (hex): 753d2a266bce60b9e675b05867a41e78032d4e5201f0f6f5b1b2cae8de70265e
+Nonce     (hex): 32785244abc369020e1fddbb
 Counter        : 14
 
 ---Decryption---
-Key       (hex): aab90ff8fb8d4f4cee06b653e38cbea5753db6d6ab3c743cdce64a5e36c85897
-Nonce     (hex): 90aed2477a7680dc431a7e96
+Key       (hex): 753d2a266bce60b9e675b05867a41e78032d4e5201f0f6f5b1b2cae8de70265e
+Nonce     (hex): 32785244abc369020e1fddbb
 Counter        : 14
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63106
+The transmitted image length is 84818
 
 BufferedImage@6c980562: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 9b 61
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1017
+The first two bytes of original image are ff d8 The last two bytes are 6b fe
+Percentage = 6.25 number of blocks encrypted = 83 Gap between encrypted blocks = 1021
 
 ---Encryption---
-Key       (hex): 19041e7b8a5f6f47aa4cb7f84f508decb52debea79208e130493e215e47f1ca4
-Nonce     (hex): d4332a5a747fd7da53588ec6
+Key       (hex): a691d2519fd0111d0c19e121e8945ea74f94353d947d7d1c2b7386ca2ce98387
+Nonce     (hex): 915ab05cf7de12bbfde1fa03
 Counter        : 15
 
 ---Decryption---
-Key       (hex): 19041e7b8a5f6f47aa4cb7f84f508decb52debea79208e130493e215e47f1ca4
-Nonce     (hex): d4332a5a747fd7da53588ec6
+Key       (hex): a691d2519fd0111d0c19e121e8945ea74f94353d947d7d1c2b7386ca2ce98387
+Nonce     (hex): 915ab05cf7de12bbfde1fa03
 Counter        : 15
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 61381
+The transmitted image length is 84153
 
 BufferedImage@2891ef26: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 34 3f
-Percentage = 6.25 number of blocks encrypted = 60 Gap between encrypted blocks = 1023
+The first two bytes of original image are ff d8 The last two bytes are 3c 70
+Percentage = 6.25 number of blocks encrypted = 83 Gap between encrypted blocks = 1013
 
 ---Encryption---
-Key       (hex): 02607407ca1849c103b8c472fcab06ad106124e67b74e5b99e666740d478b5c8
-Nonce     (hex): df9006ee1773e41ec0a3aa96
+Key       (hex): 6eacb173be882b2fca9e1a9cd377d9abf2b3ea27d723c97052b2ba9a33e8dac9
+Nonce     (hex): 7d260f18d8ec895d2208a273
 Counter        : 16
 
 ---Decryption---
-Key       (hex): 02607407ca1849c103b8c472fcab06ad106124e67b74e5b99e666740d478b5c8
-Nonce     (hex): df9006ee1773e41ec0a3aa96
+Key       (hex): 6eacb173be882b2fca9e1a9cd377d9abf2b3ea27d723c97052b2ba9a33e8dac9
+Nonce     (hex): 7d260f18d8ec895d2208a273
 Counter        : 16
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 60597
+The transmitted image length is 84822
 
 BufferedImage@7bc83397: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 20 d8
-Percentage = 6.25 number of blocks encrypted = 60 Gap between encrypted blocks = 1009
+The first two bytes of original image are ff d8 The last two bytes are f6 8d
+Percentage = 6.25 number of blocks encrypted = 83 Gap between encrypted blocks = 1021
 
 ---Encryption---
-Key       (hex): bba79bd47aaecf73cee7f2a1baa1c4f91725673a23b5acbcdb53a07288a96ad1
-Nonce     (hex): b4ef2731576aaf7d3718f333
+Key       (hex): 9f5a88a206ea4719c502017a2f4d2c455395f6d26d7f1685e3ba3b6f2b71918a
+Nonce     (hex): 62cceb73b12e399e1d34d902
 Counter        : 17
 
 ---Decryption---
-Key       (hex): bba79bd47aaecf73cee7f2a1baa1c4f91725673a23b5acbcdb53a07288a96ad1
-Nonce     (hex): b4ef2731576aaf7d3718f333
+Key       (hex): 9f5a88a206ea4719c502017a2f4d2c455395f6d26d7f1685e3ba3b6f2b71918a
+Nonce     (hex): 62cceb73b12e399e1d34d902
 Counter        : 17
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 61322
+The transmitted image length is 84188
 
 BufferedImage@3cd0c922: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are f5 85
-Percentage = 6.25 number of blocks encrypted = 60 Gap between encrypted blocks = 1022
+The first two bytes of original image are ff d8 The last two bytes are 00 6c
+Percentage = 6.25 number of blocks encrypted = 83 Gap between encrypted blocks = 1014
 
 ---Encryption---
-Key       (hex): 00080c0ef6e9e472ca854d7af8a3e03f5d29d08be69983e177218f92796e9a18
-Nonce     (hex): 524bffab613d15f5292a346a
+Key       (hex): 3fb7667fbaa5e633b99930f4b734a16563159bc8828a2f7f77f73c001a30e101
+Nonce     (hex): be77891389a7209e72e158ea
 Counter        : 18
 
 ---Decryption---
-Key       (hex): 00080c0ef6e9e472ca854d7af8a3e03f5d29d08be69983e177218f92796e9a18
-Nonce     (hex): 524bffab613d15f5292a346a
+Key       (hex): 3fb7667fbaa5e633b99930f4b734a16563159bc8828a2f7f77f73c001a30e101
+Nonce     (hex): be77891389a7209e72e158ea
 Counter        : 18
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 61757
+The transmitted image length is 82354
 
 BufferedImage@435df12e: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 88 23
-Percentage = 6.25 number of blocks encrypted = 61 Gap between encrypted blocks = 1012
+The first two bytes of original image are ff d8 The last two bytes are d1 bf
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1016
 
 ---Encryption---
-Key       (hex): 9a92e4cd77d6b44f64d56e9c7c117a9fbd78356202a264b7d2f2cc343226dd71
-Nonce     (hex): 13a05bf81c74c0b599bcbe82
+Key       (hex): c9c1c851988ec7dde29b76d88100b6f41970d44a4d84172442496b5778808e39
+Nonce     (hex): 3a91b4a2dedcf3ddd43c117a
 Counter        : 19
 
 ---Decryption---
-Key       (hex): 9a92e4cd77d6b44f64d56e9c7c117a9fbd78356202a264b7d2f2cc343226dd71
-Nonce     (hex): 13a05bf81c74c0b599bcbe82
+Key       (hex): c9c1c851988ec7dde29b76d88100b6f41970d44a4d84172442496b5778808e39
+Nonce     (hex): 3a91b4a2dedcf3ddd43c117a
 Counter        : 19
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62368
+The transmitted image length is 80920
 
 BufferedImage@367bac70: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are c4 93
-Percentage = 6.25 number of blocks encrypted = 61 Gap between encrypted blocks = 1022
+The first two bytes of original image are ff d8 The last two bytes are e8 74
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1011
 
 ---Encryption---
-Key       (hex): def6e68cdfaef1f71c1ac238bd6f7a12079904c4be02ee07d197b95bcd84f19b
-Nonce     (hex): 322341e729d6b41c8b6eca19
+Key       (hex): 172baa7a59e4b6b7c75dda89f0d6f73e48dd208263ca1fd34aa59437f574b61e
+Nonce     (hex): ab310b96a38a2aa552e89463
 Counter        : 20
 
 ---Decryption---
-Key       (hex): def6e68cdfaef1f71c1ac238bd6f7a12079904c4be02ee07d197b95bcd84f19b
-Nonce     (hex): 322341e729d6b41c8b6eca19
+Key       (hex): 172baa7a59e4b6b7c75dda89f0d6f73e48dd208263ca1fd34aa59437f574b61e
+Nonce     (hex): ab310b96a38a2aa552e89463
 Counter        : 20
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63002
+The transmitted image length is 80758
 
 BufferedImage@313b0942: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 52 d2
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1016
+The first two bytes of original image are ff d8 The last two bytes are f3 1e
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1022
 
 ---Encryption---
-Key       (hex): 6897633b667f57eaf85f6f5ca60553cd6759fe0416a04261af8d3e6251627b26
-Nonce     (hex): a1782c8c56be3fea9be15b7a
+Key       (hex): a6576b51e96ea7f188f1e546e98a793610a27793aa3807280da8385da25d277e
+Nonce     (hex): d5ed11b39cfe2ecb0d556d85
 Counter        : 21
 
 ---Decryption---
-Key       (hex): 6897633b667f57eaf85f6f5ca60553cd6759fe0416a04261af8d3e6251627b26
-Nonce     (hex): a1782c8c56be3fea9be15b7a
+Key       (hex): a6576b51e96ea7f188f1e546e98a793610a27793aa3807280da8385da25d277e
+Nonce     (hex): d5ed11b39cfe2ecb0d556d85
 Counter        : 21
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63659
+The transmitted image length is 78080
 
 BufferedImage@3ec63be7: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 64 6d
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1010
+The first two bytes of original image are ff d8 The last two bytes are e7 68
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1014
 
 ---Encryption---
-Key       (hex): aa331511d60140cd106fe0c6cfd33ed5279502a31ce75e1091d3212f6c6e8c29
-Nonce     (hex): dda9c156666b8f8cef465667
+Key       (hex): 3eceefdee883eec37fa9ed17911554bb930c1349b31c22619df085dc5febc738
+Nonce     (hex): 2b013616ea0f2556726409e8
 Counter        : 22
 
 ---Decryption---
-Key       (hex): aa331511d60140cd106fe0c6cfd33ed5279502a31ce75e1091d3212f6c6e8c29
-Nonce     (hex): dda9c156666b8f8cef465667
+Key       (hex): 3eceefdee883eec37fa9ed17911554bb930c1349b31c22619df085dc5febc738
+Nonce     (hex): 2b013616ea0f2556726409e8
 Counter        : 22
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63818
+The transmitted image length is 81750
 
 BufferedImage@6a4b919b: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are af c8
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1012
+The first two bytes of original image are ff d8 The last two bytes are 26 ba
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1021
 
 ---Encryption---
-Key       (hex): 84ec43d05ae1cfde95780b7158c0924376d1b2265c5e4bbdc7cd16689a5f6a49
-Nonce     (hex): 16f564b438e67b0761c0f50c
+Key       (hex): 30ee9c62bd7ce22e65ac9e92d4c09eac71ef183e24e749d6e5c07f09bdef9da8
+Nonce     (hex): fbfdaecd8c831efd626bd0f4
 Counter        : 23
 
 ---Decryption---
-Key       (hex): 84ec43d05ae1cfde95780b7158c0924376d1b2265c5e4bbdc7cd16689a5f6a49
-Nonce     (hex): 16f564b438e67b0761c0f50c
+Key       (hex): 30ee9c62bd7ce22e65ac9e92d4c09eac71ef183e24e749d6e5c07f09bdef9da8
+Nonce     (hex): fbfdaecd8c831efd626bd0f4
 Counter        : 23
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62408
+The transmitted image length is 80043
 
 BufferedImage@4f5b1ba2: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 3b f9
-Percentage = 6.25 number of blocks encrypted = 61 Gap between encrypted blocks = 1023
+The first two bytes of original image are ff d8 The last two bytes are 23 71
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1013
 
 ---Encryption---
-Key       (hex): b02db7af0fb6ff89df79d4587be0f922287fb01350186147c74943e73040c65e
-Nonce     (hex): 30abc9923767031670d1f6fc
+Key       (hex): 574aaa25b50317584c9d8f386377c2e29066437ec782dfc6e7a4660e4ee10741
+Nonce     (hex): f1664b4b4e970bf337254f96
 Counter        : 24
 
 ---Decryption---
-Key       (hex): b02db7af0fb6ff89df79d4587be0f922287fb01350186147c74943e73040c65e
-Nonce     (hex): 30abc9923767031670d1f6fc
+Key       (hex): 574aaa25b50317584c9d8f386377c2e29066437ec782dfc6e7a4660e4ee10741
+Nonce     (hex): f1664b4b4e970bf337254f96
 Counter        : 24
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62539
+The transmitted image length is 80126
 
 BufferedImage@39dc15fb: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 7a 57
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1008
+The first two bytes of original image are ff d8 The last two bytes are 92 57
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1014
 
 ---Encryption---
-Key       (hex): 80bd72999ffe90d4bb36a63b1897b5a3df8657228927e3ab46bbe6e5cb481bce
-Nonce     (hex): 58d770b6d01a7d5ac083ea5a
+Key       (hex): 147f9ff0c8bb39d0222b9e1f30b277bf89fcdcb7ce9f41083528ddbf1ec1e900
+Nonce     (hex): 09ecff8ec3171c62d69fd9b5
 Counter        : 25
 
 ---Decryption---
-Key       (hex): 80bd72999ffe90d4bb36a63b1897b5a3df8657228927e3ab46bbe6e5cb481bce
-Nonce     (hex): 58d770b6d01a7d5ac083ea5a
+Key       (hex): 147f9ff0c8bb39d0222b9e1f30b277bf89fcdcb7ce9f41083528ddbf1ec1e900
+Nonce     (hex): 09ecff8ec3171c62d69fd9b5
 Counter        : 25
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62728
+The transmitted image length is 80406
 
 BufferedImage@244cc959: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 08 6b
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1011
+The first two bytes of original image are ff d8 The last two bytes are d8 76
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1017
 
 ---Encryption---
-Key       (hex): 81d41940530efb72e144f46de5825f45d1bae6fa1f5b6a0131f42ef245d8e0f9
-Nonce     (hex): 1b25485e0efd04691f9d59b1
+Key       (hex): 6cec12b37f7e6414e531dd9a4d8b10025d46847d5fb4ee83bb34a5ffa4712723
+Nonce     (hex): 3869ddda4aeb44f7ce0b1a43
 Counter        : 26
 
 ---Decryption---
-Key       (hex): 81d41940530efb72e144f46de5825f45d1bae6fa1f5b6a0131f42ef245d8e0f9
-Nonce     (hex): 1b25485e0efd04691f9d59b1
+Key       (hex): 6cec12b37f7e6414e531dd9a4d8b10025d46847d5fb4ee83bb34a5ffa4712723
+Nonce     (hex): 3869ddda4aeb44f7ce0b1a43
 Counter        : 26
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62903
+The transmitted image length is 80492
 
 BufferedImage@2ada66e1: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 4d 46
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1014
+The first two bytes of original image are ff d8 The last two bytes are 73 ce
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1018
 
 ---Encryption---
-Key       (hex): 6b3175669de5e66118742579bd23b8c585e0be2131506f3e61cafbba2302ae58
-Nonce     (hex): 167deb0663112e75f73075b2
+Key       (hex): db018384d0e3cc59fd1f2e19c8ab1cf9f991dc047e4788ef240bd749dad44c4b
+Nonce     (hex): dc95869af976f63e1b78189b
 Counter        : 27
 
 ---Decryption---
-Key       (hex): 6b3175669de5e66118742579bd23b8c585e0be2131506f3e61cafbba2302ae58
-Nonce     (hex): 167deb0663112e75f73075b2
+Key       (hex): db018384d0e3cc59fd1f2e19c8ab1cf9f991dc047e4788ef240bd749dad44c4b
+Nonce     (hex): dc95869af976f63e1b78189b
 Counter        : 27
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63479
+The transmitted image length is 79996
 
 BufferedImage@6ef05a00: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are ee 4f
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1023
+The first two bytes of original image are ff d8 The last two bytes are 6d 8c
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1012
 
 ---Encryption---
-Key       (hex): 73afc9830afe511f70d541908ee8e94b2d6a11e2472526b4e5f40e0435fe551e
-Nonce     (hex): f377d77d22327fc09569ea8b
+Key       (hex): 02e7774164884b71532611ad484fe20ece92d38942dd0080f1a534bda3ad09a5
+Nonce     (hex): bf49b75f610843548f238f93
 Counter        : 28
 
 ---Decryption---
-Key       (hex): 73afc9830afe511f70d541908ee8e94b2d6a11e2472526b4e5f40e0435fe551e
-Nonce     (hex): f377d77d22327fc09569ea8b
+Key       (hex): 02e7774164884b71532611ad484fe20ece92d38942dd0080f1a534bda3ad09a5
+Nonce     (hex): bf49b75f610843548f238f93
 Counter        : 28
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63649
+The transmitted image length is 79928
 
 BufferedImage@102fa790: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are a4 49
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1010
+The first two bytes of original image are ff d8 The last two bytes are b5 b3
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1011
 
 ---Encryption---
-Key       (hex): dac7ed957a4c95a1daccc4e6172f766b1443e1e04b87dc5530c4841eafbd9f2a
-Nonce     (hex): 1fc18eb1af7fdb6b21b281e2
+Key       (hex): d6d62a54d31861f5ea496fef0eb55b2c587c1783b7c1031d33206de62a749d38
+Nonce     (hex): 5f79aef6118fc61e908cf1b2
 Counter        : 29
 
 ---Decryption---
-Key       (hex): dac7ed957a4c95a1daccc4e6172f766b1443e1e04b87dc5530c4841eafbd9f2a
-Nonce     (hex): 1fc18eb1af7fdb6b21b281e2
+Key       (hex): d6d62a54d31861f5ea496fef0eb55b2c587c1783b7c1031d33206de62a749d38
+Nonce     (hex): 5f79aef6118fc61e908cf1b2
 Counter        : 29
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63305
+The transmitted image length is 80754
 
 BufferedImage@18660136: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 23 d4
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1021
+The first two bytes of original image are ff d8 The last two bytes are 5d a5
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1022
 
 ---Encryption---
-Key       (hex): b4834e61bdb4b742b8b099bae3f56dd57a36b0e46c64905bbd89a4bad94ff0b7
-Nonce     (hex): 17c7e3c3b9a2458dea458e92
+Key       (hex): 869b8406c5afc9681f869fbc3cfab155f2ac73b72da15a7bfc5ff61032c3ef95
+Nonce     (hex): bd6ad5de0b683d635de6dee2
 Counter        : 30
 
 ---Decryption---
-Key       (hex): b4834e61bdb4b742b8b099bae3f56dd57a36b0e46c64905bbd89a4bad94ff0b7
-Nonce     (hex): 17c7e3c3b9a2458dea458e92
+Key       (hex): 869b8406c5afc9681f869fbc3cfab155f2ac73b72da15a7bfc5ff61032c3ef95
+Nonce     (hex): bd6ad5de0b683d635de6dee2
 Counter        : 30
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63032
+The transmitted image length is 79607
 
 BufferedImage@51e9e143: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are c6 a7
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1016
+The first two bytes of original image are ff d8 The last two bytes are f8 ed
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1020
 
 ---Encryption---
-Key       (hex): 28496658bee105f92b91bede2a0b1b2580f81aba0a205002b2c7a4d93ac80381
-Nonce     (hex): df8b61194de62caaee25b4c6
+Key       (hex): 056dd656c7989516cf3e1cb9c870a614bbe983b144be82461218c2a3b2a9e907
+Nonce     (hex): 69d0c6803fb794f3029655ca
 Counter        : 31
 
 ---Decryption---
-Key       (hex): 28496658bee105f92b91bede2a0b1b2580f81aba0a205002b2c7a4d93ac80381
-Nonce     (hex): df8b61194de62caaee25b4c6
+Key       (hex): 056dd656c7989516cf3e1cb9c870a614bbe983b144be82461218c2a3b2a9e907
+Nonce     (hex): 69d0c6803fb794f3029655ca
 Counter        : 31
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63836
+The transmitted image length is 76782
 
 BufferedImage@2c024513: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 5f 39
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1013
+The first two bytes of original image are ff d8 The last two bytes are 72 ae
+Percentage = 6.25 number of blocks encrypted = 75 Gap between encrypted blocks = 1023
 
 ---Encryption---
-Key       (hex): ab849c47f78fec270baff0370e75b84afba0233e68a1cbfa04ea692b6fd45f8d
-Nonce     (hex): 7f2005f086e4d93aa4b0572a
+Key       (hex): d65636524cd2d10b5bed90dcc1604801531f2bfe4c144ad3ee086512c3a70fc2
+Nonce     (hex): b40d9fde10dcb00ab60d25fd
 Counter        : 32
 
 ---Decryption---
-Key       (hex): ab849c47f78fec270baff0370e75b84afba0233e68a1cbfa04ea692b6fd45f8d
-Nonce     (hex): 7f2005f086e4d93aa4b0572a
+Key       (hex): d65636524cd2d10b5bed90dcc1604801531f2bfe4c144ad3ee086512c3a70fc2
+Nonce     (hex): b40d9fde10dcb00ab60d25fd
 Counter        : 32
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63810
+The transmitted image length is 80955
 
 BufferedImage@1578eea2: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are df 85
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1012
+The first two bytes of original image are ff d8 The last two bytes are 1d 4f
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1011
 
 ---Encryption---
-Key       (hex): 2d1ad2bdc1fb3d42b3858b5591edb16f98a458d0a088e49d556109586b9c1c4c
-Nonce     (hex): 5013539cd21522c1af820fac
+Key       (hex): ab53e9238480ec77288484bfbb573fd2747d44c8069cb3dd44a208d1db1347a2
+Nonce     (hex): 6fc02baa39fa21f90271adc2
 Counter        : 33
 
 ---Decryption---
-Key       (hex): 2d1ad2bdc1fb3d42b3858b5591edb16f98a458d0a088e49d556109586b9c1c4c
-Nonce     (hex): 5013539cd21522c1af820fac
+Key       (hex): ab53e9238480ec77288484bfbb573fd2747d44c8069cb3dd44a208d1db1347a2
+Nonce     (hex): 6fc02baa39fa21f90271adc2
 Counter        : 33
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63480
+The transmitted image length is 76746
 
 BufferedImage@1142a719: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 26 73
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1023
+The first two bytes of original image are ff d8 The last two bytes are ae b2
+Percentage = 6.25 number of blocks encrypted = 75 Gap between encrypted blocks = 1023
 
 ---Encryption---
-Key       (hex): c557adcaacbe5e4145061c0a23a1b94e45840549bbfe095d39847c7b2458de77
-Nonce     (hex): bdf309c68523da423b8ae4fe
+Key       (hex): 31812bae45e675ce2c424fb81e21f96f2c83c8968cbf56a0c3e2989807c62bfd
+Nonce     (hex): a4371ef247816ecfab3dd29c
 Counter        : 34
 
 ---Decryption---
-Key       (hex): c557adcaacbe5e4145061c0a23a1b94e45840549bbfe095d39847c7b2458de77
-Nonce     (hex): bdf309c68523da423b8ae4fe
+Key       (hex): 31812bae45e675ce2c424fb81e21f96f2c83c8968cbf56a0c3e2989807c62bfd
+Nonce     (hex): a4371ef247816ecfab3dd29c
 Counter        : 34
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63593
+The transmitted image length is 80898
 
 BufferedImage@6b09e354: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 73 c8
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1009
+The first two bytes of original image are ff d8 The last two bytes are 5b 89
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1011
 
 ---Encryption---
-Key       (hex): 19697779e5e11aa452d5b734d904beba5e1aff9394c189c747aa082e75805e5f
-Nonce     (hex): 353241623da8f7cc35962646
+Key       (hex): 1895b8dff87fd537233bca5aee65a2a586a7d53a179ae150dc819ddfcb30f096
+Nonce     (hex): dbf7610a471132ac04253a77
 Counter        : 35
 
 ---Decryption---
-Key       (hex): 19697779e5e11aa452d5b734d904beba5e1aff9394c189c747aa082e75805e5f
-Nonce     (hex): 353241623da8f7cc35962646
+Key       (hex): 1895b8dff87fd537233bca5aee65a2a586a7d53a179ae150dc819ddfcb30f096
+Nonce     (hex): dbf7610a471132ac04253a77
 Counter        : 35
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62706
+The transmitted image length is 79877
 
 BufferedImage@624b103e: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 38 ac
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1011
+The first two bytes of original image are ff d8 The last two bytes are 54 72
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1011
 
 ---Encryption---
-Key       (hex): 8a62cc2e38a422ade74444e735acec3a7dc08f07ba70534c76130573467eb6dc
-Nonce     (hex): 169ba8826d2d300d7eabd6ed
+Key       (hex): 89b696c25d2a394816e31eec1e5de4bd59c49ad42cc92d31574b4e7e034f6933
+Nonce     (hex): 2e34281fbd7079485dfe5406
 Counter        : 36
 
 ---Decryption---
-Key       (hex): 8a62cc2e38a422ade74444e735acec3a7dc08f07ba70534c76130573467eb6dc
-Nonce     (hex): 169ba8826d2d300d7eabd6ed
+Key       (hex): 89b696c25d2a394816e31eec1e5de4bd59c49ad42cc92d31574b4e7e034f6933
+Nonce     (hex): 2e34281fbd7079485dfe5406
 Counter        : 36
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63238
+The transmitted image length is 80524
 
 BufferedImage@4a342644: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 9e ad
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1019
+The first two bytes of original image are ff d8 The last two bytes are 51 20
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1019
 
 ---Encryption---
-Key       (hex): 25e003c31ea9cf1942dd0f9268581d9a9e4ebcbd20703a72bf2329e7ea42b26d
-Nonce     (hex): 4a5f5c9eb7bcd290614b9e67
+Key       (hex): 0d03eeae3892d87392fb71e9a6ba21d7c0b1d7ca70e2de69c5a7cfefe79dfff0
+Nonce     (hex): 07b66639658c814f67209f5a
 Counter        : 37
 
 ---Decryption---
-Key       (hex): 25e003c31ea9cf1942dd0f9268581d9a9e4ebcbd20703a72bf2329e7ea42b26d
-Nonce     (hex): 4a5f5c9eb7bcd290614b9e67
+Key       (hex): 0d03eeae3892d87392fb71e9a6ba21d7c0b1d7ca70e2de69c5a7cfefe79dfff0
+Nonce     (hex): 07b66639658c814f67209f5a
 Counter        : 37
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63377
+The transmitted image length is 81036
 
 BufferedImage@45416ac9: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are b9 a6
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1022
+The first two bytes of original image are ff d8 The last two bytes are 70 cb
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1012
 
 ---Encryption---
-Key       (hex): df07b5ae4b0dea4a69f9bfdd3ae7c4ed20f4873b6a6e89bdc5fe6e9bd309fd44
-Nonce     (hex): 8540bad5e3603a378aec0b2a
+Key       (hex): 691ca365f0f90793ccc35ecc031dabd8f4ec829a90fae9eab7e516be3465fcc4
+Nonce     (hex): 7da83ae51dd4a44e4427c1fb
 Counter        : 38
 
 ---Decryption---
-Key       (hex): df07b5ae4b0dea4a69f9bfdd3ae7c4ed20f4873b6a6e89bdc5fe6e9bd309fd44
-Nonce     (hex): 8540bad5e3603a378aec0b2a
+Key       (hex): 691ca365f0f90793ccc35ecc031dabd8f4ec829a90fae9eab7e516be3465fcc4
+Nonce     (hex): 7da83ae51dd4a44e4427c1fb
 Counter        : 38
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62644
+The transmitted image length is 81791
 
 BufferedImage@1d01c61b: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are ed fb
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1010
+The first two bytes of original image are ff d8 The last two bytes are f5 a7
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1022
 
 ---Encryption---
-Key       (hex): 22e556ba89978bfecd57648d3faad78663eca5c83841fbc1d8a6a057fd282d87
-Nonce     (hex): 4591aa10f6c159b7ff7e731d
+Key       (hex): 3796089efcfdcf883ac132e877ef19474fae3833ff87b9ab4145ade85b263bc1
+Nonce     (hex): 9071c0d6137f78f77d25ce0d
 Counter        : 39
 
 ---Decryption---
-Key       (hex): 22e556ba89978bfecd57648d3faad78663eca5c83841fbc1d8a6a057fd282d87
-Nonce     (hex): 4591aa10f6c159b7ff7e731d
+Key       (hex): 3796089efcfdcf883ac132e877ef19474fae3833ff87b9ab4145ade85b263bc1
+Nonce     (hex): 9071c0d6137f78f77d25ce0d
 Counter        : 39
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63711
+The transmitted image length is 81249
 
 BufferedImage@67b51223: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 7b cf
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1011
+The first two bytes of original image are ff d8 The last two bytes are 7a dd
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1015
 
 ---Encryption---
-Key       (hex): 55b89facba2396eab522ac387a9154d9cf863160257fb268f7187fbf481cd865
-Nonce     (hex): ef6a26502f06dd402226bd26
+Key       (hex): c4fdf4d8b2c97875c549512ed289e2bc0a8022ccf4ace37717155e6630a0215c
+Nonce     (hex): 383f6350036a943be2992810
 Counter        : 40
 
 ---Decryption---
-Key       (hex): 55b89facba2396eab522ac387a9154d9cf863160257fb268f7187fbf481cd865
-Nonce     (hex): ef6a26502f06dd402226bd26
+Key       (hex): c4fdf4d8b2c97875c549512ed289e2bc0a8022ccf4ace37717155e6630a0215c
+Nonce     (hex): 383f6350036a943be2992810
 Counter        : 40
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63958
+The transmitted image length is 81409
 
 BufferedImage@5b5f46bb: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are e9 5a
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1015
+The first two bytes of original image are ff d8 The last two bytes are 96 20
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1017
 
 ---Encryption---
-Key       (hex): dde3e5ccf9dccaf0bc92675f967d195ece754a86711d224aec0f336d1c2a9834
-Nonce     (hex): 62ad9e721f484c4e9b18ebb1
+Key       (hex): 9f16b126f668d1ddff1b39d3f26c971650112261d0f475812933f5e1a6f6dd3c
+Nonce     (hex): a71983f86ed0779f3866b76b
 Counter        : 41
 
 ---Decryption---
-Key       (hex): dde3e5ccf9dccaf0bc92675f967d195ece754a86711d224aec0f336d1c2a9834
-Nonce     (hex): 62ad9e721f484c4e9b18ebb1
+Key       (hex): 9f16b126f668d1ddff1b39d3f26c971650112261d0f475812933f5e1a6f6dd3c
+Nonce     (hex): a71983f86ed0779f3866b76b
 Counter        : 41
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63835
+The transmitted image length is 81010
 
 BufferedImage@3cdfdd90: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 46 98
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1013
+The first two bytes of original image are ff d8 The last two bytes are 13 a8
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1012
 
 ---Encryption---
-Key       (hex): 907468c1838d6e47d9396fd631f57d251e7619ba69dd769362865093d1250918
-Nonce     (hex): 9bf6f7e465a5a3d8be741d75
+Key       (hex): eedcf2fa690d9ddde3c432615d6740f0b17e248734e5c22669c6d4a9aa6bad24
+Nonce     (hex): fe9d45ed2ab39f5d8e54b1e8
 Counter        : 42
 
 ---Decryption---
-Key       (hex): 907468c1838d6e47d9396fd631f57d251e7619ba69dd769362865093d1250918
-Nonce     (hex): 9bf6f7e465a5a3d8be741d75
+Key       (hex): eedcf2fa690d9ddde3c432615d6740f0b17e248734e5c22669c6d4a9aa6bad24
+Nonce     (hex): fe9d45ed2ab39f5d8e54b1e8
 Counter        : 42
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63937
+The transmitted image length is 81423
 
 BufferedImage@62bfcc76: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 2d 13
-Percentage = 6.25 number of blocks encrypted = 63 Gap between encrypted blocks = 1014
+The first two bytes of original image are ff d8 The last two bytes are 1f c9
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1017
 
 ---Encryption---
-Key       (hex): 625f7b430ba97b63b92af0499c16541ac9ddc41f391d67fc2ea3d9d2f0118025
-Nonce     (hex): 91938c5935653005b9bba629
+Key       (hex): 018b55bfeb32252d136b03b474e1681d4d25764d991ae9f5de1c8739313c6ce6
+Nonce     (hex): 982347602ffe219f4554889f
 Counter        : 43
 
 ---Decryption---
-Key       (hex): 625f7b430ba97b63b92af0499c16541ac9ddc41f391d67fc2ea3d9d2f0118025
-Nonce     (hex): 91938c5935653005b9bba629
+Key       (hex): 018b55bfeb32252d136b03b474e1681d4d25764d991ae9f5de1c8739313c6ce6
+Nonce     (hex): 982347602ffe219f4554889f
 Counter        : 43
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62952
+The transmitted image length is 80880
 
 BufferedImage@41b7703c: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are b8 55
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1015
+The first two bytes of original image are ff d8 The last two bytes are db 1f
+Percentage = 6.25 number of blocks encrypted = 79 Gap between encrypted blocks = 1023
 
 ---Encryption---
-Key       (hex): 9e0a94e356b80814d00c9f65ef3f053c7e7273767cae246962b51fe51c3d46d2
-Nonce     (hex): 7aa2fb2d45dec80c8a040574
+Key       (hex): fd91f410f41d1560b3dd2de9e5a30db8495dae702fd26617b55944ae319efbce
+Nonce     (hex): 3e21c6c7f2e8b15d0d5191d4
 Counter        : 44
 
 ---Decryption---
-Key       (hex): 9e0a94e356b80814d00c9f65ef3f053c7e7273767cae246962b51fe51c3d46d2
-Nonce     (hex): 7aa2fb2d45dec80c8a040574
+Key       (hex): fd91f410f41d1560b3dd2de9e5a30db8495dae702fd26617b55944ae319efbce
+Nonce     (hex): 3e21c6c7f2e8b15d0d5191d4
 Counter        : 44
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 62962
+The transmitted image length is 81801
 
 BufferedImage@4e4612f4: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are f3 47
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1015
+The first two bytes of original image are ff d8 The last two bytes are 96 9a
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1022
 
 ---Encryption---
-Key       (hex): ad3636a168a2215471b06c56be8d90619fdaf3dcd6124118cb36dace6d3c9104
-Nonce     (hex): 2806a32014f11925e4681cc2
+Key       (hex): ffb7c19823b96f4d3982dc161073e2d4821357388d371d5393951acd0d44550f
+Nonce     (hex): 812ed09465eaff42a2938491
 Counter        : 45
 
 ---Decryption---
-Key       (hex): ad3636a168a2215471b06c56be8d90619fdaf3dcd6124118cb36dace6d3c9104
-Nonce     (hex): 2806a32014f11925e4681cc2
+Key       (hex): ffb7c19823b96f4d3982dc161073e2d4821357388d371d5393951acd0d44550f
+Nonce     (hex): 812ed09465eaff42a2938491
 Counter        : 45
 Bytes sent
 ----------------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
-The transmitted image length is 63368
+The transmitted image length is 81608
 
 BufferedImage@a1fb826: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
 
-The first two bytes of original image are ff d8 The last two bytes are 9c 7e
-Percentage = 6.25 number of blocks encrypted = 62 Gap between encrypted blocks = 1022
+The first two bytes of original image are ff d8 The last two bytes are a0 c9
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1020
 
 ---Encryption---
-Key       (hex): 79a25776aa9b409b3939b6c662d03fad5fc4439c01c5b6617cf65cf7e5c04404
-Nonce     (hex): 8668d31a5f8c0d12c1002cb8
+Key       (hex): 345e206e7ebc1629b7872524d745c377cb632846bcb54b7684d3a7bf318273c3
+Nonce     (hex): e98a3b046a1a247f5f88b311
 Counter        : 46
 
 ---Decryption---
-Key       (hex): 79a25776aa9b409b3939b6c662d03fad5fc4439c01c5b6617cf65cf7e5c04404
-Nonce     (hex): 8668d31a5f8c0d12c1002cb8
+Key       (hex): 345e206e7ebc1629b7872524d745c377cb632846bcb54b7684d3a7bf318273c3
+Nonce     (hex): e98a3b046a1a247f5f88b311
 Counter        : 46
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 81824
+
+BufferedImage@296104b9: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 20 ac
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 8fd89d0614b673e4b47318b7ade9d92fa564df0cb1e472d96b9b9a866aed6152
+Nonce     (hex): d6a01f473dc06e9d8cfd8c6b
+Counter        : 47
+
+---Decryption---
+Key       (hex): 8fd89d0614b673e4b47318b7ade9d92fa564df0cb1e472d96b9b9a866aed6152
+Nonce     (hex): d6a01f473dc06e9d8cfd8c6b
+Counter        : 47
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 81838
+
+BufferedImage@7c0e111d: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are ae dd
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 0226e3930ba9ec9c06aa785176b3e674b9ac312ddc8b66f65eacc18ff08604d5
+Nonce     (hex): 3e98e41cb16bbdf8d65460f9
+Counter        : 48
+
+---Decryption---
+Key       (hex): 0226e3930ba9ec9c06aa785176b3e674b9ac312ddc8b66f65eacc18ff08604d5
+Nonce     (hex): 3e98e41cb16bbdf8d65460f9
+Counter        : 48
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78461
+
+BufferedImage@74f40844: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e3 93
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1018
+
+---Encryption---
+Key       (hex): 6c9b81b84475c04472d51449ea1cf7254082fed34ddd8af0b1e9f829bd3d1e25
+Nonce     (hex): bd6d213219f9684b70147d9d
+Counter        : 49
+
+---Decryption---
+Key       (hex): 6c9b81b84475c04472d51449ea1cf7254082fed34ddd8af0b1e9f829bd3d1e25
+Nonce     (hex): bd6d213219f9684b70147d9d
+Counter        : 49
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78874
+
+BufferedImage@1a8cde49: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 73 c4
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1011
+
+---Encryption---
+Key       (hex): 1198084821e6784871d388e2dd962045e3234d561ed4d0556b0076ff74b2dc10
+Nonce     (hex): d7a64e697052fe9df6e8c410
+Counter        : 50
+
+---Decryption---
+Key       (hex): 1198084821e6784871d388e2dd962045e3234d561ed4d0556b0076ff74b2dc10
+Nonce     (hex): d7a64e697052fe9df6e8c410
+Counter        : 50
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78719
+
+BufferedImage@42634c6d: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are a1 52
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 0c0b04e97f67ca74c1382b63deb7131b71e228e3a10afac4c36659f1ec97a97b
+Nonce     (hex): d52bb1dfade1f4dd059bad62
+Counter        : 51
+
+---Decryption---
+Key       (hex): 0c0b04e97f67ca74c1382b63deb7131b71e228e3a10afac4c36659f1ec97a97b
+Nonce     (hex): d52bb1dfade1f4dd059bad62
+Counter        : 51
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 79025
+
+BufferedImage@1c900a29: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 58 fe
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1013
+
+---Encryption---
+Key       (hex): a7de6d50099de2c9a3f67b153e2063a5f4826276fa5eed378d4341bf371d376a
+Nonce     (hex): 33bfa4ceb44edaa914561032
+Counter        : 52
+
+---Decryption---
+Key       (hex): a7de6d50099de2c9a3f67b153e2063a5f4826276fa5eed378d4341bf371d376a
+Nonce     (hex): 33bfa4ceb44edaa914561032
+Counter        : 52
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78870
+
+BufferedImage@7341a55c: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are d8 c5
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1011
+
+---Encryption---
+Key       (hex): 915aa06f4822dab374966fa8518478d2911e397fa025c19649af6ea18f2931e9
+Nonce     (hex): 78d6ec3d07e2f22d7a52d381
+Counter        : 53
+
+---Decryption---
+Key       (hex): 915aa06f4822dab374966fa8518478d2911e397fa025c19649af6ea18f2931e9
+Nonce     (hex): 78d6ec3d07e2f22d7a52d381
+Counter        : 53
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 79012
+
+BufferedImage@2a775b86: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 35 ac
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1012
+
+---Encryption---
+Key       (hex): 1a80171aed435b8bdc52a4f2c5bbbf3e87d3950687fa8658cf3eff2781fa8673
+Nonce     (hex): 30cb47f9ea3193f995713e2c
+Counter        : 54
+
+---Decryption---
+Key       (hex): 1a80171aed435b8bdc52a4f2c5bbbf3e87d3950687fa8658cf3eff2781fa8673
+Nonce     (hex): 30cb47f9ea3193f995713e2c
+Counter        : 54
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82632
+
+BufferedImage@6ffa2a7c: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e6 74
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): e6e5bec951c904a1e8f51bad7dc003fcf22f601426251cc0676b049de69633e7
+Nonce     (hex): 5335de38538b964a9dc63aba
+Counter        : 55
+
+---Decryption---
+Key       (hex): e6e5bec951c904a1e8f51bad7dc003fcf22f601426251cc0676b049de69633e7
+Nonce     (hex): 5335de38538b964a9dc63aba
+Counter        : 55
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78877
+
+BufferedImage@22c5b7fe: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 36 0d
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1011
+
+---Encryption---
+Key       (hex): 38f27d7fe9eb5a4ac3a20a72bf1809c114e5ec43cb5cf99f40d42be8cc156a68
+Nonce     (hex): 1688080152eadc5da2bf04a6
+Counter        : 56
+
+---Decryption---
+Key       (hex): 38f27d7fe9eb5a4ac3a20a72bf1809c114e5ec43cb5cf99f40d42be8cc156a68
+Nonce     (hex): 1688080152eadc5da2bf04a6
+Counter        : 56
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78686
+
+BufferedImage@34970355: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 0e 58
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): 9e9098f0d1cead9b3a21475ab31794e7fb9e9ec42762d645da6f3f106a8b7b72
+Nonce     (hex): bd0103c68783eadcaac7b64c
+Counter        : 57
+
+---Decryption---
+Key       (hex): 9e9098f0d1cead9b3a21475ab31794e7fb9e9ec42762d645da6f3f106a8b7b72
+Nonce     (hex): bd0103c68783eadcaac7b64c
+Counter        : 57
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82685
+
+BufferedImage@26f918ad: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 77 1c
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): 82065ad948c858a36f4bb17e4151a889bd43393b4f9f18b52256549591e8e2a5
+Nonce     (hex): 15770f4ea5ab03ff4dca8fe3
+Counter        : 58
+
+---Decryption---
+Key       (hex): 82065ad948c858a36f4bb17e4151a889bd43393b4f9f18b52256549591e8e2a5
+Nonce     (hex): 15770f4ea5ab03ff4dca8fe3
+Counter        : 58
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78698
+
+BufferedImage@5ed783c3: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are c5 be
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 3004ae5756630fc6b8b3237080ff98ae2f3049ed61c69bb337e248f7e97a89ff
+Nonce     (hex): 72c6f1cfcc7a8b7f4c675e72
+Counter        : 59
+
+---Decryption---
+Key       (hex): 3004ae5756630fc6b8b3237080ff98ae2f3049ed61c69bb337e248f7e97a89ff
+Nonce     (hex): 72c6f1cfcc7a8b7f4c675e72
+Counter        : 59
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78577
+
+BufferedImage@3957e31a: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are a2 eb
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): 3f39de39a47b12d5ae2606dc3f567e2acc81fb0954b577d54e58811f4be7b339
+Nonce     (hex): 3844a2ac487b57d1a78c4d33
+Counter        : 60
+
+---Decryption---
+Key       (hex): 3f39de39a47b12d5ae2606dc3f567e2acc81fb0954b577d54e58811f4be7b339
+Nonce     (hex): 3844a2ac487b57d1a78c4d33
+Counter        : 60
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82117
+
+BufferedImage@ff24259: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are d2 b1
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1013
+
+---Encryption---
+Key       (hex): 03af55fb40688a6a4399549394e6709a68d3dd605fd5e9b7811c1fe97b8ef375
+Nonce     (hex): 1b913e941dfc872620099229
+Counter        : 61
+
+---Decryption---
+Key       (hex): 03af55fb40688a6a4399549394e6709a68d3dd605fd5e9b7811c1fe97b8ef375
+Nonce     (hex): 1b913e941dfc872620099229
+Counter        : 61
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82205
+
+BufferedImage@43faa88d: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 52 f2
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1014
+
+---Encryption---
+Key       (hex): 25dde57d2b8e8496be8c97e6a05c4c42315e2f4c6bd43c9c7880243668b91758
+Nonce     (hex): d61ed2136702ce2e7e7d7fe8
+Counter        : 62
+
+---Decryption---
+Key       (hex): 25dde57d2b8e8496be8c97e6a05c4c42315e2f4c6bd43c9c7880243668b91758
+Nonce     (hex): d61ed2136702ce2e7e7d7fe8
+Counter        : 62
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78624
+
+BufferedImage@7ce9680f: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e9 5a
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): f201b1f5a944e110eb31ff82b3a436f5af6790d13e3099ab3d21df1269b6a571
+Nonce     (hex): fc7ba9f5013b63e12bc3bb74
+Counter        : 63
+
+---Decryption---
+Key       (hex): f201b1f5a944e110eb31ff82b3a436f5af6790d13e3099ab3d21df1269b6a571
+Nonce     (hex): fc7ba9f5013b63e12bc3bb74
+Counter        : 63
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78739
+
+BufferedImage@526d717b: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 54 ce
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 27f18f28ffbc2a1bedb8eaf709e3150700eab215aae0533047493f56f787da7d
+Nonce     (hex): b48cfd9b87eb601b453e56ad
+Counter        : 64
+
+---Decryption---
+Key       (hex): 27f18f28ffbc2a1bedb8eaf709e3150700eab215aae0533047493f56f787da7d
+Nonce     (hex): b48cfd9b87eb601b453e56ad
+Counter        : 64
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82932
+
+BufferedImage@55c066ed: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e9 d7
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 66691ea0888c996fc64cb68bbaa91c843043d6195660031cec908ff4ed00d188
+Nonce     (hex): 340bdaf26abad17dd19d6903
+Counter        : 65
+
+---Decryption---
+Key       (hex): 66691ea0888c996fc64cb68bbaa91c843043d6195660031cec908ff4ed00d188
+Nonce     (hex): 340bdaf26abad17dd19d6903
+Counter        : 65
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78691
+
+BufferedImage@2df455b6: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 29 9a
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): 570ab3cc1710235470b554f29b5d2efe17af2cad7cbcc3ef858a2d7d7dde0ab1
+Nonce     (hex): 84d4e595be18c3c4e726950f
+Counter        : 66
+
+---Decryption---
+Key       (hex): 570ab3cc1710235470b554f29b5d2efe17af2cad7cbcc3ef858a2d7d7dde0ab1
+Nonce     (hex): 84d4e595be18c3c4e726950f
+Counter        : 66
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78689
+
+BufferedImage@4c84b3c9: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 62 e2
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): 21e2c0650ef5b4de10bc2d5897e86f84b587fadd432a0e0e36f442a3cac4a936
+Nonce     (hex): da4ec9c37ef09244fbb25f2b
+Counter        : 67
+
+---Decryption---
+Key       (hex): 21e2c0650ef5b4de10bc2d5897e86f84b587fadd432a0e0e36f442a3cac4a936
+Nonce     (hex): da4ec9c37ef09244fbb25f2b
+Counter        : 67
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 83609
+
+BufferedImage@5af8ea1: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are ec 9a
+Percentage = 6.25 number of blocks encrypted = 82 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): 9d686d75ec7cca0d998a6660dc3619c39bfd49a32c98ae631ad6e11576c37d38
+Nonce     (hex): b626ed4d439e9cef11026ef4
+Counter        : 68
+
+---Decryption---
+Key       (hex): 9d686d75ec7cca0d998a6660dc3619c39bfd49a32c98ae631ad6e11576c37d38
+Nonce     (hex): b626ed4d439e9cef11026ef4
+Counter        : 68
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78823
+
+BufferedImage@51767718: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e8 01
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 891b1d12909d35bd0b666f928acda842d5a5aec7c479f00a82e8da4796b2a559
+Nonce     (hex): 50746c590d283d840a19141d
+Counter        : 69
+
+---Decryption---
+Key       (hex): 891b1d12909d35bd0b666f928acda842d5a5aec7c479f00a82e8da4796b2a559
+Nonce     (hex): 50746c590d283d840a19141d
+Counter        : 69
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78976
+
+BufferedImage@1df94d85: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 63 91
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1012
+
+---Encryption---
+Key       (hex): 3b1255b9497e463618a91f30e61af44d2d4a1478ca0a9826370965d27782d8d8
+Nonce     (hex): 9269872dc235c1fc7a23e1c8
+Counter        : 70
+
+---Decryption---
+Key       (hex): 3b1255b9497e463618a91f30e61af44d2d4a1478ca0a9826370965d27782d8d8
+Nonce     (hex): 9269872dc235c1fc7a23e1c8
+Counter        : 70
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82715
+
+BufferedImage@67e50292: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 25 4c
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): efaa5a3c9d827addc960344d1893ae7e247f4d8b50fc5b69befdc9c36164ec76
+Nonce     (hex): a0fa0a003c8cc1404ad946f5
+Counter        : 71
+
+---Decryption---
+Key       (hex): efaa5a3c9d827addc960344d1893ae7e247f4d8b50fc5b69befdc9c36164ec76
+Nonce     (hex): a0fa0a003c8cc1404ad946f5
+Counter        : 71
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78793
+
+BufferedImage@28668796: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e0 fa
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 408d2475356e5cebd05514995dd55c79642a5ac1538ba60d772c7bf10a0694ce
+Nonce     (hex): 7fc6d4a3b057df9801457f88
+Counter        : 72
+
+---Decryption---
+Key       (hex): 408d2475356e5cebd05514995dd55c79642a5ac1538ba60d772c7bf10a0694ce
+Nonce     (hex): 7fc6d4a3b057df9801457f88
+Counter        : 72
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82928
+
+BufferedImage@2570ad09: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 86 d3
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): e29c0decd20395ff84f47f5aa34c8fd5b30eba4578cb3f3e2d9f5ba72d102c7a
+Nonce     (hex): bca4c821a1a367a00e8b2b79
+Counter        : 73
+
+---Decryption---
+Key       (hex): e29c0decd20395ff84f47f5aa34c8fd5b30eba4578cb3f3e2d9f5ba72d102c7a
+Nonce     (hex): bca4c821a1a367a00e8b2b79
+Counter        : 73
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 81828
+
+BufferedImage@454bf9be: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 08 cb
+Percentage = 6.25 number of blocks encrypted = 80 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 51c425d0f93fb523c0d63babfc3c413190a47067d0f4ad8708574a52c86097ae
+Nonce     (hex): 92856aa59ded00b1dba4037b
+Counter        : 74
+
+---Decryption---
+Key       (hex): 51c425d0f93fb523c0d63babfc3c413190a47067d0f4ad8708574a52c86097ae
+Nonce     (hex): 92856aa59ded00b1dba4037b
+Counter        : 74
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82832
+
+BufferedImage@4e4e1c02: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are ce cd
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 6352ca755cf3e473e9ed12243934a24f2dcedcae0dfdd18c6a36ffe04e480acf
+Nonce     (hex): e68db9a231011bdcb89ae8cb
+Counter        : 75
+
+---Decryption---
+Key       (hex): 6352ca755cf3e473e9ed12243934a24f2dcedcae0dfdd18c6a36ffe04e480acf
+Nonce     (hex): e68db9a231011bdcb89ae8cb
+Counter        : 75
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82606
+
+BufferedImage@41c29e34: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are a2 c6
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): aa199d84a8becfbc7a5482fb899f3abbf5087167b7000249dd5bd7f8f0f28680
+Nonce     (hex): 1c4d068be41ed17cc3658856
+Counter        : 76
+
+---Decryption---
+Key       (hex): aa199d84a8becfbc7a5482fb899f3abbf5087167b7000249dd5bd7f8f0f28680
+Nonce     (hex): 1c4d068be41ed17cc3658856
+Counter        : 76
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82560
+
+BufferedImage@1aa56f1b: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 32 33
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): 65d43c4351844e2864b2e57637e8318c4a8d9aa47cadd839d09ee59a06cfcc0e
+Nonce     (hex): e778d8c64c88bb60d64d4fdd
+Counter        : 77
+
+---Decryption---
+Key       (hex): 65d43c4351844e2864b2e57637e8318c4a8d9aa47cadd839d09ee59a06cfcc0e
+Nonce     (hex): e778d8c64c88bb60d64d4fdd
+Counter        : 77
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82921
+
+BufferedImage@1cf95021: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 78 da
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 79aec280288c0280e99df061f3d6fda149922b156487b459c23cc7f8b83246dc
+Nonce     (hex): ab01d7edc8ed92d744114aba
+Counter        : 78
+
+---Decryption---
+Key       (hex): 79aec280288c0280e99df061f3d6fda149922b156487b459c23cc7f8b83246dc
+Nonce     (hex): ab01d7edc8ed92d744114aba
+Counter        : 78
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 83222
+
+BufferedImage@a594dac: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 9a b7
+Percentage = 6.25 number of blocks encrypted = 82 Gap between encrypted blocks = 1014
+
+---Encryption---
+Key       (hex): c9e01f286fefd3b10649af322ceb2b6976c2ab7d98b69d5bb132eeed3db764c0
+Nonce     (hex): e6e9ff2add161dcab2263a85
+Counter        : 79
+
+---Decryption---
+Key       (hex): c9e01f286fefd3b10649af322ceb2b6976c2ab7d98b69d5bb132eeed3db764c0
+Nonce     (hex): e6e9ff2add161dcab2263a85
+Counter        : 79
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82555
+
+BufferedImage@3be0c3b5: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 2b fb
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): 9ab1e54a0080756292a890db8dec66536131c5101613d8310fd5487ef7880f7c
+Nonce     (hex): 49101fbc8fe7b9ad4ae1da59
+Counter        : 80
+
+---Decryption---
+Key       (hex): 9ab1e54a0080756292a890db8dec66536131c5101613d8310fd5487ef7880f7c
+Nonce     (hex): 49101fbc8fe7b9ad4ae1da59
+Counter        : 80
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82651
+
+BufferedImage@36999a64: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 23 38
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): 4b8c7d91bba335cea0489661f469e4aa3f46271501430fa033772d077da567d3
+Nonce     (hex): 1c44e0974baceb0d09e9b77f
+Counter        : 81
+
+---Decryption---
+Key       (hex): 4b8c7d91bba335cea0489661f469e4aa3f46271501430fa033772d077da567d3
+Nonce     (hex): 1c44e0974baceb0d09e9b77f
+Counter        : 81
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82608
+
+BufferedImage@762bc0f2: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 14 c2
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): 52fe0921bbf5bdf648cb256406d6673b6e0f08bc3b659d75f2b9febbaf45fe0d
+Nonce     (hex): 270087fdbd5dfceec1b3b1e5
+Counter        : 82
+
+---Decryption---
+Key       (hex): 52fe0921bbf5bdf648cb256406d6673b6e0f08bc3b659d75f2b9febbaf45fe0d
+Nonce     (hex): 270087fdbd5dfceec1b3b1e5
+Counter        : 82
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82458
+
+BufferedImage@5fdcc729: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are d0 8a
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1018
+
+---Encryption---
+Key       (hex): 9b60a409fdaf5a86a9484aeda69e9109203594d88bc83449599ab84450e2a05f
+Nonce     (hex): 31b8975ebf89a2bc95024c56
+Counter        : 83
+
+---Decryption---
+Key       (hex): 9b60a409fdaf5a86a9484aeda69e9109203594d88bc83449599ab84450e2a05f
+Nonce     (hex): 31b8975ebf89a2bc95024c56
+Counter        : 83
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82947
+
+BufferedImage@4d1bb655: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are ee e3
+Percentage = 6.25 number of blocks encrypted = 82 Gap between encrypted blocks = 1011
+
+---Encryption---
+Key       (hex): 641d883602cec5907f585dd62bcfb15ce42b96dc9c4a3c40fd5f70323f4e8bcb
+Nonce     (hex): 171292c5e8476479959c9419
+Counter        : 84
+
+---Decryption---
+Key       (hex): 641d883602cec5907f585dd62bcfb15ce42b96dc9c4a3c40fd5f70323f4e8bcb
+Nonce     (hex): 171292c5e8476479959c9419
+Counter        : 84
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82207
+
+BufferedImage@277c9369: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 2a 94
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1014
+
+---Encryption---
+Key       (hex): f0e686a05f39fcd1fa98a766c014d78f5b55e05ed02314e69010d427017490ac
+Nonce     (hex): 3cb6f2018b82f653832bcc18
+Counter        : 85
+
+---Decryption---
+Key       (hex): f0e686a05f39fcd1fa98a766c014d78f5b55e05ed02314e69010d427017490ac
+Nonce     (hex): 3cb6f2018b82f653832bcc18
+Counter        : 85
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82037
+
+BufferedImage@5d577820: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are f6 8a
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1012
+
+---Encryption---
+Key       (hex): 696f417815654b4a0e024591e0c750780741d210f8e40c731121adce8116478b
+Nonce     (hex): bd7329413d41d400dd94f258
+Counter        : 86
+
+---Decryption---
+Key       (hex): 696f417815654b4a0e024591e0c750780741d210f8e40c731121adce8116478b
+Nonce     (hex): bd7329413d41d400dd94f258
+Counter        : 86
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82047
+
+BufferedImage@1f619c38: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 8e 48
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1012
+
+---Encryption---
+Key       (hex): 84cbae0bce4013327116d3168cead6fd8686f3a9cf3688726b8de9a96ce90ee2
+Nonce     (hex): 0fbd51992693cf20354061fb
+Counter        : 87
+
+---Decryption---
+Key       (hex): 84cbae0bce4013327116d3168cead6fd8686f3a9cf3688726b8de9a96ce90ee2
+Nonce     (hex): 0fbd51992693cf20354061fb
+Counter        : 87
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82803
+
+BufferedImage@3cb07c28: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 9e 37
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 13916812104328fd4e9cd6a0bbdaf3ea72d3ad10305930871dd38f824f3905a4
+Nonce     (hex): 049b51f9b2a3a51bdb35bf8f
+Counter        : 88
+
+---Decryption---
+Key       (hex): 13916812104328fd4e9cd6a0bbdaf3ea72d3ad10305930871dd38f824f3905a4
+Nonce     (hex): 049b51f9b2a3a51bdb35bf8f
+Counter        : 88
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78967
+
+BufferedImage@4608a632: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 0a 4e
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1012
+
+---Encryption---
+Key       (hex): 36a9db7ad15e2dd0c6f4009d5f7e51136545f9611348df5c8249aabcc098c2aa
+Nonce     (hex): 4bd4f022fb80ec5b759c7ee5
+Counter        : 89
+
+---Decryption---
+Key       (hex): 36a9db7ad15e2dd0c6f4009d5f7e51136545f9611348df5c8249aabcc098c2aa
+Nonce     (hex): 4bd4f022fb80ec5b759c7ee5
+Counter        : 89
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78951
+
+BufferedImage@47272dab: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are fd a5
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1012
+
+---Encryption---
+Key       (hex): e714e0db81b95f954709182fa44cbe7023240215de17084859a111237c672e43
+Nonce     (hex): aed8bd0cafd2f1d20d750eb2
+Counter        : 90
+
+---Decryption---
+Key       (hex): e714e0db81b95f954709182fa44cbe7023240215de17084859a111237c672e43
+Nonce     (hex): aed8bd0cafd2f1d20d750eb2
+Counter        : 90
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78847
+
+BufferedImage@122ddce6: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 4e 92
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 8322395a15d21d0b68854e3daa39bae182b7af924eacbe5a00c892899753926e
+Nonce     (hex): b05ed6233c28daf84fb46170
+Counter        : 91
+
+---Decryption---
+Key       (hex): 8322395a15d21d0b68854e3daa39bae182b7af924eacbe5a00c892899753926e
+Nonce     (hex): b05ed6233c28daf84fb46170
+Counter        : 91
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 79067
+
+BufferedImage@4f8f4137: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 48 0f
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1013
+
+---Encryption---
+Key       (hex): 263f1c7fad5a7b095f15a44cdc0649c3bb3b1080e1e65740dbaf279cc9ae1182
+Nonce     (hex): a7c22b09d7d6a258878a52de
+Counter        : 92
+
+---Decryption---
+Key       (hex): 263f1c7fad5a7b095f15a44cdc0649c3bb3b1080e1e65740dbaf279cc9ae1182
+Nonce     (hex): a7c22b09d7d6a258878a52de
+Counter        : 92
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78853
+
+BufferedImage@26c1c54f: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 31 8e
+Percentage = 6.25 number of blocks encrypted = 78 Gap between encrypted blocks = 1010
+
+---Encryption---
+Key       (hex): 48b7c47873bac506e19e7f474ad519956f1d0b40665177054229062be73cdee4
+Nonce     (hex): cff90a62c7ab806aed89994a
+Counter        : 93
+
+---Decryption---
+Key       (hex): 48b7c47873bac506e19e7f474ad519956f1d0b40665177054229062be73cdee4
+Nonce     (hex): cff90a62c7ab806aed89994a
+Counter        : 93
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78775
+
+BufferedImage@33e7fe46: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are c1 3c
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 86dd3ca95d03924b8cc809fe61c730c93ac9233ad31eb4023acc2ae6fbfe4f97
+Nonce     (hex): f4d3c060cef8b78b917b952b
+Counter        : 94
+
+---Decryption---
+Key       (hex): 86dd3ca95d03924b8cc809fe61c730c93ac9233ad31eb4023acc2ae6fbfe4f97
+Nonce     (hex): f4d3c060cef8b78b917b952b
+Counter        : 94
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78556
+
+BufferedImage@1048367: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 1c 57
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): e3bc9be4f0a6d86c306b91f773d364ff123d9149f21a6030a4d763e8ef12b5f4
+Nonce     (hex): cc84bd96143560ea370c4645
+Counter        : 95
+
+---Decryption---
+Key       (hex): e3bc9be4f0a6d86c306b91f773d364ff123d9149f21a6030a4d763e8ef12b5f4
+Nonce     (hex): cc84bd96143560ea370c4645
+Counter        : 95
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78639
+
+BufferedImage@7a76b09d: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e3 39
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): 6a88a06fcdaa55cff47a8a0692a13bad8ef85d8686e693e6203ca71a56e75b95
+Nonce     (hex): 2ad35d9339b4b0ada437e974
+Counter        : 96
+
+---Decryption---
+Key       (hex): 6a88a06fcdaa55cff47a8a0692a13bad8ef85d8686e693e6203ca71a56e75b95
+Nonce     (hex): 2ad35d9339b4b0ada437e974
+Counter        : 96
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78549
+
+BufferedImage@60099598: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 4e 53
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): 62f879ecb2fea016de18930291b784d26a6456b6d07d452f9e55e4303db90498
+Nonce     (hex): 0761b9355cb4f93d98cba003
+Counter        : 97
+
+---Decryption---
+Key       (hex): 62f879ecb2fea016de18930291b784d26a6456b6d07d452f9e55e4303db90498
+Nonce     (hex): 0761b9355cb4f93d98cba003
+Counter        : 97
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 82217
+
+BufferedImage@6e9353ec: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 63 2d
+Percentage = 6.25 number of blocks encrypted = 81 Gap between encrypted blocks = 1015
+
+---Encryption---
+Key       (hex): b5ee622a7e922e4a08548b740ff407c49baea7725a1a3a19c7771081c6fc32d2
+Nonce     (hex): 8d089a0231578f0cd8cba4ac
+Counter        : 98
+
+---Decryption---
+Key       (hex): b5ee622a7e922e4a08548b740ff407c49baea7725a1a3a19c7771081c6fc32d2
+Nonce     (hex): 8d089a0231578f0cd8cba4ac
+Counter        : 98
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78534
+
+BufferedImage@60474aec: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 6a 4c
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): b8aac29ffb1c52a055f84a87972f4620d59284733351ba1450bd2772e59ad50c
+Nonce     (hex): 19ab39097fe54eec81109b71
+Counter        : 99
+
+---Decryption---
+Key       (hex): b8aac29ffb1c52a055f84a87972f4620d59284733351ba1450bd2772e59ad50c
+Nonce     (hex): 19ab39097fe54eec81109b71
+Counter        : 99
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78414
+
+BufferedImage@62fdf88c: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are c2 dd
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1018
+
+---Encryption---
+Key       (hex): e6a0341baf98d90fb39fa21e0a2cbe471338056bac94026f6994bac29b494ada
+Nonce     (hex): 13e46ca7af34c0709c90c095
+Counter        : 100
+
+---Decryption---
+Key       (hex): e6a0341baf98d90fb39fa21e0a2cbe471338056bac94026f6994bac29b494ada
+Nonce     (hex): 13e46ca7af34c0709c90c095
+Counter        : 100
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78346
+
+BufferedImage@edce969: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 0f ff
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1017
+
+---Encryption---
+Key       (hex): 12c0620e48c3af81a16c8f167f3d9e6c28c74ba050475c897811b76ef3572927
+Nonce     (hex): 40dddb765737d738e168e53c
+Counter        : 101
+
+---Decryption---
+Key       (hex): 12c0620e48c3af81a16c8f167f3d9e6c28c74ba050475c897811b76ef3572927
+Nonce     (hex): 40dddb765737d738e168e53c
+Counter        : 101
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78599
+
+BufferedImage@33a9cd1e: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are a2 ba
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): 5d05f37e89f7a05985792abdb75fa53fb2ad9cd5e5af5ab9ef2966f27248e952
+Nonce     (hex): 2ef017ee04df6733343f277b
+Counter        : 102
+
+---Decryption---
+Key       (hex): 5d05f37e89f7a05985792abdb75fa53fb2ad9cd5e5af5ab9ef2966f27248e952
+Nonce     (hex): 2ef017ee04df6733343f277b
+Counter        : 102
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78604
+
+BufferedImage@2176de06: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 0b 29
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1020
+
+---Encryption---
+Key       (hex): cb7e331728cd297e66be298b0a3576f05e10105bc293c0177474bcaf8811be98
+Nonce     (hex): aa0707b39e6dfb911d90fa53
+Counter        : 103
+
+---Decryption---
+Key       (hex): cb7e331728cd297e66be298b0a3576f05e10105bc293c0177474bcaf8811be98
+Nonce     (hex): aa0707b39e6dfb911d90fa53
+Counter        : 103
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78769
+
+BufferedImage@5fca9704: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are e0 a2
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): d61fe632d9fec0d65b168cf549cad36b0694dcafcca01b7446ba1de36c047d35
+Nonce     (hex): 490ec46db1addd28a20f8ed4
+Counter        : 104
+
+---Decryption---
+Key       (hex): d61fe632d9fec0d65b168cf549cad36b0694dcafcca01b7446ba1de36c047d35
+Nonce     (hex): 490ec46db1addd28a20f8ed4
+Counter        : 104
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78751
+
+BufferedImage@44c775e6: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are d5 c2
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): 11ceacf604f41fea00327209a77371ca009a7c8539e6b66525c3606f53d52852
+Nonce     (hex): d6928a758ebff5b9f6aafa20
+Counter        : 105
+
+---Decryption---
+Key       (hex): 11ceacf604f41fea00327209a77371ca009a7c8539e6b66525c3606f53d52852
+Nonce     (hex): d6928a758ebff5b9f6aafa20
+Counter        : 105
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78790
+
+BufferedImage@6bc8c264: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 9b 4b
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1023
+
+---Encryption---
+Key       (hex): 6f55238d8c0ef075cdf7ac5d7a58a0fad95758a446d6cec234b080b77cc3c123
+Nonce     (hex): 90caa3d699d0483735989dc3
+Counter        : 106
+
+---Decryption---
+Key       (hex): 6f55238d8c0ef075cdf7ac5d7a58a0fad95758a446d6cec234b080b77cc3c123
+Nonce     (hex): 90caa3d699d0483735989dc3
+Counter        : 106
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78731
+
+BufferedImage@893ea77: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are fd 0d
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): b9920e33ac46545f99e7428e5699aeaaeb76a5b67c32782ec7433e1f6f6b2e31
+Nonce     (hex): 8154bb8d01ccb462a2e68d54
+Counter        : 107
+
+---Decryption---
+Key       (hex): b9920e33ac46545f99e7428e5699aeaaeb76a5b67c32782ec7433e1f6f6b2e31
+Nonce     (hex): 8154bb8d01ccb462a2e68d54
+Counter        : 107
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78705
+
+BufferedImage@6cf41866: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are a0 0c
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1022
+
+---Encryption---
+Key       (hex): ebb5409f47136185b3fa0da9a5eae6e619976e2687b3c32f0a03aacd2c2cc625
+Nonce     (hex): 7695ae574df8b707921220a5
+Counter        : 108
+
+---Decryption---
+Key       (hex): ebb5409f47136185b3fa0da9a5eae6e619976e2687b3c32f0a03aacd2c2cc625
+Nonce     (hex): 7695ae574df8b707921220a5
+Counter        : 108
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78628
+
+BufferedImage@7c933891: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 5c 07
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): 5bda4aceb51dcbf70138911ffa940d6be6d5da5ebaf182a257fd4a364a8cb0c0
+Nonce     (hex): 905fc7ae05a2a9f1449e6ac4
+Counter        : 109
+
+---Decryption---
+Key       (hex): 5bda4aceb51dcbf70138911ffa940d6be6d5da5ebaf182a257fd4a364a8cb0c0
+Nonce     (hex): 905fc7ae05a2a9f1449e6ac4
+Counter        : 109
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78288
+
+BufferedImage@49137fcc: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 19 ad
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1016
+
+---Encryption---
+Key       (hex): 81e81e031bf5d84198ebde2b5f884245a94397194e073c8a77b9e4d35fb7b267
+Nonce     (hex): 9452fe154599cd9a5f052839
+Counter        : 110
+
+---Decryption---
+Key       (hex): 81e81e031bf5d84198ebde2b5f884245a94397194e073c8a77b9e4d35fb7b267
+Nonce     (hex): 9452fe154599cd9a5f052839
+Counter        : 110
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78182
+
+BufferedImage@6de0bc21: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are ca d9
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1015
+
+---Encryption---
+Key       (hex): 724f75d6c38f8b1d8131a5f10f6b489db06d39184c2f4028a02b3638b7158413
+Nonce     (hex): 5e001289e475170c871e7298
+Counter        : 111
+
+---Decryption---
+Key       (hex): 724f75d6c38f8b1d8131a5f10f6b489db06d39184c2f4028a02b3638b7158413
+Nonce     (hex): 5e001289e475170c871e7298
+Counter        : 111
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78501
+
+BufferedImage@3b3ff0f2: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 40 b0
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1019
+
+---Encryption---
+Key       (hex): 457788fc27740d11a01e07153f978669f6e905bc65969e02797b6952a59ede6f
+Nonce     (hex): 716a19a5954cd5d83a61fc75
+Counter        : 112
+
+---Decryption---
+Key       (hex): 457788fc27740d11a01e07153f978669f6e905bc65969e02797b6952a59ede6f
+Nonce     (hex): 716a19a5954cd5d83a61fc75
+Counter        : 112
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78400
+
+BufferedImage@1ab797df: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 72 bd
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1018
+
+---Encryption---
+Key       (hex): 0a7802e869e7fdff04c81c4adccd80594bf55ecdbbab8e6eb1c163a3509bf53b
+Nonce     (hex): 4589f933726711dffe1c1889
+Counter        : 113
+
+---Decryption---
+Key       (hex): 0a7802e869e7fdff04c81c4adccd80594bf55ecdbbab8e6eb1c163a3509bf53b
+Nonce     (hex): 4589f933726711dffe1c1889
+Counter        : 113
+Bytes sent
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+The transmitted image length is 78441
+
+BufferedImage@90b1a96: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 95 24
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1018
+
+---Encryption---
+Key       (hex): 19cc3c2817ffb6e56a84b0b15ef9a1fae4b24c4e3c56b51aee95dcab64d47e60
+Nonce     (hex): ccb9e475e0698a674cbfbb3b
+Counter        : 114
+
+---Decryption---
+Key       (hex): 19cc3c2817ffb6e56a84b0b15ef9a1fae4b24c4e3c56b51aee95dcab64d47e60
+Nonce     (hex): ccb9e475e0698a674cbfbb3b
+Counter        : 114
+----------------------------------------------------------------------------
+The transmitted image length is 78677
+
+BufferedImage@738a42e5: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are aa 69
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1021
+
+---Encryption---
+Key       (hex): f42e4134586121b0b5dfd46d192438f2ee85035c823c9eced1e8fa89866eb940
+Nonce     (hex): 185603c0865408fc69e3c3b0
+Counter        : 115
+
+---Decryption---
+Key       (hex): f42e4134586121b0b5dfd46d192438f2ee85035c823c9eced1e8fa89866eb940
+Nonce     (hex): 185603c0865408fc69e3c3b0
+Counter        : 115
+----------------------------------------------------------------------------
+The transmitted image length is 78281
+
+BufferedImage@72ab715a: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 79 32
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1016
+
+---Encryption---
+Key       (hex): 2de3b5d078f53b4c048670a04aa98d814eb637b54c0b42a866b55c2a3f2cb738
+Nonce     (hex): e374755c9c101b91e0ad4cc2
+Counter        : 116
+
+---Decryption---
+Key       (hex): 2de3b5d078f53b4c048670a04aa98d814eb637b54c0b42a866b55c2a3f2cb738
+Nonce     (hex): e374755c9c101b91e0ad4cc2
+Counter        : 116
+----------------------------------------------------------------------------
+The transmitted image length is 78437
+
+BufferedImage@70afc49c: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 56 58
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1018
+
+---Encryption---
+Key       (hex): 14a81bacf207cdbe2474dae4b176d80d104aed99c43e39f3f64c3f88f14ff299
+Nonce     (hex): 4d77b59432bfa07d97b05522
+Counter        : 117
+
+---Decryption---
+Key       (hex): 14a81bacf207cdbe2474dae4b176d80d104aed99c43e39f3f64c3f88f14ff299
+Nonce     (hex): 4d77b59432bfa07d97b05522
+Counter        : 117
+----------------------------------------------------------------------------
+The transmitted image length is 78170
+
+BufferedImage@1dee66ae: type = 5 ColorModel: #pixelBits = 24 numComponents = 3 color space = java.awt.color.ICC_ColorSpace@33e7c087 transparency = 1 has alpha = false isAlphaPre = false ByteInterleavedRaster: width = 640 height = 480 #numDataElements 3 dataOff[0] = 2
+
+The first two bytes of original image are ff d8 The last two bytes are 16 39
+Percentage = 6.25 number of blocks encrypted = 77 Gap between encrypted blocks = 1015
+
+---Encryption---
+Key       (hex): 9e34361b805477e96320ff3b2c06bf14fe9fd9efca381f43b8a9927b12c43cf3
+Nonce     (hex): 90fb1b1b1892f801d5b3fa18
+Counter        : 118
+
+---Decryption---
+Key       (hex): 9e34361b805477e96320ff3b2c06bf14fe9fd9efca381f43b8a9927b12c43cf3
+Nonce     (hex): 90fb1b1b1892f801d5b3fa18
+Counter        : 118
