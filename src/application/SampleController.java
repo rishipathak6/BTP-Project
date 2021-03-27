@@ -161,12 +161,6 @@ public class SampleController {
 						button.fire();
 					} else if (msg.equals("Stop Camera")) {
 						button.fire();
-					} else if (msg.equals("showGray")) {
-						if (!grayscale.isSelected())
-							grayscale.setSelected(true);
-					} else if (msg.equals("revertGray")) {
-						if (grayscale.isSelected())
-							grayscale.setSelected(false);
 					}
 //					server.close();
 
@@ -184,7 +178,7 @@ public class SampleController {
 	@FXML
 	public void initialize() {
 		try {
-			Thread t = new ControlServer(8000);
+			Thread t = new ControlServer(8080);
 			t.setDaemon(true);
 			t.start();
 		} catch (IOException e) {
@@ -252,7 +246,6 @@ public class SampleController {
 
 				// update the button content
 				Utils.onFXThread(this.button.textProperty(), "Stop Camera");
-//				this.button.setText("Stop Camera");
 			} else {
 				// log the error
 				System.err.println("Impossible to open the camera connection...");
@@ -295,26 +288,6 @@ public class SampleController {
 				// if the frame is not empty, process it
 				if (!frame.empty()) {
 					// add a logo...
-					if (logoCheckBox.isSelected() && this.logo != null) {
-						// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
-						// logo.cols(),
-						// logo.rows());
-						Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
-						Mat imageROI = frame.submat(roi);
-						// add the logo: method #1
-						Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
-
-						// add the logo: method #2
-						// logo.copyTo(imageROI, logo);
-					}
-					if (grayscale.isSelected()) {
-						Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
-					}
-
-					// show the histogram
-					this.showHistogram(frame, grayscale.isSelected());
-					// face detection
-					this.detectAndDisplay(frame);
 
 					this.obj = Mat2BufferedImage(frame);
 					this.byteArray = Mat2byteArray(frame);
@@ -362,6 +335,37 @@ public class SampleController {
 								.put(nonce20).putInt(counter20).array();
 						sendBytes(sentBytes20, 0, sentBytes20.length, socket);
 						System.out.println("Bytes sent");
+						DataInputStream in = new DataInputStream(socket.getInputStream());
+
+						String msg = in.readUTF();
+						System.out.println("msg = " + msg);
+						if (msg.equals("showGray")) {
+							if (!grayscale.isSelected())
+								grayscale.setSelected(true);
+						} else if (msg.equals("revertGray")) {
+							if (grayscale.isSelected())
+								grayscale.setSelected(false);
+						}
+						if (logoCheckBox.isSelected() && this.logo != null) {
+							// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
+							// logo.cols(),
+							// logo.rows());
+							Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
+							Mat imageROI = frame.submat(roi);
+							// add the logo: method #1
+							Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
+
+							// add the logo: method #2
+							// logo.copyTo(imageROI, logo);
+						}
+						if (grayscale.isSelected()) {
+							Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
+						}
+
+						// show the histogram
+						this.showHistogram(frame, grayscale.isSelected());
+						// face detection
+						this.detectAndDisplay(frame);
 						if (this.decryptCheck.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
@@ -562,7 +566,7 @@ public class SampleController {
 		Mat grayFrame = new Mat();
 
 		// convert the frame in gray scale
-		if(!grayscale.isSelected()) {
+		if (!grayscale.isSelected()) {
 			Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
 		}
 		// equalize the frame histogram to improve the result

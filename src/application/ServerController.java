@@ -13,7 +13,6 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -45,7 +44,6 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
-import application.SampleController.ControlServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -141,256 +139,51 @@ public class ServerController {
 	private InetAddress receiverAddress;
 
 	private Socket controlSocket;
-	private OutputStream outToServer;
-	private DataOutputStream out;
-	private Thread t;
 
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
-//		private Socket control;
-		private volatile boolean exit = false;
-		private long startTime;
-		private long previousTime = System.nanoTime();
 
 		public DataServer(int port) throws IOException {
 			serverSocket = new ServerSocket(port);
-//			control = controlSocket;
-//			control = new Socket(InetAddress.getLocalHost(), 8000);
 //			serverSocket.setSoTimeout(10000);
 		}
 
 		public void run() {
-			if (!exit) {
-				try {
-					System.out.println("----------------------------------------------------------------------------");
-					System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
-					Socket server = serverSocket.accept();
-					System.out.println("Just connected to " + server.getRemoteSocketAddress());
+//			while (true) {
+			try {
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
+				Socket server = serverSocket.accept();
+				System.out.println("Just connected to " + server.getRemoteSocketAddress());
 
-//					controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+				// grab a frame every 33 ms (30 frames/sec)
+				Runnable frameReceiver = new Runnable() {
 
-//					System.out.println("Just connected to " + control.getRemoteSocketAddress()
-//							+ " for sending other instructions");
-//					Runnable frameReceiver = createRunnable(server, control);
-//					
-//					Runnable frameReceiver = () -> {
-//						// volatile boolean controlled from the GUI
-//						while (!controlSocket.isClosed() && controlSocket.isConnected()) {
-//							// retrieve start time
-//							startTime = System.nanoTime();
-//							// time since commProtocol was last called
-//							long timeDiff = startTime - previousTime;
-//
-//							// if at least 5 milliseconds has passed
-//							if (timeDiff >= 33000000) {
-//								// handle communication
-//								Mat frame = recieveAndDecryptFrame(server);
-//								frameno++;
-//								// convert and show the frame
-//								Image imageToShow = Utils.mat2Image(frame);
-//								updateImageView(encryptedFrame, imageToShow);
-//								// store the start time for comparison
-//								previousTime = startTime;
-//							}
-//							Thread.yield();
-//						}
-//					};
+					@Override
+					public void run() {
 
-					Runnable frameReceiver = new Runnable() {
-//						private Socket server;
+						Mat frame = recieveAndDecryptFrame(server);
+						frameno++;
+						// convert and show the frame
+						Image imageToShow = Utils.mat2Image(frame);
+						updateImageView(encryptedFrame, imageToShow);
+					}
+				};
 
-//						public frameReceiver(Socket server, Socket controlSocket) {
-//							this.server = server;
-//							this.control = controlSocket;
-//						}
-
-						@Override
-						public void run() {
-							Mat frame = recieveAndDecryptFrame(server);
-							frameno++;
-							// convert and show the frame
-							Image imageToShow = Utils.mat2Image(frame);
-							updateImageView(encryptedFrame, imageToShow);
-						}
-
-					};
-					// grab a frame every 33 ms (30 frames/sec)
-//					frameReceiver frameReceive = new frameReceiver(server, controlSocket);
-					timer = Executors.newSingleThreadScheduledExecutor();
-//					timer.execute(frameReceiver);
-					timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
-//					System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
-//					+ " after sending other instructions");
-//					this.controlSocket.close();
-
-					System.out.println("----------------------------------------------------------------------------");
-					System.out.println("\n");
+				timer = Executors.newSingleThreadScheduledExecutor();
+				timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("\n");
 //					server.close();
 
-				} catch (SocketTimeoutException s) {
-					System.out.println("Socket timed out!");
+			} catch (SocketTimeoutException s) {
+				System.out.println("Socket timed out!");
 //					break;
-				} catch (IOException e) {
-					e.printStackTrace();
-//					break;
-				}
-			}
-		}
-
-		private Mat recieveAndDecryptFrame(Socket server) {
-			DataInputStream in = null;
-			try {
-				in = new DataInputStream(server.getInputStream());
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-
-			int len = 0;
-			try {
-				len = in.readInt();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Can't read length of array from bytes");
 				e.printStackTrace();
+//					break;
 			}
-			byte[] buffer = new byte[len];
-			if (len > 0) {
-				try {
-					in.readFully(buffer);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.println("Can't read transmitted bytes");
-					e.printStackTrace();
-				}
-			}
-
-			System.out.println("----------------------------------------------------------------------------");
-			bb = ByteBuffer.wrap(buffer);
-			System.out.println("The Recieved image length is " + buffer.length);
-
-			byte[] encryptedText = new byte[buffer.length - 48];
-			bb.get(encryptedText);
-			bb.get(keyArray);
-			bb.get(nonce20);
-			bb.get(counterArray);
-			Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
-//				frameno++;
-			// convert and show the frame
-			if (!frame.empty()) {
-				Image imageToShow = Utils.mat2Image(frame);
-				updateImageView(currentFrame, imageToShow);
-			} else {
-				System.out.println("The transmitted frame is too encrypted to show at user");
-			}
-
-			len = encryptedText.length;
-			numencblock = (int) ((len * 6.25 + 6399) / 6400);
-			unencgap = len / numencblock;
-			key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
-			counter20 = ByteBuffer.wrap(counterArray).getInt();
-
-			System.out.println("\n---Encrypted bytes recieved at user---");
-			System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
-			System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
-			System.out.println("Counter        : " + counter20);
-
-			try {
-				pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap, numencblock);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("Output cant be decrypted");
-				e.printStackTrace();
-			} // decrypt
-			if (!dataIsValidJPEG(pText20)) {
-//					System.out.println("The decrypted image is not a valid JPEG");
-			}
-
-			System.out.println("\n---Decryption at user---");
-
-			System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
-			System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
-			System.out.println("Counter        : " + counter20);
-			Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
-
-//			OutputStream outToServer = null;
-//			try {
-//				outToServer = control.getOutputStream();
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				System.out.println("Cannot get OutputStream");
-//				e1.printStackTrace();
 //			}
-//			DataOutputStream out = new DataOutputStream(outToServer);
-
-			if (grayscale.isSelected()) {
-				try {
-					out.writeUTF("showGray");
-//						out.flush();
-//						out.close();
-				} catch (IOException e) {
-					System.out.println("Can't send showGray instr");
-					e.printStackTrace();
-				}
-				Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
-			} else {
-				try {
-					out.writeUTF("revertGray");
-//						out.flush();
-//						out.close();
-				} catch (IOException e) {
-					System.out.println("Can't send revertGray instr");
-					e.printStackTrace();
-				}
-			}
-
-			// show the histogram
-			showHistogram(encMat, grayscale.isSelected());
-			// face detection
-			detectAndDisplay(encMat);
-
-			System.out.println("----------------------------------------------------------------------------");
-			System.out.println("\n");
-			return encMat;
-		}
-
-		public void stopServer() {
-			exit = true;
-		}
-
-	}
-
-	public class InstrServer extends Thread {
-		private Socket controlSocket;
-
-		public InstrServer() throws IOException {
-			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
-			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
-					+ " for sending start camera instruction");
-		}
-
-		public void run() {
-
-			try {
-				outToServer = controlSocket.getOutputStream();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Cannot get output stream of instr server");
-				e.printStackTrace();
-			}
-
-			out = new DataOutputStream(outToServer);
-		}
-	}
-
-	@FXML
-	public void initialize() {
-		try {
-			Thread th = new InstrServer();
-			th.setDaemon(true);
-			th.start();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -403,22 +196,31 @@ public class ServerController {
 
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
-
 		if (!this.cameraActive) {
+			// start the video capture
+//			this.capture.open(cameraId);
+//			new EchoServer().start();
+//			client = new EchoClient();
+			// is the video stream available?
+//		if (this.capture.isOpened()) {
+			// Instantiating the File class
 			File file = new File("Server.txt");
 			// Instantiating the PrintStream class
 			PrintStream stream = new PrintStream(file);
 			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
 			System.setOut(stream);
 
+			controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
+					+ " for sending start camera instruction");
+			OutputStream outToServer = controlSocket.getOutputStream();
+			DataOutputStream out = new DataOutputStream(outToServer);
+
 			out.writeUTF("Start Camera");
-//			System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
-//					+ " after sending start camera instruction");
-//			controlSocket.close();
+			controlSocket.close();
 
 			this.cameraActive = true;
 			this.haarClassifier.setSelected(true);
-			this.grayscale.setSelected(true);
 			this.checkboxSelection(
 					"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
 			this.encPercent.setValue(6.25);
@@ -436,36 +238,31 @@ public class ServerController {
 			});
 
 			try {
-				t = new DataServer(3000);
+				Thread t = new DataServer(3000);
 				t.setDaemon(true);
 				t.start();
 //			DataServer frameReceiver = new DataServer(3000);
 //			this.timer = Executors.newSingleThreadScheduledExecutor();
 //			this.timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
 			} catch (IOException e) {
-				System.out.println("Cannot start new Data server thread");
 				e.printStackTrace();
 			}
-
 			this.button.setText("Stop Camera");
 		} else {
 			// the camera is not active at this point
 			this.cameraActive = false;
 			// update again the button content
 			this.button.setText("Start Camera");
-//			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
-//			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
-//					+ " for sending stop camera instruction");
+			controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
+					+ " for sending stop camera instruction");
 			OutputStream outToServer = controlSocket.getOutputStream();
 			DataOutputStream out = new DataOutputStream(outToServer);
 
 			out.writeUTF("Stop Camera");
+			controlSocket.close();
 			// stop the timer
 			this.stopAcquisition();
-			((DataServer) t).stopServer();
-			System.out.println("Closing connection with " + controlSocket.getRemoteSocketAddress()
-					+ " after sending stop camera instruction");
-			controlSocket.close();
 		}
 	}
 
@@ -473,6 +270,120 @@ public class ServerController {
 	protected void loadLogo() {
 		if (logoCheckBox.isSelected())
 			this.logo = Imgcodecs.imread("resources/Poli.png");
+	}
+
+	private Mat recieveAndDecryptFrame(Socket server) {
+		DataInputStream in = null;
+		try {
+			in = new DataInputStream(server.getInputStream());
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
+		int len = 0;
+		try {
+			len = in.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read length of array from bytes");
+			e.printStackTrace();
+		}
+		byte[] buffer = new byte[len];
+		if (len > 0) {
+			try {
+				in.readFully(buffer);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't read transmitted bytes");
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println("----------------------------------------------------------------------------");
+		bb = ByteBuffer.wrap(buffer);
+		System.out.println("The Recieved image length is " + buffer.length);
+
+		byte[] encryptedText = new byte[buffer.length - 48];
+		bb.get(encryptedText);
+		bb.get(keyArray);
+		bb.get(nonce20);
+		bb.get(counterArray);
+		Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
+//		frameno++;
+		// convert and show the frame
+		if (!frame.empty()) {
+			Image imageToShow = Utils.mat2Image(frame);
+			updateImageView(currentFrame, imageToShow);
+		} else {
+			System.out.println("The transmitted frame is too encrypted to show at user");
+		}
+
+		len = encryptedText.length;
+		numencblock = (int) ((len * 6.25 + 6399) / 6400);
+		unencgap = len / numencblock;
+		key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
+		counter20 = ByteBuffer.wrap(counterArray).getInt();
+
+		System.out.println("\n---Encrypted bytes recieved at user---");
+		System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+		System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+		System.out.println("Counter        : " + counter20);
+
+		try {
+			pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap, numencblock);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Output cant be decrypted");
+			e.printStackTrace();
+		} // decrypt
+		if (!dataIsValidJPEG(pText20)) {
+//			System.out.println("The decrypted image is not a valid JPEG");
+		}
+
+		System.out.println("\n---Decryption at user---");
+
+		System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
+		System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+		System.out.println("Counter        : " + counter20);
+		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
+
+		DataOutputStream out = null;
+		try {
+			out = new DataOutputStream(server.getOutputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't get DataOutputStream");
+			e1.printStackTrace();
+		}
+
+		if (grayscale.isSelected()) {
+			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
+			try {
+				out.writeUTF("showGray");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't write showGray instr");
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				out.writeUTF("revertGray");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't write revertGray instr");
+				e.printStackTrace();
+			}
+		}
+
+		// show the histogram
+		this.showHistogram(encMat, grayscale.isSelected());
+		// face detection
+		this.detectAndDisplay(encMat);
+
+		System.out.println("----------------------------------------------------------------------------");
+		System.out.println("\n");
+		return encMat;
 	}
 
 	/**
@@ -630,7 +541,6 @@ public class ServerController {
 		if (!grayscale.isSelected()) {
 			Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
 		}
-
 		// equalize the frame histogram to improve the result
 		Imgproc.equalizeHist(grayFrame, grayFrame);
 
