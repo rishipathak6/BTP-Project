@@ -335,17 +335,24 @@ public class SampleController {
 								.put(nonce20).putInt(counter20).array();
 						sendBytes(sentBytes20, 0, sentBytes20.length, socket);
 						System.out.println("Bytes sent");
-						DataInputStream in = new DataInputStream(socket.getInputStream());
-
-						String msg = in.readUTF();
-						System.out.println("msg = " + msg);
-						if (msg.equals("showGray")) {
-							if (!grayscale.isSelected())
-								grayscale.setSelected(true);
-						} else if (msg.equals("revertGray")) {
-							if (grayscale.isSelected())
-								grayscale.setSelected(false);
-						}
+//						DataInputStream in = new DataInputStream(socket.getInputStream());
+//
+//						String msg = in.readUTF();
+//						System.out.println("msg = " + msg);
+//						if (msg.equals("showGray")) {
+//							if (!grayscale.isSelected())
+//								grayscale.setSelected(true);
+//						} else if (msg.equals("revertGray")) {
+//							if (grayscale.isSelected())
+//								grayscale.setSelected(false);
+//						}
+//						if (msg.equals("haarSelected")) {
+//							if (!haarClassifier.isSelected())
+//								haarClassifier.setSelected(true);
+//						} else if (msg.equals("haarDeselected")) {
+//							if (haarClassifier.isSelected())
+//								haarClassifier.setSelected(false);
+//						}
 						if (logoCheckBox.isSelected() && this.logo != null) {
 							// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
 							// logo.cols(),

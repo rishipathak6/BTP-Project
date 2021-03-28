@@ -140,6 +140,75 @@ public class ServerController {
 
 	private Socket controlSocket;
 
+	public class instruction {
+		boolean grayBool;
+		boolean logoBool;
+		boolean haarBool;
+		boolean lbpBool;
+		boolean decryptBool;
+		double encryptDouble;
+
+		public instruction(boolean graybool, boolean logoBool, boolean haarBool, boolean lbpBool, boolean decryptBool,
+				double encryptDouble) {
+			this.grayBool = graybool;
+			this.logoBool = logoBool;
+			this.haarBool = haarBool;
+			this.lbpBool = lbpBool;
+			this.decryptBool = decryptBool;
+			this.encryptDouble = encryptDouble;
+		}
+
+		public boolean isGrayBool() {
+			return grayBool;
+		}
+
+		public void setGrayBool(boolean grayBool) {
+			this.grayBool = grayBool;
+		}
+
+		public boolean isLogoBool() {
+			return logoBool;
+		}
+
+		public void setLogoBool(boolean logoBool) {
+			this.logoBool = logoBool;
+		}
+
+		public boolean isHaarBool() {
+			return haarBool;
+		}
+
+		public void setHaarBool(boolean haarBool) {
+			this.haarBool = haarBool;
+		}
+
+		public boolean isLbpBool() {
+			return lbpBool;
+		}
+
+		public void setLbpBool(boolean lbpBool) {
+			this.lbpBool = lbpBool;
+		}
+
+		public boolean isDecryptBool() {
+			return decryptBool;
+		}
+
+		public void setDecryptBool(boolean decryptBool) {
+			this.decryptBool = decryptBool;
+		}
+
+		public double getEncryptDouble() {
+			return encryptDouble;
+		}
+
+		public void setEncryptDouble(double encryptDouble) {
+			this.encryptDouble = encryptDouble;
+		}
+	}
+
+	private instruction instr = new instruction(false, false, true, false, false, 6.25);
+
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
 
@@ -220,6 +289,8 @@ public class ServerController {
 			controlSocket.close();
 
 			this.cameraActive = true;
+			this.grayscale.setSelected(false);
+			this.logoCheckBox.setSelected(false);
 			this.haarClassifier.setSelected(true);
 			this.checkboxSelection(
 					"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
@@ -348,34 +419,91 @@ public class ServerController {
 		System.out.println("Counter        : " + counter20);
 		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 
-		DataOutputStream out = null;
-		try {
-			out = new DataOutputStream(server.getOutputStream());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("Can't get DataOutputStream");
-			e1.printStackTrace();
-		}
+//		DataOutputStream out = null;
+//		try {
+//			out = new DataOutputStream(server.getOutputStream());
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			System.out.println("Can't get DataOutputStream");
+//			e1.printStackTrace();
+//		}
 
 		if (grayscale.isSelected()) {
 			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
-			try {
-				out.writeUTF("showGray");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Can't write showGray instr");
-				e.printStackTrace();
+			if (!instr.isGrayBool())
+				instr.setGrayBool(true);
+		} else {
+			if (instr.isGrayBool())
+				instr.setGrayBool(false);
+		}
+
+		if (logoCheckBox.isSelected()) {
+			logoCheckBox.setSelected(false);
+			logoCheckBox.fire();
+			if (this.logo != null) {
+				// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
+				// logo.cols(),
+				// logo.rows());
+				Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
+				Mat imageROI = encMat.submat(roi);
+				// add the logo: method #1
+				Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
+				
+				// add the logo: method #2
+				// logo.copyTo(imageROI, logo);
+			}
+			if (!instr.isLogoBool()) {
+				instr.setLogoBool(true);
 			}
 		} else {
-			try {
-				out.writeUTF("revertGray");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Can't write revertGray instr");
-				e.printStackTrace();
+			if (instr.isLogoBool())
+				instr.setLogoBool(false);
+		}
+
+		if (haarClassifier.isSelected()) {
+			if (!instr.isHaarBool()) {
+				instr.setHaarBool(true);
+				instr.setLbpBool(false);
+			}
+		} else {
+			if (instr.isHaarBool()) {
+				instr.setHaarBool(false);
+				instr.setLbpBool(true);
 			}
 		}
 
+		if (lbpClassifier.isSelected()) {
+			if (!instr.isLbpBool()) {
+				instr.setLbpBool(true);
+				instr.setHaarBool(false);
+			}
+		} else {
+			if (instr.isLbpBool()) {
+				instr.setLbpBool(false);
+				instr.setHaarBool(true);
+			}
+		}
+
+		if (decryptCheck.isSelected()) {
+			Image imageToShow = Utils.mat2Image(encMat);
+			updateImageView(currentFrame, imageToShow);
+			if (!instr.isDecryptBool())
+				instr.setDecryptBool(true);
+		} else {
+			if (instr.isDecryptBool())
+				instr.setDecryptBool(false);
+		}
+
+		if (encPercent.getValue() != instr.getEncryptDouble()) {
+			instr.setEncryptDouble(encPercent.getValue());
+		}
+
+//		try {
+//			out.flush();
+//		} catch (IOException e) {
+//			System.out.println("Can't flush dataoutputstream");
+//			e.printStackTrace();
+//		}
 		// show the histogram
 		this.showHistogram(encMat, grayscale.isSelected());
 		// face detection
