@@ -351,42 +351,60 @@ public class SampleController {
 						System.out.println("Decrypt = " + instr.isDecryptBool());
 						System.out.println("Encpsnt = " + instr.getEncryptDouble());
 
-//						byte[] msg = in.readAllBytes();
-//						System.out.println("msg = " + msg);
-//						if (msg.equals("showGray")) {
-//							if (!grayscale.isSelected())
-//								grayscale.setSelected(true);
-//						} else if (msg.equals("revertGray")) {
-//							if (grayscale.isSelected())
-//								grayscale.setSelected(false);
-//						}
-//						if (msg.equals("haarSelected")) {
-//							if (!haarClassifier.isSelected())
-//								haarClassifier.setSelected(true);
-//						} else if (msg.equals("haarDeselected")) {
-//							if (haarClassifier.isSelected())
-//								haarClassifier.setSelected(false);
-//						}
-						if (logoCheckBox.isSelected() && this.logo != null) {
-							// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
-							// logo.cols(),
-							// logo.rows());
-							Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
-							Mat imageROI = frame.submat(roi);
-							// add the logo: method #1
-							Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
+//						
+						if (instr.isGrayBool()) {
+							this.grayscale.setSelected(true);
+						} else {
+							this.grayscale.setSelected(false);
+						}
 
-							// add the logo: method #2
-							// logo.copyTo(imageROI, logo);
+						if (instr.isLogoBool()) {
+							this.logoCheckBox.setSelected(true);
+						} else {
+							this.logoCheckBox.setSelected(false);
+						}
+
+						if (instr.isHaarBool()) {
+							this.haarClassifier.setSelected(true);
+						} else {
+							this.haarClassifier.setSelected(false);
+						}
+
+						if (instr.isLbpBool()) {
+							this.lbpClassifier.setSelected(true);
+						} else {
+							this.lbpClassifier.setSelected(false);
+						}
+
+						if (instr.isDecryptBool()) {
+							this.decryptCheck.setSelected(true);
+						} else {
+							this.decryptCheck.setSelected(false);
+						}
+
+						if (instr.getEncryptDouble() != this.encPercent.getValue()) {
+							this.encPercent.setValue(instr.getEncryptDouble());
+						}
+
+						if (logoCheckBox.isSelected()) {
+							this.logo = Imgcodecs.imread("resources/Poli.png");
+							if (this.logo != null) {
+								// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
+								// logo.cols(),
+								// logo.rows());
+								Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
+								Mat imageROI = frame.submat(roi);
+								// add the logo: method #1
+								Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
+
+								// add the logo: method #2
+								// logo.copyTo(imageROI, logo);
+							}
 						}
 						if (grayscale.isSelected()) {
 							Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
 						}
 
-						// show the histogram
-						this.showHistogram(frame, grayscale.isSelected());
-						// face detection
-						this.detectAndDisplay(frame);
 						if (this.decryptCheck.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
@@ -412,6 +430,11 @@ public class SampleController {
 								System.out.println("The frame is too encrypted to show");
 							}
 						}
+
+						// show the histogram
+						this.showHistogram(frame, grayscale.isSelected());
+						// face detection
+						this.detectAndDisplay(frame);
 						System.out.println(
 								"----------------------------------------------------------------------------");
 						System.out.println("\n");

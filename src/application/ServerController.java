@@ -229,8 +229,8 @@ public class ServerController {
 			this.haarClassifier.setSelected(true);
 			this.checkboxSelection(
 					"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
-			this.encPercent.setValue(6.25);
-			this.encText.setText("6.25");
+			this.encPercent.setValue(instr.getEncryptDouble());
+			this.encText.setText(String.valueOf(instr.getEncryptDouble()));
 			encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
 				encText.setText(Double.toString(newValue.doubleValue()));
 			});
@@ -322,7 +322,7 @@ public class ServerController {
 		}
 
 		len = encryptedText.length;
-		numencblock = (int) ((len * 6.25 + 6399) / 6400);
+		numencblock = (int) ((len * instr.getEncryptDouble() + 6399) / 6400);
 		unencgap = len / numencblock;
 		key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
 		counter20 = ByteBuffer.wrap(counterArray).getInt();
