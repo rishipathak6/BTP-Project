@@ -44,7 +44,6 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
-import application.ServerController.DataServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 //import it.polito.elite.teachingg.cv.utils.Utils;
@@ -60,12 +59,12 @@ import javafx.scene.image.ImageView;
 
 /**
  * The controller for our application, where the application logic is
- * implemented. It handles the button for starting/stopping the camera and the
- * acquired video stream.
+ * implemented. It handles the cameraButton for starting/stopping the camera and
+ * the acquired video stream.
  *
  *
  */
-public class SampleController {
+public class CameraController {
 //	private int port;
 //	private String ip;
 //
@@ -75,37 +74,37 @@ public class SampleController {
 //		this.ip = ip;
 //	}
 
-	// the FXML button
+	// the FXML cameraButton
 	@FXML
-	private Button button;
+	private Button cameraButton;
 	// the FXML image view
 	@FXML
 	private ImageView currentFrame;
 	@FXML
 	private ImageView encryptedFrame;
 	@FXML
-	private CheckBox grayscale;
+	private CheckBox grayCheckBox;
 	@FXML
 	private CheckBox logoCheckBox;
 	@FXML
 	private ImageView histogram;
 	@FXML
-	private CheckBox haarClassifier;
+	private CheckBox haarCheckBox;
 	@FXML
-	private CheckBox lbpClassifier;
+	private CheckBox lbpCheckBox;
 	@FXML
-	private Slider encPercent;
+	private Slider encSlider;
 	@FXML
-	private TextField encText;
+	private TextField encPercent;
 	@FXML
-	private CheckBox decryptCheck;
+	private CheckBox decryptCheckBox;
 	private double percentage;
 	private int frameno = 1;
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
 	// the OpenCV object that realizes the video capture
 	private VideoCapture capture = new VideoCapture();
-	// a flag to change the button behavior
+	// a flag to change the cameraButton behavior
 	private boolean cameraActive = false;
 	private Mat logo;
 	// the id of the camera to be used
@@ -114,12 +113,9 @@ public class SampleController {
 	private int absoluteFaceSize = 0;
 	private BufferedImage obj;
 	private byte[] byteArray;
-	private byte[] byteBlock;
 	private int len;
 	private int numencblock;
 	private int unencgap;
-	private static final int NONCE_LEN = 12; // 96 bits, 12 bytes
-	private static final int MAC_LEN = 16; // 128 bits, 16 bytes
 	ChaCha20 cipherCC20 = new ChaCha20();
 	ChaCha20Poly1305 cipherCCP = new ChaCha20Poly1305();
 	SecretKey key;
@@ -130,13 +126,6 @@ public class SampleController {
 	private byte[] pText20;
 	private byte[] sentBytes20;
 	private Socket socket;
-	private byte[] cText;
-	private byte[] pText;
-	private ByteBuffer bb;
-	private byte[] nonce = new byte[NONCE_LEN]; // 16 bytes , 128 bits
-	private byte[] mac = new byte[MAC_LEN]; // 12 bytes , 96 bits
-	private byte[] originalCText;
-
 	private instruction instr;
 	private byte[] instrbytes;
 
@@ -162,9 +151,9 @@ public class SampleController {
 					String msg = in.readUTF();
 					System.out.println("msg = " + msg);
 					if (msg.equals("Start Camera")) {
-						button.fire();
+						cameraButton.fire();
 					} else if (msg.equals("Stop Camera")) {
-						button.fire();
+						cameraButton.fire();
 					}
 //					server.close();
 
@@ -191,9 +180,9 @@ public class SampleController {
 	}
 
 	/**
-	 * The action triggered by pushing the button on the GUI
+	 * The action triggered by pushing the cameraButton on the GUI
 	 *
-	 * @param event the push button event
+	 * @param event the push cameraButton event
 	 * @throws IOException
 	 */
 	@FXML
@@ -210,20 +199,20 @@ public class SampleController {
 			// is the video stream available?
 			if (this.capture.isOpened()) {
 				this.cameraActive = true;
-				this.haarClassifier.setSelected(true);
+				this.haarCheckBox.setSelected(true);
 				this.checkboxSelection(
 						"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
-				this.encPercent.setValue(6.25);
-				this.encText.setText("6.25");
-				encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
-					encText.setText(Double.toString(newValue.doubleValue()));
+				this.encSlider.setValue(6.25);
+				this.encPercent.setText("6.25");
+				encSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+					encPercent.setText(Double.toString(newValue.doubleValue()));
 				});
-				encText.textProperty().addListener(new ChangeListener<String>() {
+				encPercent.textProperty().addListener(new ChangeListener<String>() {
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue,
 							String newValue) {
 						if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
-							encPercent.setValue(Double.parseDouble(newValue));
+							encSlider.setValue(Double.parseDouble(newValue));
 						}
 					}
 				});
@@ -248,8 +237,8 @@ public class SampleController {
 				this.timer = Executors.newSingleThreadScheduledExecutor();
 				this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
 
-				// update the button content
-				Utils.onFXThread(this.button.textProperty(), "Stop Camera");
+				// update the cameraButton content
+				Utils.onFXThread(this.cameraButton.textProperty(), "Stop Camera");
 			} else {
 				// log the error
 				System.err.println("Impossible to open the camera connection...");
@@ -257,8 +246,8 @@ public class SampleController {
 		} else {
 			// the camera is not active at this point
 			this.cameraActive = false;
-			// update again the button content
-			Utils.onFXThread(this.button.textProperty(), "Start Camera");
+			// update again the cameraButton content
+			Utils.onFXThread(this.cameraButton.textProperty(), "Start Camera");
 
 			// stop the timer
 			this.stopAcquisition();
@@ -304,7 +293,7 @@ public class SampleController {
 //						System.out.println("The original image is not a valid JPEG");
 					}
 
-					percentage = encPercent.getValue();
+					percentage = encSlider.getValue();
 					len = byteArray.length;
 					key20 = getKey(); // 256-bit secret key (32 bytes)
 					nonce20 = getNonce(); // 96-bit nonce (12 bytes)
@@ -353,9 +342,9 @@ public class SampleController {
 
 //						
 						if (instr.isGrayBool()) {
-							this.grayscale.setSelected(true);
+							this.grayCheckBox.setSelected(true);
 						} else {
-							this.grayscale.setSelected(false);
+							this.grayCheckBox.setSelected(false);
 						}
 
 						if (instr.isLogoBool()) {
@@ -365,25 +354,25 @@ public class SampleController {
 						}
 
 						if (instr.isHaarBool()) {
-							this.haarClassifier.setSelected(true);
+							this.haarCheckBox.setSelected(true);
 						} else {
-							this.haarClassifier.setSelected(false);
+							this.haarCheckBox.setSelected(false);
 						}
 
 						if (instr.isLbpBool()) {
-							this.lbpClassifier.setSelected(true);
+							this.lbpCheckBox.setSelected(true);
 						} else {
-							this.lbpClassifier.setSelected(false);
+							this.lbpCheckBox.setSelected(false);
 						}
 
 						if (instr.isDecryptBool()) {
-							this.decryptCheck.setSelected(true);
+							this.decryptCheckBox.setSelected(true);
 						} else {
-							this.decryptCheck.setSelected(false);
+							this.decryptCheckBox.setSelected(false);
 						}
 
-						if (instr.getEncryptDouble() != this.encPercent.getValue()) {
-							this.encPercent.setValue(instr.getEncryptDouble());
+						if (instr.getEncryptDouble() != this.encSlider.getValue()) {
+							this.encSlider.setValue(instr.getEncryptDouble());
 						}
 
 						if (logoCheckBox.isSelected()) {
@@ -401,11 +390,11 @@ public class SampleController {
 								// logo.copyTo(imageROI, logo);
 							}
 						}
-						if (grayscale.isSelected()) {
+						if (grayCheckBox.isSelected()) {
 							Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
 						}
 
-						if (this.decryptCheck.isSelected()) {
+						if (this.decryptCheckBox.isSelected()) {
 							Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 							if (!encMat.empty()) {
 								Image imageToShow = Utils.mat2Image(encMat);
@@ -432,7 +421,7 @@ public class SampleController {
 						}
 
 						// show the histogram
-						this.showHistogram(frame, grayscale.isSelected());
+						this.showHistogram(frame, grayCheckBox.isSelected());
 						// face detection
 						this.detectAndDisplay(frame);
 						System.out.println(
@@ -467,7 +456,8 @@ public class SampleController {
 		}
 
 		try {
-			socket.close();
+			if (socket != null)
+				socket.close();
 		} catch (IOException e) {
 			System.out.println("Connection not open to close");
 			e.printStackTrace();
@@ -605,8 +595,8 @@ public class SampleController {
 	@FXML
 	protected void haarSelected(Event event) {
 		// check whether the lpb checkbox is selected and deselect it
-		if (this.lbpClassifier.isSelected())
-			this.lbpClassifier.setSelected(false);
+		if (this.lbpCheckBox.isSelected())
+			this.lbpCheckBox.setSelected(false);
 
 		this.checkboxSelection(
 				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
@@ -619,8 +609,8 @@ public class SampleController {
 	@FXML
 	protected void lbpSelected(Event event) {
 		// check whether the haar checkbox is selected and deselect it
-		if (this.haarClassifier.isSelected())
-			this.haarClassifier.setSelected(false);
+		if (this.haarCheckBox.isSelected())
+			this.haarCheckBox.setSelected(false);
 
 		this.checkboxSelection(
 				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/lbpcascades/lbpcascade_frontalface.xml");
@@ -637,7 +627,7 @@ public class SampleController {
 		this.faceCascade.load(classifierPath);
 
 		// now the video capture can start
-		this.button.setDisable(false);
+		this.cameraButton.setDisable(false);
 	}
 
 	/**
@@ -650,7 +640,7 @@ public class SampleController {
 		Mat grayFrame = new Mat();
 
 		// convert the frame in gray scale
-		if (!grayscale.isSelected()) {
+		if (!grayCheckBox.isSelected()) {
 			Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
 		}
 		// equalize the frame histogram to improve the result

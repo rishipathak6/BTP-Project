@@ -8,7 +8,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -17,15 +16,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
@@ -61,12 +57,12 @@ import javafx.scene.image.ImageView;
 
 /**
  * The controller for our application, where the application logic is
- * implemented. It handles the button for starting/stopping the camera and the
+ * implemented. It handles the cameraButton for starting/stopping the camera and the
  * acquired video stream.
  *
  *
  */
-public class ServerController {
+public class UserController {
 //	private int port;
 //
 //	public ServerController(int port, Consumer<Serializable> onReceiveCallback) {
@@ -74,71 +70,51 @@ public class ServerController {
 //		this.port = port;
 //	}
 
-	// the FXML button
+	// the FXML cameraButton
 	@FXML
-	private Button button;
+	private Button cameraButton;
 	// the FXML image view
 	@FXML
 	private ImageView currentFrame;
 	@FXML
 	private ImageView encryptedFrame;
 	@FXML
-	private CheckBox grayscale;
+	private CheckBox grayCheckBox;
 	@FXML
 	private CheckBox logoCheckBox;
 	@FXML
 	private ImageView histogram;
 	@FXML
-	private CheckBox haarClassifier;
+	private CheckBox haarCheckBox;
 	@FXML
-	private CheckBox lbpClassifier;
+	private CheckBox lbpCheckBox;
 	@FXML
-	private Slider encPercent;
+	private Slider encSlider;
 	@FXML
-	private TextField encText;
+	private TextField encPercent;
 	@FXML
-	private CheckBox decryptCheck;
-	private double percentage;
-	private int frameno = 1;
+	private CheckBox decryptCheckBox;
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
 	// the OpenCV object that realizes the video capture
 	private VideoCapture capture = new VideoCapture();
-	// a flag to change the button behavior
+	// a flag to change the cameraButton behavior
 	private boolean cameraActive = false;
 	private Mat logo;
-	// the id of the camera to be used
-	private static int cameraId = 0;
 	private CascadeClassifier faceCascade = new CascadeClassifier();
 	private int absoluteFaceSize = 0;
-	private BufferedImage obj;
-	private byte[] byteArray;
-	private byte[] byteBlock;
-	private int len;
 	private int numencblock;
 	private int unencgap;
-	private boolean onceStarted;
-	private final int NONCE_LEN = 12; // 96 bits, 12 bytes
-	private final int MAC_LEN = 16; // 128 bits, 16 bytes
 	ChaCha20 cipherCC20 = new ChaCha20();
 	ChaCha20Poly1305 cipherCCP = new ChaCha20Poly1305();
 	SecretKey key;
 	SecretKey key20;
 	byte[] nonce20 = new byte[12]; // 96-bit nonce (12 bytes)
 	int counter20 = 1; // 32-bit initial count (8 bytes)
-	private byte[] cText20;
 	private byte[] pText20;
 	private ByteBuffer bb;
 	private byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
 	private byte[] counterArray = new byte[4]; // 4 bytes , 32 bits
-
-	private byte[] cText;
-	private byte[] pText;
-
-	private byte[] originalCText;
-
-	private OutputStream destStream;
-	private InetAddress receiverAddress;
 
 	private Socket controlSocket;
 
@@ -167,7 +143,6 @@ public class ServerController {
 					public void run() {
 
 						Mat frame = recieveAndDecryptFrame(server);
-						frameno++;
 						// convert and show the frame
 						Image imageToShow = Utils.mat2Image(frame);
 						updateImageView(encryptedFrame, imageToShow);
@@ -192,9 +167,9 @@ public class ServerController {
 	}
 
 	/**
-	 * The action triggered by pushing the button on the GUI
+	 * The action triggered by pushing the cameraButton on the GUI
 	 *
-	 * @param event the push button event
+	 * @param event the push cameraButton event
 	 * @throws IOException
 	 */
 
@@ -224,21 +199,21 @@ public class ServerController {
 			controlSocket.close();
 
 			this.cameraActive = true;
-			this.grayscale.setSelected(false);
+			this.grayCheckBox.setSelected(false);
 			this.logoCheckBox.setSelected(false);
-			this.haarClassifier.setSelected(true);
+			this.haarCheckBox.setSelected(true);
 			this.checkboxSelection(
 					"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
-			this.encPercent.setValue(instr.getEncryptDouble());
-			this.encText.setText(String.valueOf(instr.getEncryptDouble()));
-			encPercent.valueProperty().addListener((observable, oldValue, newValue) -> {
-				encText.setText(Double.toString(newValue.doubleValue()));
+			this.encSlider.setValue(instr.getEncryptDouble());
+			this.encPercent.setText(String.valueOf(instr.getEncryptDouble()));
+			encSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+				encPercent.setText(Double.toString(newValue.doubleValue()));
 			});
-			encText.textProperty().addListener(new ChangeListener<String>() {
+			encPercent.textProperty().addListener(new ChangeListener<String>() {
 				@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 					if (newValue.matches("\\d{0,2}([\\.]\\d{0,1})?")) {
-						encPercent.setValue(Double.parseDouble(newValue));
+						encSlider.setValue(Double.parseDouble(newValue));
 					}
 				}
 			});
@@ -253,12 +228,12 @@ public class ServerController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			this.button.setText("Stop Camera");
+			this.cameraButton.setText("Stop Camera");
 		} else {
 			// the camera is not active at this point
 			this.cameraActive = false;
-			// update again the button content
-			this.button.setText("Start Camera");
+			// update again the cameraButton content
+			this.cameraButton.setText("Start Camera");
 			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
 					+ " for sending stop camera instruction");
@@ -372,7 +347,7 @@ public class ServerController {
 				instr.setLogoBool(false);
 		}
 		
-		if (grayscale.isSelected()) {
+		if (grayCheckBox.isSelected()) {
 			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
 			if (!instr.isGrayBool())
 				instr.setGrayBool(true);
@@ -381,7 +356,7 @@ public class ServerController {
 				instr.setGrayBool(false);
 		}
 
-		if (haarClassifier.isSelected()) {
+		if (haarCheckBox.isSelected()) {
 			if (!instr.isHaarBool()) {
 				instr.setHaarBool(true);
 				instr.setLbpBool(false);
@@ -393,7 +368,7 @@ public class ServerController {
 			}
 		}
 
-		if (lbpClassifier.isSelected()) {
+		if (lbpCheckBox.isSelected()) {
 			if (!instr.isLbpBool()) {
 				instr.setLbpBool(true);
 				instr.setHaarBool(false);
@@ -405,7 +380,7 @@ public class ServerController {
 			}
 		}
 
-		if (decryptCheck.isSelected()) {
+		if (decryptCheckBox.isSelected()) {
 			Image imageToShow = Utils.mat2Image(encMat);
 			updateImageView(currentFrame, imageToShow);
 			if (!instr.isDecryptBool())
@@ -415,8 +390,8 @@ public class ServerController {
 				instr.setDecryptBool(false);
 		}
 
-		if (encPercent.getValue() != instr.getEncryptDouble()) {
-			instr.setEncryptDouble(encPercent.getValue());
+		if (encSlider.getValue() != instr.getEncryptDouble()) {
+			instr.setEncryptDouble(encSlider.getValue());
 		}
 
 		
@@ -441,7 +416,7 @@ public class ServerController {
 //			e.printStackTrace();
 //		}
 		// show the histogram
-		this.showHistogram(encMat, grayscale.isSelected());
+		this.showHistogram(encMat, grayCheckBox.isSelected());
 		// face detection
 		this.detectAndDisplay(encMat);
 
@@ -575,8 +550,8 @@ public class ServerController {
 	@FXML
 	protected void haarSelected(Event event) {
 		// check whether the lpb checkbox is selected and deselect it
-		if (this.lbpClassifier.isSelected())
-			this.lbpClassifier.setSelected(false);
+		if (this.lbpCheckBox.isSelected())
+			this.lbpCheckBox.setSelected(false);
 
 		this.checkboxSelection(
 				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
@@ -589,8 +564,8 @@ public class ServerController {
 	@FXML
 	protected void lbpSelected(Event event) {
 		// check whether the haar checkbox is selected and deselect it
-		if (this.haarClassifier.isSelected())
-			this.haarClassifier.setSelected(false);
+		if (this.haarCheckBox.isSelected())
+			this.haarCheckBox.setSelected(false);
 
 		this.checkboxSelection(
 				"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/lbpcascades/lbpcascade_frontalface.xml");
@@ -607,7 +582,7 @@ public class ServerController {
 		this.faceCascade.load(classifierPath);
 
 		// now the video capture can start
-		this.button.setDisable(false);
+		this.cameraButton.setDisable(false);
 	}
 
 	/**
@@ -620,7 +595,7 @@ public class ServerController {
 		Mat grayFrame = new Mat();
 
 		// convert the frame in gray scale
-		if (!grayscale.isSelected()) {
+		if (!grayCheckBox.isSelected()) {
 			Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
 		}
 		// equalize the frame histogram to improve the result
@@ -694,33 +669,6 @@ public class ServerController {
 			result.append(String.format("%02x", temp));
 		}
 		return result.toString();
-	}
-
-	// A 256-bit secret key (32 bytes)
-	private static SecretKey getKey() {
-		KeyGenerator keyGen = null;
-		try {
-			keyGen = KeyGenerator.getInstance("ChaCha20");
-		} catch (NoSuchAlgorithmException e) {
-			System.out.println("Problem in identifying algo in keygen");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			keyGen.init(256, SecureRandom.getInstanceStrong());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Cannot init keygen");
-			e.printStackTrace();
-		}
-		return keyGen.generateKey();
-	}
-
-	// 96-bit nonce (12 bytes)
-	private static byte[] getNonce() {
-		byte[] newNonce = new byte[12];
-		new SecureRandom().nextBytes(newNonce);
-		return newNonce;
 	}
 
 	private byte[] convertToBytes(instruction instr) throws IOException {

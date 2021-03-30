@@ -59,17 +59,17 @@ public class ChaCha20 {
 
 	}
 
-	private static void compr(byte[] bytes, byte[] encbytes, int ind) {
-		StringBuilder result1 = new StringBuilder();
-		StringBuilder result2 = new StringBuilder();
-		for (int i = ind; i < ind + 64; i++) {
-			result1.append(String.format("%02x", bytes[i]));
-		}
-		for (int i = ind; i < ind + 64; i++) {
-			result2.append(String.format("%02x", encbytes[i]));
-		}
-		System.out.println(ind + " " + (ind + 64));
-		System.out.println(result1.toString());
-		System.out.println(result2.toString());
-	}
+//	private static void compr(byte[] bytes, byte[] encbytes, int ind) {
+//		StringBuilder result1 = new StringBuilder();
+//		StringBuilder result2 = new StringBuilder();
+//		for (int i = ind; i < ind + 64; i++) {
+//			result1.append(String.format("%02x", bytes[i]));
+//		}
+//		for (int i = ind; i < ind + 64; i++) {
+//			result2.append(String.format("%02x", encbytes[i]));
+//		}
+//		System.out.println(ind + " " + (ind + 64));
+//		System.out.println(result1.toString());
+//		System.out.println(result2.toString());
+//	}
 }

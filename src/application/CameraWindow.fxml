@@ -13,13 +13,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="555.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+<BorderPane prefHeight="555.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CameraController">
    <bottom>
       <HBox alignment="center" prefHeight="75.0" prefWidth="436.0" BorderPane.alignment="BOTTOM_CENTER">
          <padding>
             <Insets bottom="25" left="25" right="25" top="25" />
          </padding>
-         <Button fx:id="button" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" onAction="#startCamera" text="Start Camera" textAlignment="CENTER" />
+         <Button fx:id="cameraButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" onAction="#startCamera" text="Start Camera" textAlignment="CENTER" />
       </HBox>
    </bottom>
    <right>
@@ -31,18 +31,18 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <CheckBox fx:id="grayscale" mnemonicParsing="false" text="Show in gray scale" />
+            <CheckBox fx:id="grayCheckBox" mnemonicParsing="false" text="Show in gray scale" />
             <CheckBox fx:id="logoCheckBox" mnemonicParsing="false" onAction="#loadLogo" text="Show Logo" />
-            <CheckBox fx:id="haarClassifier" mnemonicParsing="false" onAction="#haarSelected" text="Haar Classifier" />
-            <CheckBox fx:id="lbpClassifier" mnemonicParsing="false" onAction="#lbpSelected" text="LBP Classifier" />
-            <CheckBox fx:id="decryptCheck" mnemonicParsing="false" text="Decrypt Video" />
+            <CheckBox fx:id="haarCheckBox" mnemonicParsing="false" onAction="#haarSelected" text="Haar Classifier" />
+            <CheckBox fx:id="lbpCheckBox" mnemonicParsing="false" onAction="#lbpSelected" text="LBP Classifier" />
+            <CheckBox fx:id="decryptCheckBox" mnemonicParsing="false" text="Decrypt Video" />
             <HBox alignment="CENTER" prefHeight="29.0" prefWidth="200.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="140.0" text="Encryption Percentage" />
-                  <TextField fx:id="encText" prefHeight="25.0" prefWidth="100.0" />
+                  <TextField fx:id="encPercent" prefHeight="25.0" prefWidth="100.0" />
                </children>
             </HBox>
-            <Slider fx:id="encPercent" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Slider fx:id="encSlider" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

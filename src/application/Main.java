@@ -12,16 +12,16 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
-	Boolean isserver;
+	Boolean isUser;
 
 	@Override
 	public void start(Stage primaryStage) {
-		isserver = true;
+		isUser = true;
 
 		try {
-			if (!isserver) {
+			if (!isUser) {
 				// load the FXML resource
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("Sample.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("CameraWindow.fxml"));
 				// store the root element so that the controllers can use it
 				BorderPane rootElement = (BorderPane) loader.load();
 				// create and style a scene
@@ -35,7 +35,7 @@ public class Main extends Application {
 				primaryStage.show();
 
 				// set the proper behavior on closing the application
-				SampleController controller = loader.getController();
+				CameraController controller = loader.getController();
 				primaryStage.setOnCloseRequest((new EventHandler<WindowEvent>() {
 					public void handle(WindowEvent we) {
 						controller.setClosed();
@@ -43,7 +43,7 @@ public class Main extends Application {
 				}));
 			} else {
 				// load the FXML resource
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerWindow.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("UserWindow.fxml"));
 				// store the root element so that the controllers can use it
 				BorderPane rootElement = (BorderPane) loader.load();
 				// create and style a scene
@@ -57,7 +57,7 @@ public class Main extends Application {
 				primaryStage.show();
 
 				// set the proper behavior on closing the application
-				ServerController controller = loader.getController();
+				UserController controller = loader.getController();
 				primaryStage.setOnCloseRequest((new EventHandler<WindowEvent>() {
 					public void handle(WindowEvent we) {
 						controller.setClosed();
