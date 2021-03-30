@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -136,6 +137,9 @@ public class SampleController {
 	private byte[] mac = new byte[MAC_LEN]; // 12 bytes , 96 bits
 	private byte[] originalCText;
 
+	private instruction instr;
+	private byte[] instrbytes;
+
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
 	public class ControlServer extends Thread {
 		private ServerSocket serverSocket;
@@ -178,7 +182,7 @@ public class SampleController {
 	@FXML
 	public void initialize() {
 		try {
-			Thread t = new ControlServer(8080);
+			Thread t = new ControlServer(8000);
 			t.setDaemon(true);
 			t.start();
 		} catch (IOException e) {
@@ -337,7 +341,17 @@ public class SampleController {
 						System.out.println("Bytes sent");
 //						DataInputStream in = new DataInputStream(socket.getInputStream());
 //
-//						String msg = in.readUTF();
+						instrbytes = readBytes(socket);
+						instr = (instruction) convertFromBytes(instrbytes);
+
+						System.out.println("Gray    = " + instr.isGrayBool());
+						System.out.println("Logo    = " + instr.isLogoBool());
+						System.out.println("Haar    = " + instr.isHaarBool());
+						System.out.println("LBP     = " + instr.isLbpBool());
+						System.out.println("Decrypt = " + instr.isDecryptBool());
+						System.out.println("Encpsnt = " + instr.getEncryptDouble());
+
+//						byte[] msg = in.readAllBytes();
 //						System.out.println("msg = " + msg);
 //						if (msg.equals("showGray")) {
 //							if (!grayscale.isSelected())
@@ -440,6 +454,46 @@ public class SampleController {
 			// release the camera
 			this.capture.release();
 		}
+	}
+
+	private Object convertFromBytes(byte[] bytes) throws IOException, ClassNotFoundException {
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+				ObjectInputStream in = new ObjectInputStream(bis)) {
+			return in.readObject();
+		}
+	}
+
+	public byte[] readBytes(Socket socket) {
+		// Again, probably better to store these objects references in the support class
+		InputStream in = null;
+		try {
+			in = socket.getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read bytes from socket");
+			e.printStackTrace();
+		}
+		DataInputStream dis = new DataInputStream(in);
+
+		int len = 0;
+		try {
+			len = dis.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read length of array from bytes");
+			e.printStackTrace();
+		}
+		byte[] data = new byte[len];
+		if (len > 0) {
+			try {
+				dis.readFully(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't read transmitted bytes");
+				e.printStackTrace();
+			}
+		}
+		return data;
 	}
 
 	/**

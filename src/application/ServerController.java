@@ -2,11 +2,14 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -46,7 +49,6 @@ import org.opencv.videoio.VideoCapture;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -140,75 +142,8 @@ public class ServerController {
 
 	private Socket controlSocket;
 
-	public class instruction {
-		boolean grayBool;
-		boolean logoBool;
-		boolean haarBool;
-		boolean lbpBool;
-		boolean decryptBool;
-		double encryptDouble;
-
-		public instruction(boolean graybool, boolean logoBool, boolean haarBool, boolean lbpBool, boolean decryptBool,
-				double encryptDouble) {
-			this.grayBool = graybool;
-			this.logoBool = logoBool;
-			this.haarBool = haarBool;
-			this.lbpBool = lbpBool;
-			this.decryptBool = decryptBool;
-			this.encryptDouble = encryptDouble;
-		}
-
-		public boolean isGrayBool() {
-			return grayBool;
-		}
-
-		public void setGrayBool(boolean grayBool) {
-			this.grayBool = grayBool;
-		}
-
-		public boolean isLogoBool() {
-			return logoBool;
-		}
-
-		public void setLogoBool(boolean logoBool) {
-			this.logoBool = logoBool;
-		}
-
-		public boolean isHaarBool() {
-			return haarBool;
-		}
-
-		public void setHaarBool(boolean haarBool) {
-			this.haarBool = haarBool;
-		}
-
-		public boolean isLbpBool() {
-			return lbpBool;
-		}
-
-		public void setLbpBool(boolean lbpBool) {
-			this.lbpBool = lbpBool;
-		}
-
-		public boolean isDecryptBool() {
-			return decryptBool;
-		}
-
-		public void setDecryptBool(boolean decryptBool) {
-			this.decryptBool = decryptBool;
-		}
-
-		public double getEncryptDouble() {
-			return encryptDouble;
-		}
-
-		public void setEncryptDouble(double encryptDouble) {
-			this.encryptDouble = encryptDouble;
-		}
-	}
-
 	private instruction instr = new instruction(false, false, true, false, false, 6.25);
-
+	private byte[] instrbytes;
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
 
@@ -279,7 +214,7 @@ public class ServerController {
 			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
 			System.setOut(stream);
 
-			controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
 					+ " for sending start camera instruction");
 			OutputStream outToServer = controlSocket.getOutputStream();
@@ -324,7 +259,7 @@ public class ServerController {
 			this.cameraActive = false;
 			// update again the button content
 			this.button.setText("Start Camera");
-			controlSocket = new Socket(InetAddress.getLocalHost(), 8080);
+			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
 					+ " for sending stop camera instruction");
 			OutputStream outToServer = controlSocket.getOutputStream();
@@ -337,11 +272,7 @@ public class ServerController {
 		}
 	}
 
-	@FXML
-	protected void loadLogo() {
-		if (logoCheckBox.isSelected())
-			this.logo = Imgcodecs.imread("resources/Poli.png");
-	}
+	
 
 	private Mat recieveAndDecryptFrame(Socket server) {
 		DataInputStream in = null;
@@ -419,27 +350,8 @@ public class ServerController {
 		System.out.println("Counter        : " + counter20);
 		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 
-//		DataOutputStream out = null;
-//		try {
-//			out = new DataOutputStream(server.getOutputStream());
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			System.out.println("Can't get DataOutputStream");
-//			e1.printStackTrace();
-//		}
-
-		if (grayscale.isSelected()) {
-			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
-			if (!instr.isGrayBool())
-				instr.setGrayBool(true);
-		} else {
-			if (instr.isGrayBool())
-				instr.setGrayBool(false);
-		}
-
 		if (logoCheckBox.isSelected()) {
-			logoCheckBox.setSelected(false);
-			logoCheckBox.fire();
+			this.logo = Imgcodecs.imread("resources/Poli.png");
 			if (this.logo != null) {
 				// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
 				// logo.cols(),
@@ -448,7 +360,7 @@ public class ServerController {
 				Mat imageROI = encMat.submat(roi);
 				// add the logo: method #1
 				Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
-				
+
 				// add the logo: method #2
 				// logo.copyTo(imageROI, logo);
 			}
@@ -458,6 +370,15 @@ public class ServerController {
 		} else {
 			if (instr.isLogoBool())
 				instr.setLogoBool(false);
+		}
+		
+		if (grayscale.isSelected()) {
+			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
+			if (!instr.isGrayBool())
+				instr.setGrayBool(true);
+		} else {
+			if (instr.isGrayBool())
+				instr.setGrayBool(false);
 		}
 
 		if (haarClassifier.isSelected()) {
@@ -498,6 +419,21 @@ public class ServerController {
 			instr.setEncryptDouble(encPercent.getValue());
 		}
 
+		
+		try {
+			instrbytes = convertToBytes(instr);
+		} catch (IOException e) {
+			System.out.println("Can't convert instruction to bytes");
+			e.printStackTrace();
+		}
+
+		try {
+			sendBytes(instrbytes, 0, instrbytes.length, server);
+		} catch (IOException e) {
+			System.out.println("Can't send instruction bytes");
+			e.printStackTrace();
+		}
+
 //		try {
 //			out.flush();
 //		} catch (IOException e) {
@@ -512,6 +448,24 @@ public class ServerController {
 		System.out.println("----------------------------------------------------------------------------");
 		System.out.println("\n");
 		return encMat;
+	}
+
+	public void sendBytes(byte[] myByteArray, int start, int len, Socket socket) throws IOException {
+		if (len < 0)
+			throw new IllegalArgumentException("Negative length not allowed");
+		if (start < 0 || start >= myByteArray.length)
+			throw new IndexOutOfBoundsException("Out of bounds: " + start);
+		// Other checks if needed.
+
+		// May be better to save the streams in the support class;
+		// just like the socket variable.
+		OutputStream out = socket.getOutputStream();
+		DataOutputStream dos = new DataOutputStream(out);
+
+		dos.writeInt(len);
+		if (len > 0) {
+			dos.write(myByteArray, start, len);
+		}
 	}
 
 	/**
@@ -767,6 +721,14 @@ public class ServerController {
 		byte[] newNonce = new byte[12];
 		new SecureRandom().nextBytes(newNonce);
 		return newNonce;
+	}
+
+	private byte[] convertToBytes(instruction instr) throws IOException {
+		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				ObjectOutputStream out = new ObjectOutputStream(bos)) {
+			out.writeObject(instr);
+			return bos.toByteArray();
+		}
 	}
 
 	public byte[] readBytes(Socket socket) {

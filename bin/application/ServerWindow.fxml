@@ -32,7 +32,7 @@
                </font>
             </Text>
             <CheckBox fx:id="grayscale" mnemonicParsing="false" text="Show in gray scale" />
-            <CheckBox fx:id="logoCheckBox" mnemonicParsing="false" onAction="#loadLogo" text="Show Logo" />
+            <CheckBox fx:id="logoCheckBox" mnemonicParsing="false" text="Show Logo" />
             <CheckBox fx:id="haarClassifier" mnemonicParsing="false" onAction="#haarSelected" text="Haar Classifier" />
             <CheckBox fx:id="lbpClassifier" mnemonicParsing="false" onAction="#lbpSelected" text="LBP Classifier" />
             <CheckBox fx:id="decryptCheck" mnemonicParsing="false" text="Decrypt Video" />
