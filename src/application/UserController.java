@@ -11,11 +11,14 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
+import java.security.KeyPair;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -57,8 +60,8 @@ import javafx.scene.image.ImageView;
 
 /**
  * The controller for our application, where the application logic is
- * implemented. It handles the cameraButton for starting/stopping the camera and the
- * acquired video stream.
+ * implemented. It handles the cameraButton for starting/stopping the camera and
+ * the acquired video stream.
  *
  *
  */
@@ -97,18 +100,18 @@ public class UserController {
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
 	// the OpenCV object that realizes the video capture
-	private VideoCapture capture = new VideoCapture();
+	private VideoCapture cameraCapture = new VideoCapture();
 	// a flag to change the cameraButton behavior
 	private boolean cameraActive = false;
-	private Mat logo;
+	private Mat logoMat;
 	private CascadeClassifier faceCascade = new CascadeClassifier();
 	private int absoluteFaceSize = 0;
-	private int numencblock;
-	private int unencgap;
-	ChaCha20 cipherCC20 = new ChaCha20();
-	ChaCha20Poly1305 cipherCCP = new ChaCha20Poly1305();
-	SecretKey key;
-	SecretKey key20;
+	private int numEncBlock;
+	private int unencGap;
+	private ChaCha20 cipherCC20 = new ChaCha20();
+	private RSA cipherRSA = new RSA();
+	private KeyPair keypair;
+	private SecretKey key20;
 	byte[] nonce20 = new byte[12]; // 96-bit nonce (12 bytes)
 	int counter20 = 1; // 32-bit initial count (8 bytes)
 	private byte[] pText20;
@@ -120,6 +123,8 @@ public class UserController {
 
 	private instruction instr = new instruction(false, false, true, false, false, 6.25);
 	private byte[] instrbytes;
+
+	
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
 
@@ -193,9 +198,18 @@ public class UserController {
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
 					+ " for sending start camera instruction");
 			OutputStream outToServer = controlSocket.getOutputStream();
-			DataOutputStream out = new DataOutputStream(outToServer);
+			ObjectOutputStream out = new ObjectOutputStream(outToServer);
 
-			out.writeUTF("Start Camera");
+			try {
+				keypair = RSA.generateRSAKkeyPair();
+			} catch (Exception e1) {
+				System.out.println("Cannot generate RSA keypair");
+				e1.printStackTrace();
+			}
+
+			EndsInstruction firstInstruction = new EndsInstruction("Start Camera", keypair.getPublic());
+
+			out.writeObject(firstInstruction);
 			controlSocket.close();
 
 			this.cameraActive = true;
@@ -238,16 +252,16 @@ public class UserController {
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
 					+ " for sending stop camera instruction");
 			OutputStream outToServer = controlSocket.getOutputStream();
-			DataOutputStream out = new DataOutputStream(outToServer);
+			ObjectOutputStream out = new ObjectOutputStream(outToServer);
 
-			out.writeUTF("Stop Camera");
+			EndsInstruction lastInstruction = new EndsInstruction("Stop Camera", null);
+
+			out.writeObject(lastInstruction);
 			controlSocket.close();
 			// stop the timer
 			this.stopAcquisition();
 		}
 	}
-
-	
 
 	private Mat recieveAndDecryptFrame(Socket server) {
 		DataInputStream in = null;
@@ -287,7 +301,7 @@ public class UserController {
 		bb.get(nonce20);
 		bb.get(counterArray);
 		Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
-//		frameno++;
+//		frameNo++;
 		// convert and show the frame
 		if (!frame.empty()) {
 			Image imageToShow = Utils.mat2Image(frame);
@@ -297,8 +311,8 @@ public class UserController {
 		}
 
 		len = encryptedText.length;
-		numencblock = (int) ((len * instr.getEncryptDouble() + 6399) / 6400);
-		unencgap = len / numencblock;
+		numEncBlock = (int) ((len * instr.getEncryptDouble() + 6399) / 6400);
+		unencGap = len / numEncBlock;
 		key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
 		counter20 = ByteBuffer.wrap(counterArray).getInt();
 
@@ -308,7 +322,7 @@ public class UserController {
 		System.out.println("Counter        : " + counter20);
 
 		try {
-			pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencgap, numencblock);
+			pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencGap, numEncBlock);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Output cant be decrypted");
@@ -326,18 +340,19 @@ public class UserController {
 		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 
 		if (logoCheckBox.isSelected()) {
-			this.logo = Imgcodecs.imread("resources/Poli.png");
-			if (this.logo != null) {
-				// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
-				// logo.cols(),
-				// logo.rows());
-				Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
+			this.logoMat = Imgcodecs.imread("resources/Poli.png");
+			if (this.logoMat != null) {
+				// Rect roi = new Rect(frame.cols() - logoMat.cols(), frame.rows() -
+				// logoMat.rows(),
+				// logoMat.cols(),
+				// logoMat.rows());
+				Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
 				Mat imageROI = encMat.submat(roi);
-				// add the logo: method #1
-				Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
+				// add the logoMat: method #1
+				Core.addWeighted(imageROI, 1.0, logoMat, 0.2, 0.0, imageROI);
 
-				// add the logo: method #2
-				// logo.copyTo(imageROI, logo);
+				// add the logoMat: method #2
+				// logoMat.copyTo(imageROI, logoMat);
 			}
 			if (!instr.isLogoBool()) {
 				instr.setLogoBool(true);
@@ -346,7 +361,7 @@ public class UserController {
 			if (instr.isLogoBool())
 				instr.setLogoBool(false);
 		}
-		
+
 		if (grayCheckBox.isSelected()) {
 			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
 			if (!instr.isGrayBool())
@@ -394,9 +409,9 @@ public class UserController {
 			instr.setEncryptDouble(encSlider.getValue());
 		}
 
-		
 		try {
 			instrbytes = convertToBytes(instr);
+			System.out.println("The length of intruction byte array is " + instrbytes.length);
 		} catch (IOException e) {
 			System.out.println("Can't convert instruction to bytes");
 			e.printStackTrace();
@@ -458,9 +473,9 @@ public class UserController {
 			}
 		}
 
-		if (this.capture.isOpened()) {
+		if (this.cameraCapture.isOpened()) {
 			// release the camera
-			this.capture.release();
+			this.cameraCapture.release();
 		}
 	}
 

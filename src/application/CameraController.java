@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
+import application.CameraController.ControlServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 //import it.polito.elite.teachingg.cv.utils.Utils;
@@ -98,40 +100,42 @@ public class CameraController {
 	private TextField encPercent;
 	@FXML
 	private CheckBox decryptCheckBox;
-	private double percentage;
-	private int frameno = 1;
+	private double encPercentValue;
+	private int frameNo = 1;
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
 	// the OpenCV object that realizes the video capture
-	private VideoCapture capture = new VideoCapture();
+	private VideoCapture cameraCapture = new VideoCapture();
 	// a flag to change the cameraButton behavior
 	private boolean cameraActive = false;
-	private Mat logo;
+	private Mat logoMat;
 	// the id of the camera to be used
 	private static int cameraId = 0;
 	private CascadeClassifier faceCascade = new CascadeClassifier();
 	private int absoluteFaceSize = 0;
-	private BufferedImage obj;
-	private byte[] byteArray;
+	private BufferedImage bufferedImage;
+	private byte[] capturedByteArray;
 	private int len;
-	private int numencblock;
-	private int unencgap;
-	ChaCha20 cipherCC20 = new ChaCha20();
-	ChaCha20Poly1305 cipherCCP = new ChaCha20Poly1305();
-	SecretKey key;
-	SecretKey key20;
+	private int numEncBlock;
+	private int unencGap;
+	private ChaCha20 cipherCC20 = new ChaCha20();
+	private RSA cipherRSA = new RSA();
+	private PublicKey publicKey;
+	private SecretKey key20;
 	byte[] nonce20; // 96-bit nonce (12 bytes)
 	int counter20 = 0; // 32-bit initial count (8 bytes)
 	private byte[] cText20;
 	private byte[] pText20;
 	private byte[] sentBytes20;
-	private Socket socket;
+	private Socket dataSocket;
 	private instruction instr;
 	private byte[] instrbytes;
+	private EndsInstruction endsInstruction;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
 	public class ControlServer extends Thread {
 		private ServerSocket serverSocket;
+		private String msg;
 
 		public ControlServer(int port) throws IOException {
 			serverSocket = new ServerSocket(port);
@@ -146,9 +150,16 @@ public class CameraController {
 							"Waiting for client to send instructions on port " + serverSocket.getLocalPort() + "...");
 					Socket server = serverSocket.accept();
 					System.out.println("Just connected to " + server.getRemoteSocketAddress());
-					DataInputStream in = new DataInputStream(server.getInputStream());
+					ObjectInputStream in = new ObjectInputStream(server.getInputStream());
 
-					String msg = in.readUTF();
+					try {
+						endsInstruction = (EndsInstruction) in.readObject();
+					} catch (ClassNotFoundException e) {
+						System.out.println("Can't read endsInstruction object");
+						e.printStackTrace();
+					}
+					msg = endsInstruction.getMsg();
+					publicKey = endsInstruction.getPublicKey();
 					System.out.println("msg = " + msg);
 					if (msg.equals("Start Camera")) {
 						cameraButton.fire();
@@ -194,10 +205,10 @@ public class CameraController {
 			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
 			System.setOut(stream);
 			// start the video capture
-			this.capture.open(cameraId, 700);
+			this.cameraCapture.open(cameraId, 700);
 
 			// is the video stream available?
-			if (this.capture.isOpened()) {
+			if (this.cameraCapture.isOpened()) {
 				this.cameraActive = true;
 				this.haarCheckBox.setSelected(true);
 				this.checkboxSelection(
@@ -217,8 +228,8 @@ public class CameraController {
 					}
 				});
 
-				socket = new Socket(InetAddress.getLocalHost(), 3000);
-				System.out.println("Just connected to " + socket.getRemoteSocketAddress());
+				dataSocket = new Socket(InetAddress.getLocalHost(), 3000);
+				System.out.println("Just connected to " + dataSocket.getRemoteSocketAddress());
 
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
@@ -226,8 +237,8 @@ public class CameraController {
 					@Override
 					public void run() {
 						// effectively grab and process a single frame
-						Mat frame = grabFrame(frameno, socket);
-						frameno++;
+						Mat frame = grabFrame(frameNo, dataSocket);
+						frameNo++;
 						// convert and show the frame
 						Image imageToShow = Utils.mat2Image(frame);
 						updateImageView(currentFrame, imageToShow);
@@ -257,64 +268,65 @@ public class CameraController {
 	@FXML
 	protected void loadLogo() {
 		if (logoCheckBox.isSelected())
-			this.logo = Imgcodecs.imread("resources/Poli.png");
+			this.logoMat = Imgcodecs.imread("resources/Poli.png");
 	}
 
 	/**
 	 * Get a frame from the opened video stream (if any)
 	 * 
-	 * @param frameno
-	 * @param socket
+	 * @param frameNo
+	 * @param dataSocket
 	 *
 	 * @return the {@link Mat} to show
 	 */
-	private Mat grabFrame(int frameno, Socket socket) {
+	private Mat grabFrame(int frameNo, Socket dataSocket) {
 		// init everything
 		Mat frame = new Mat();
 
 		// check if the capture is open
-		if (this.capture.isOpened()) {
+		if (this.cameraCapture.isOpened()) {
 			try {
 				// read the current frame
-				this.capture.read(frame);
+				this.cameraCapture.read(frame);
 
 				// if the frame is not empty, process it
 				if (!frame.empty()) {
-					// add a logo...
+					// add a logoMat...
 
-					this.obj = Mat2BufferedImage(frame);
-					this.byteArray = Mat2byteArray(frame);
+					this.bufferedImage = Mat2BufferedImage(frame);
+					this.capturedByteArray = Mat2byteArray(frame);
 					System.out.println("----------------------------------------------------------------------------");
-					System.out.println("The transmitted image length is " + this.byteArray.length);
+					System.out.println("The transmitted image length is " + this.capturedByteArray.length);
 					System.out.println("");
-					System.out.println(this.obj);
+					System.out.println(this.bufferedImage);
 					System.out.println("");
-					if (!dataIsValidJPEG(byteArray)) {
-//						System.out.println("The original image is not a valid JPEG");
-					}
+//					if (!dataIsValidJPEG(capturedByteArray)) {
+////						System.out.println("The original image is not a valid JPEG");
+//					}
 
-					percentage = encSlider.getValue();
-					len = byteArray.length;
+					encPercentValue = encSlider.getValue();
+					len = capturedByteArray.length;
 					key20 = getKey(); // 256-bit secret key (32 bytes)
 					nonce20 = getNonce(); // 96-bit nonce (12 bytes)
 					counter20++; // 32-bit initial count (8 bytes)
-					if (percentage != 0) {
-						numencblock = (int) ((len * percentage + 6399) / 6400);
-						unencgap = len / numencblock;
-						System.out.println("Percentage = " + percentage + " number of blocks encrypted = " + numencblock
-								+ " Gap between encrypted blocks = " + unencgap);
+					if (encPercentValue != 0) {
+						numEncBlock = (int) ((len * encPercentValue + 6399) / 6400);
+						unencGap = len / numEncBlock;
+						System.out.println("Percentage = " + encPercentValue + " number of blocks encrypted = "
+								+ numEncBlock + " Gap between encrypted blocks = " + unencGap);
 
 						System.out.println("\n---Encryption---");
-						cText20 = cipherCC20.encrypt(byteArray, key20, nonce20, counter20, 0, unencgap, numencblock); // encrypt
+						cText20 = cipherCC20.encrypt(capturedByteArray, key20, nonce20, counter20, 0, unencGap,
+								numEncBlock); // encrypt
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
-//						System.out.println("Original  (hex): " + convertBytesToHex(byteArray));
+//						System.out.println("Original  (hex): " + convertBytesToHex(capturedByteArray));
 //						System.out.println("Encrypted (hex): " + convertBytesToHex(cText20));
 
 						System.out.println("\n---Decryption---");
 
-						pText20 = cipherCC20.decrypt(cText20, key20, nonce20, counter20, 0, unencgap, numencblock); // decrypt
+						pText20 = cipherCC20.decrypt(cText20, key20, nonce20, counter20, 0, unencGap, numEncBlock); // decrypt
 						System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
@@ -326,11 +338,11 @@ public class CameraController {
 //					}
 						sentBytes20 = ByteBuffer.allocate(cText20.length + 48).put(cText20).put(key20.getEncoded())
 								.put(nonce20).putInt(counter20).array();
-						sendBytes(sentBytes20, 0, sentBytes20.length, socket);
+						sendBytes(sentBytes20, 0, sentBytes20.length, dataSocket);
 						System.out.println("Bytes sent");
-//						DataInputStream in = new DataInputStream(socket.getInputStream());
+//						DataInputStream in = new DataInputStream(dataSocket.getInputStream());
 //
-						instrbytes = readBytes(socket);
+						instrbytes = readBytes(dataSocket);
 						instr = (instruction) convertFromBytes(instrbytes);
 
 						System.out.println("Gray    = " + instr.isGrayBool());
@@ -376,18 +388,19 @@ public class CameraController {
 						}
 
 						if (logoCheckBox.isSelected()) {
-							this.logo = Imgcodecs.imread("resources/Poli.png");
-							if (this.logo != null) {
-								// Rect roi = new Rect(frame.cols() - logo.cols(), frame.rows() - logo.rows(),
-								// logo.cols(),
-								// logo.rows());
-								Rect roi = new Rect(0, 0, logo.cols(), logo.rows());
+							this.logoMat = Imgcodecs.imread("resources/Poli.png");
+							if (this.logoMat != null) {
+								// Rect roi = new Rect(frame.cols() - logoMat.cols(), frame.rows() -
+								// logoMat.rows(),
+								// logoMat.cols(),
+								// logoMat.rows());
+								Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
 								Mat imageROI = frame.submat(roi);
-								// add the logo: method #1
-								Core.addWeighted(imageROI, 1.0, logo, 0.2, 0.0, imageROI);
+								// add the logoMat: method #1
+								Core.addWeighted(imageROI, 1.0, logoMat, 0.2, 0.0, imageROI);
 
-								// add the logo: method #2
-								// logo.copyTo(imageROI, logo);
+								// add the logoMat: method #2
+								// logoMat.copyTo(imageROI, logoMat);
 							}
 						}
 						if (grayCheckBox.isSelected()) {
@@ -456,16 +469,16 @@ public class CameraController {
 		}
 
 		try {
-			if (socket != null)
-				socket.close();
+			if (dataSocket != null)
+				dataSocket.close();
 		} catch (IOException e) {
 			System.out.println("Connection not open to close");
 			e.printStackTrace();
 		}
 
-		if (this.capture.isOpened()) {
+		if (this.cameraCapture.isOpened()) {
 			// release the camera
-			this.capture.release();
+			this.cameraCapture.release();
 		}
 	}
 
