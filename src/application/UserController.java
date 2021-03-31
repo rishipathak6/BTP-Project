@@ -116,6 +116,8 @@ public class UserController {
 	int counter20 = 1; // 32-bit initial count (8 bytes)
 	private byte[] pText20;
 	private ByteBuffer bb;
+	private byte[] encOverBytes20 = new byte[256]; // 48 bytes , 384 bits
+	private byte[] overBytes20 = new byte[48]; // 48 bytes , 384 bits
 	private byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
 	private byte[] counterArray = new byte[4]; // 4 bytes , 32 bits
 
@@ -124,7 +126,6 @@ public class UserController {
 	private instruction instr = new instruction(false, false, true, false, false, 6.25);
 	private byte[] instrbytes;
 
-	
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
 
@@ -295,8 +296,18 @@ public class UserController {
 		bb = ByteBuffer.wrap(buffer);
 		System.out.println("The Recieved image length is " + buffer.length);
 
-		byte[] encryptedText = new byte[buffer.length - 48];
+		byte[] encryptedText = new byte[buffer.length - 256];
 		bb.get(encryptedText);
+		bb.get(encOverBytes20);
+
+		try {
+			overBytes20 = cipherRSA.decrypt(encOverBytes20, keypair.getPrivate());
+		} catch (Exception e1) {
+			System.out.println("Cannot decrypt the key, nonce and counter");
+			e1.printStackTrace();
+		}
+
+		bb = ByteBuffer.wrap(overBytes20);
 		bb.get(keyArray);
 		bb.get(nonce20);
 		bb.get(counterArray);

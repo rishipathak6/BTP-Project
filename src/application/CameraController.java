@@ -126,6 +126,8 @@ public class CameraController {
 	int counter20 = 0; // 32-bit initial count (8 bytes)
 	private byte[] cText20;
 	private byte[] pText20;
+	private byte[] overBytes20;
+	private byte[] encOverBytes20;
 	private byte[] sentBytes20;
 	private Socket dataSocket;
 	private instruction instr;
@@ -336,8 +338,13 @@ public class CameraController {
 //						}
 //						
 //					}
-						sentBytes20 = ByteBuffer.allocate(cText20.length + 48).put(cText20).put(key20.getEncoded())
-								.put(nonce20).putInt(counter20).array();
+						System.out.println("Trying to allocate bytebuffer for overbyte20");
+						overBytes20 = ByteBuffer.allocate(48).put(key20.getEncoded()).put(nonce20).putInt(counter20)
+								.array();
+						System.out.println("Length of overByte20 is " + overBytes20.length);
+						encOverBytes20 = cipherRSA.encrypt(overBytes20, publicKey);
+						System.out.println("Length of encOverByte20 is " + encOverBytes20.length);
+						sentBytes20 = ByteBuffer.allocate(cText20.length + 256).put(cText20).put(encOverBytes20).array();
 						sendBytes(sentBytes20, 0, sentBytes20.length, dataSocket);
 						System.out.println("Bytes sent");
 //						DataInputStream in = new DataInputStream(dataSocket.getInputStream());
