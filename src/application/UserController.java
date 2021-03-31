@@ -124,7 +124,8 @@ public class UserController {
 	private Socket controlSocket;
 
 	private instruction instr = new instruction(false, false, true, false, false, 6.25);
-	private byte[] instrbytes;
+	private byte[] instrBytes;
+	private byte[] encInstrbytes;
 
 	public class DataServer extends Thread {
 		private ServerSocket serverSocket;
@@ -421,15 +422,22 @@ public class UserController {
 		}
 
 		try {
-			instrbytes = convertToBytes(instr);
-			System.out.println("The length of intruction byte array is " + instrbytes.length);
+			instrBytes = convertToBytes(instr);
+			System.out.println("The length of intruction byte array is " + instrBytes.length);
 		} catch (IOException e) {
 			System.out.println("Can't convert instruction to bytes");
 			e.printStackTrace();
 		}
 
 		try {
-			sendBytes(instrbytes, 0, instrbytes.length, server);
+			encInstrbytes = cipherRSA.encrypt(instrBytes, keypair.getPrivate());
+		} catch (Exception e1) {
+			System.out.println("Can't encrypt instruction");
+			e1.printStackTrace();
+		}
+
+		try {
+			sendBytes(encInstrbytes, 0, encInstrbytes.length, server);
 		} catch (IOException e) {
 			System.out.println("Can't send instruction bytes");
 			e.printStackTrace();

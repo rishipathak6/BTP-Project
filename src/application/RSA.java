@@ -24,6 +24,14 @@ public class RSA {
 // Encryption function which converts
 // the plainText into a cipherText
 // using private Key.
+	public byte[] encrypt(byte[] pText, PrivateKey privateKey) throws Exception {
+		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
+
+		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+
+		return cipher.doFinal(pText);
+	}
+
 	public byte[] encrypt(byte[] pText, PublicKey publicKey) throws Exception {
 		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 
@@ -39,6 +47,15 @@ public class RSA {
 		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 
 		cipher.init(Cipher.DECRYPT_MODE, privateKey);
+		byte[] result = cipher.doFinal(cipherText);
+
+		return result;
+	}
+
+	public byte[] decrypt(byte[] cipherText, PublicKey publicKey) throws Exception {
+		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
+
+		cipher.init(Cipher.DECRYPT_MODE, publicKey);
 		byte[] result = cipher.doFinal(cipherText);
 
 		return result;

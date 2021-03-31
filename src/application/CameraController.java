@@ -132,6 +132,7 @@ public class CameraController {
 	private Socket dataSocket;
 	private instruction instr;
 	private byte[] instrbytes;
+	private byte[] encInstrbytes;
 	private EndsInstruction endsInstruction;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
@@ -349,7 +350,8 @@ public class CameraController {
 						System.out.println("Bytes sent");
 //						DataInputStream in = new DataInputStream(dataSocket.getInputStream());
 //
-						instrbytes = readBytes(dataSocket);
+						encInstrbytes = readBytes(dataSocket);
+						instrbytes = cipherRSA.decrypt(encInstrbytes, publicKey);
 						instr = (instruction) convertFromBytes(instrbytes);
 
 						System.out.println("Gray    = " + instr.isGrayBool());
