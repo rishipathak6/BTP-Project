@@ -686,20 +686,6 @@ public class CameraController {
 			Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
 	}
 
-	private boolean dataIsValidJPEG(byte[] data) {
-		if (data == null || data.length < 2)
-			return false;
-
-		int totalBytes = data.length;
-		String bytes = convertBytesToHex(data);
-		System.out.println("The first two bytes of original image are " + bytes.charAt(0) + bytes.charAt(1) + " "
-				+ bytes.charAt(2) + bytes.charAt(3) + " The last two bytes are " + bytes.charAt(totalBytes - 4)
-				+ bytes.charAt(totalBytes - 3) + " " + bytes.charAt(totalBytes - 2) + bytes.charAt(totalBytes - 1));
-
-		return (bytes.charAt(0) == (char) 0xff && bytes.charAt(1) == (char) 0xd8
-				&& bytes.charAt(totalBytes - 2) == (char) 0xff && bytes.charAt(totalBytes - 1) == (char) 0xd9);
-	}
-
 	public static BufferedImage Mat2BufferedImage(Mat mat) throws IOException {
 		// Encoding the image
 		MatOfByte matOfByte = new MatOfByte();

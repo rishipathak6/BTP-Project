@@ -120,15 +120,17 @@ public class UserController {
 	private byte[] overBytes20 = new byte[48]; // 48 bytes , 384 bits
 	private byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
 	private byte[] counterArray = new byte[4]; // 4 bytes , 32 bits
-
+	private Thread t;
 	private Socket controlSocket;
 
 	private instruction instr = new instruction(false, false, true, false, false, 6.25);
 	private byte[] instrBytes;
 	private byte[] encInstrbytes;
 
+	private ServerSocket serverSocket;
+	private Socket server;
+
 	public class DataServer extends Thread {
-		private ServerSocket serverSocket;
 
 		public DataServer(int port) throws IOException {
 			serverSocket = new ServerSocket(port);
@@ -140,7 +142,7 @@ public class UserController {
 			try {
 				System.out.println("----------------------------------------------------------------------------");
 				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
-				Socket server = serverSocket.accept();
+				server = serverSocket.accept();
 				System.out.println("Just connected to " + server.getRemoteSocketAddress());
 
 				// grab a frame every 33 ms (30 frames/sec)
@@ -170,6 +172,10 @@ public class UserController {
 //					break;
 			}
 //			}
+		}
+
+		public void exitserver() {
+
 		}
 	}
 
@@ -235,7 +241,7 @@ public class UserController {
 			});
 
 			try {
-				Thread t = new DataServer(3000);
+				t = new DataServer(3000);
 				t.setDaemon(true);
 				t.start();
 //			DataServer frameReceiver = new DataServer(3000);
@@ -490,6 +496,20 @@ public class UserController {
 				// log any exception
 				System.err.println("Exception in stopping the frame capture, trying to release the camera now... " + e);
 			}
+		}
+
+		try {
+			server.close();
+		} catch (IOException e1) {
+			System.out.println("Can't stop Dataserver socket");
+			e1.printStackTrace();
+		}
+
+		try {
+			serverSocket.close();
+		} catch (IOException e) {
+			System.out.println("Can't close serversocket");
+			e.printStackTrace();
 		}
 
 		if (this.cameraCapture.isOpened()) {
