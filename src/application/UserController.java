@@ -11,14 +11,12 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.security.KeyPair;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -123,7 +121,7 @@ public class UserController {
 	private Thread t;
 	private Socket controlSocket;
 
-	private instruction instr = new instruction(false, false, true, false, false, 6.25);
+	private Instruction instr = new Instruction(false, false, true, false, false, 6.25);
 	private byte[] instrBytes;
 	private byte[] encInstrbytes;
 
@@ -358,7 +356,7 @@ public class UserController {
 		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 
 		if (logoCheckBox.isSelected()) {
-			this.logoMat = Imgcodecs.imread("resources/Poli.png");
+			this.logoMat = Imgcodecs.imread("resources/dp.jpg");
 			if (this.logoMat != null) {
 				// Rect roi = new Rect(frame.cols() - logoMat.cols(), frame.rows() -
 				// logoMat.rows(),
@@ -367,7 +365,7 @@ public class UserController {
 				Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
 				Mat imageROI = encMat.submat(roi);
 				// add the logoMat: method #1
-				Core.addWeighted(imageROI, 1.0, logoMat, 0.2, 0.0, imageROI);
+				Core.addWeighted(imageROI, 1.0, logoMat, 1.0, 0.0, imageROI);
 
 				// add the logoMat: method #2
 				// logoMat.copyTo(imageROI, logoMat);
@@ -725,7 +723,7 @@ public class UserController {
 		return result.toString();
 	}
 
-	private byte[] convertToBytes(instruction instr) throws IOException {
+	private byte[] convertToBytes(Instruction instr) throws IOException {
 		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				ObjectOutputStream out = new ObjectOutputStream(bos)) {
 			out.writeObject(instr);

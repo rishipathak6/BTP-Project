@@ -2,7 +2,7 @@ package application;
 
 import java.io.Serializable;
 
-public class instruction implements Serializable  {
+public class Instruction implements Serializable  {
 	/**
 	 * 
 	 */
@@ -14,7 +14,7 @@ public class instruction implements Serializable  {
 	private boolean decryptBool;
 	private double encryptDouble;
 
-	public instruction(boolean graybool, boolean logoBool, boolean haarBool, boolean lbpBool, boolean decryptBool,
+	public Instruction(boolean graybool, boolean logoBool, boolean haarBool, boolean lbpBool, boolean decryptBool,
 			double encryptDouble) {
 		this.grayBool = graybool;
 		this.logoBool = logoBool;

@@ -45,7 +45,6 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
-import application.CameraController.ControlServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 //import it.polito.elite.teachingg.cv.utils.Utils;
@@ -130,19 +129,21 @@ public class CameraController {
 	private byte[] encOverBytes20;
 	private byte[] sentBytes20;
 	private Socket dataSocket;
-	private instruction instr;
-	private byte[] instrbytes;
-	private byte[] encInstrbytes;
+	private Instruction instr;
+	private byte[] instrBytes;
+	private byte[] encInstrBytes;
 	private EndsInstruction endsInstruction;
+	private Mat cameraFrame;
+	private Image cameraImage;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
 	public class ControlServer extends Thread {
-		private ServerSocket serverSocket;
-		private String msg;
+		private ServerSocket controlServerSocket;
+		private String message;
 
 		public ControlServer(int port) throws IOException {
-			serverSocket = new ServerSocket(port);
-//			serverSocket.setSoTimeout(10000);
+			controlServerSocket = new ServerSocket(port);
+//			controlServerSocket.setSoTimeout(10000);
 		}
 
 		public void run() {
@@ -150,8 +151,8 @@ public class CameraController {
 				try {
 					System.out.println("----------------------------------------------------------------------------");
 					System.out.println(
-							"Waiting for client to send instructions on port " + serverSocket.getLocalPort() + "...");
-					Socket server = serverSocket.accept();
+							"Waiting for client to send instructions on port " + controlServerSocket.getLocalPort() + "...");
+					Socket server = controlServerSocket.accept();
 					System.out.println("Just connected to " + server.getRemoteSocketAddress());
 					ObjectInputStream in = new ObjectInputStream(server.getInputStream());
 
@@ -161,12 +162,12 @@ public class CameraController {
 						System.out.println("Can't read endsInstruction object");
 						e.printStackTrace();
 					}
-					msg = endsInstruction.getMsg();
+					message = endsInstruction.getMsg();
 					publicKey = endsInstruction.getPublicKey();
-					System.out.println("msg = " + msg);
-					if (msg.equals("Start Camera")) {
+					System.out.println("message = " + message);
+					if (message.equals("Start Camera")) {
 						cameraButton.fire();
-					} else if (msg.equals("Stop Camera")) {
+					} else if (message.equals("Stop Camera")) {
 						cameraButton.fire();
 					}
 //					server.close();
@@ -185,9 +186,9 @@ public class CameraController {
 	@FXML
 	public void initialize() {
 		try {
-			Thread t = new ControlServer(8000);
-			t.setDaemon(true);
-			t.start();
+			Thread threadInitialise = new ControlServer(8000);
+			threadInitialise.setDaemon(true);
+			threadInitialise.start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -240,11 +241,11 @@ public class CameraController {
 					@Override
 					public void run() {
 						// effectively grab and process a single frame
-						Mat frame = grabFrame(frameNo, dataSocket);
+						cameraFrame = grabFrame(frameNo, dataSocket);
 						frameNo++;
 						// convert and show the frame
-						Image imageToShow = Utils.mat2Image(frame);
-						updateImageView(currentFrame, imageToShow);
+						cameraImage = Utils.mat2Image(cameraFrame);
+						updateImageView(currentFrame, cameraImage);
 					}
 				};
 
@@ -271,7 +272,7 @@ public class CameraController {
 	@FXML
 	protected void loadLogo() {
 		if (logoCheckBox.isSelected())
-			this.logoMat = Imgcodecs.imread("resources/Poli.png");
+			this.logoMat = Imgcodecs.imread("resources/dp.jpg");
 	}
 
 	/**
@@ -350,9 +351,9 @@ public class CameraController {
 						System.out.println("Bytes sent");
 //						DataInputStream in = new DataInputStream(dataSocket.getInputStream());
 //
-						encInstrbytes = readBytes(dataSocket);
-						instrbytes = cipherRSA.decrypt(encInstrbytes, publicKey);
-						instr = (instruction) convertFromBytes(instrbytes);
+						encInstrBytes = readBytes(dataSocket);
+						instrBytes = cipherRSA.decrypt(encInstrBytes, publicKey);
+						instr = (Instruction) convertFromBytes(instrBytes);
 
 						System.out.println("Gray    = " + instr.isGrayBool());
 						System.out.println("Logo    = " + instr.isLogoBool());
@@ -397,7 +398,7 @@ public class CameraController {
 						}
 
 						if (logoCheckBox.isSelected()) {
-							this.logoMat = Imgcodecs.imread("resources/Poli.png");
+							this.logoMat = Imgcodecs.imread("resources/dp.jpg");
 							if (this.logoMat != null) {
 								// Rect roi = new Rect(frame.cols() - logoMat.cols(), frame.rows() -
 								// logoMat.rows(),
@@ -406,7 +407,7 @@ public class CameraController {
 								Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
 								Mat imageROI = frame.submat(roi);
 								// add the logoMat: method #1
-								Core.addWeighted(imageROI, 1.0, logoMat, 0.2, 0.0, imageROI);
+								Core.addWeighted(imageROI, 1.0, logoMat, 1.0, 0.0, imageROI);
 
 								// add the logoMat: method #2
 								// logoMat.copyTo(imageROI, logoMat);
