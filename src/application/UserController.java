@@ -1,7 +1,5 @@
 package application;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -25,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import javax.imageio.ImageIO;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -417,7 +414,7 @@ public class UserController {
 		}
 
 		try {
-			instrBytes = convertToBytes(instr);
+			instrBytes = objectToBytes(instr);
 			System.out.println("The length of intruction byte array is " + instrBytes.length);
 		} catch (IOException e) {
 			System.out.println("Can't convert instruction to bytes");
@@ -438,12 +435,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 
-//		try {
-//			out.flush();
-//		} catch (IOException e) {
-//			System.out.println("Can't flush dataoutputstream");
-//			e.printStackTrace();
-//		}
 		// show the histogram
 		this.showHistogram(userFrame, grayCheckBox.isSelected());
 		// face detection
@@ -454,22 +445,8 @@ public class UserController {
 		return userFrame;
 	}
 
-	public void sendBytes(byte[] myByteArray, int start, int len, Socket socket) throws IOException {
-		if (len < 0)
-			throw new IllegalArgumentException("Negative length not allowed");
-		if (start < 0 || start >= myByteArray.length)
-			throw new IndexOutOfBoundsException("Out of bounds: " + start);
-		// Other checks if needed.
-
-		// May be better to save the streams in the support class;
-		// just like the socket variable.
-		OutputStream out = socket.getOutputStream();
-		DataOutputStream dos = new DataOutputStream(out);
-
-		dos.writeInt(len);
-		if (len > 0) {
-			dos.write(myByteArray, start, len);
-		}
+	protected void setClosed() {
+		this.stopAcquisition();
 	}
 
 	/**
@@ -507,6 +484,57 @@ public class UserController {
 		}
 	}
 
+	public void sendBytes(byte[] myByteArray, int start, int len, Socket socket) throws IOException {
+		if (len < 0)
+			throw new IllegalArgumentException("Negative length not allowed");
+		if (start < 0 || start >= myByteArray.length)
+			throw new IndexOutOfBoundsException("Out of bounds: " + start);
+		// Other checks if needed.
+
+		// May be better to save the streams in the support class;
+		// just like the socket variable.
+		OutputStream out = socket.getOutputStream();
+		DataOutputStream dos = new DataOutputStream(out);
+
+		dos.writeInt(len);
+		if (len > 0) {
+			dos.write(myByteArray, start, len);
+		}
+	}
+
+	public byte[] readBytes(Socket socket) {
+		// Again, probably better to store these objects references in the support class
+		InputStream in = null;
+		try {
+			in = socket.getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read bytes from socket");
+			e.printStackTrace();
+		}
+		DataInputStream dis = new DataInputStream(in);
+
+		int len = 0;
+		try {
+			len = dis.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't read length of array from bytes");
+			e.printStackTrace();
+		}
+		byte[] data = new byte[len];
+		if (len > 0) {
+			try {
+				dis.readFully(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Can't read transmitted bytes");
+				e.printStackTrace();
+			}
+		}
+		return data;
+	}
+
 	/**
 	 * Update the {@link ImageView} in the JavaFX main thread
 	 * 
@@ -520,9 +548,6 @@ public class UserController {
 	/**
 	 * On application close, stop the acquisition from the camera
 	 */
-	protected void setClosed() {
-		this.stopAcquisition();
-	}
 
 	private void showHistogram(Mat frame, boolean gray) {
 		// split the frames in multiple images
@@ -677,35 +702,6 @@ public class UserController {
 				&& bytes.charAt(totalBytes - 2) == (char) 0xff && bytes.charAt(totalBytes - 1) == (char) 0xd9);
 	}
 
-	public static BufferedImage MatToBufferedImage(Mat mat) {
-		// Encoding the image
-		MatOfByte matOfByte = new MatOfByte();
-		Imgcodecs.imencode(".jpg", mat, matOfByte);
-		// Storing the encoded Mat in a byte array
-		byte[] byteArray = matOfByte.toArray();
-		// Preparing the Buffered Image
-		InputStream in = new ByteArrayInputStream(byteArray);
-		BufferedImage bufImage = null;
-		try {
-			bufImage = ImageIO.read(in);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Cant make mat to buffered image");
-			e.printStackTrace();
-		}
-		return bufImage;
-	}
-
-	public static byte[] Mat2byteArray(Mat mat) {
-		// Encoding the image
-		MatOfByte matOfByte = new MatOfByte();
-		Imgcodecs.imencode(".jpg", mat, matOfByte);
-		// Storing the encoded Mat in a byte array
-		byte[] byteArray = matOfByte.toArray();
-		// Preparing the Buffered Image
-		return byteArray;
-	}
-
 	private static String BytesToHex(byte[] bytes) {
 		StringBuilder result = new StringBuilder();
 		for (byte temp : bytes) {
@@ -714,45 +710,12 @@ public class UserController {
 		return result.toString();
 	}
 
-	private byte[] convertToBytes(Instruction instr) throws IOException {
+	private byte[] objectToBytes(Instruction instr) throws IOException {
 		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				ObjectOutputStream out = new ObjectOutputStream(bos)) {
 			out.writeObject(instr);
 			return bos.toByteArray();
 		}
-	}
-
-	public byte[] readBytes(Socket socket) {
-		// Again, probably better to store these objects references in the support class
-		InputStream in = null;
-		try {
-			in = socket.getInputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Can't read bytes from socket");
-			e.printStackTrace();
-		}
-		DataInputStream dis = new DataInputStream(in);
-
-		int len = 0;
-		try {
-			len = dis.readInt();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Can't read length of array from bytes");
-			e.printStackTrace();
-		}
-		byte[] data = new byte[len];
-		if (len > 0) {
-			try {
-				dis.readFully(data);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Can't read transmitted bytes");
-				e.printStackTrace();
-			}
-		}
-		return data;
 	}
 
 }
