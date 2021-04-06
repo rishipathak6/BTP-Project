@@ -136,6 +136,7 @@ public class CameraController {
 	private Mat cameraFrame;
 	private Mat encDecCameraFrame;
 	private Image cameraImage;
+	private Image encDecCameraImage;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
 	public class ControlServer extends Thread {
@@ -411,15 +412,15 @@ public class CameraController {
 							encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(decryptedByteArray20),
 									Imgcodecs.IMREAD_UNCHANGED);
 							if (!encDecCameraFrame.empty()) {
-								Image imageToShow = Utils.mat2Image(encDecCameraFrame);
-								updateImageView(encryptedFrame, imageToShow);
+								encDecCameraImage = Utils.mat2Image(encDecCameraFrame);
+								updateImageView(encryptedFrame, encDecCameraImage);
 							}
 						} else {
 							encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(encryptedByteArray20),
 									Imgcodecs.IMREAD_UNCHANGED);
 							if (!encDecCameraFrame.empty()) {
-								Image imageToShow = Utils.mat2Image(encDecCameraFrame);
-								updateImageView(encryptedFrame, imageToShow);
+								encDecCameraImage = Utils.mat2Image(encDecCameraFrame);
+								updateImageView(encryptedFrame, encDecCameraImage);
 							} else {
 								System.out.println("The frame is too encrypted to show");
 							}

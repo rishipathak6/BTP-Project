@@ -112,8 +112,10 @@ public class UserController {
 	private SecretKey key20;
 	byte[] nonce20 = new byte[12]; // 96-bit nonce (12 bytes)
 	int counter20 = 1; // 32-bit initial count (8 bytes)
-	private byte[] pText20;
+	private byte[] viewedByteArray;
 	private ByteBuffer bb;
+	private byte[] incomingByteArray;
+	private byte[] encryptedByteArray;
 	private byte[] encOverBytes20 = new byte[256]; // 48 bytes , 384 bits
 	private byte[] overBytes20 = new byte[48]; // 48 bytes , 384 bits
 	private byte[] keyArray = new byte[32]; // 32 bytes , 256 bits
@@ -125,23 +127,28 @@ public class UserController {
 	private byte[] instrBytes;
 	private byte[] encInstrbytes;
 
-	private ServerSocket serverSocket;
-	private Socket server;
+	private ServerSocket dataServerSocket;
+	private Socket dataSocket;
+
+	private Mat userFrame;
+	private Mat encDecUserFrame;
+	private Image userImage;
+	private Image encDecUserImage;
 
 	public class DataServer extends Thread {
 
 		public DataServer(int port) throws IOException {
-			serverSocket = new ServerSocket(port);
-//			serverSocket.setSoTimeout(10000);
+			dataServerSocket = new ServerSocket(port);
+//			dataServerSocket.setSoTimeout(10000);
 		}
 
 		public void run() {
 //			while (true) {
 			try {
 				System.out.println("----------------------------------------------------------------------------");
-				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
-				server = serverSocket.accept();
-				System.out.println("Just connected to " + server.getRemoteSocketAddress());
+				System.out.println("Waiting for client on port " + dataServerSocket.getLocalPort() + "...");
+				dataSocket = dataServerSocket.accept();
+				System.out.println("Just connected to " + dataSocket.getRemoteSocketAddress());
 
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameReceiver = new Runnable() {
@@ -149,10 +156,10 @@ public class UserController {
 					@Override
 					public void run() {
 
-						Mat frame = recieveAndDecryptFrame(server);
+						userFrame = recieveAndDecryptFrame(dataSocket);
 						// convert and show the frame
-						Image imageToShow = Utils.mat2Image(frame);
-						updateImageView(encryptedFrame, imageToShow);
+						userImage = Utils.mat2Image(userFrame);
+						updateImageView(encryptedFrame, userImage);
 					}
 				};
 
@@ -160,16 +167,12 @@ public class UserController {
 				timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
 				System.out.println("----------------------------------------------------------------------------");
 				System.out.println("\n");
-//					server.close();
 
 			} catch (SocketTimeoutException s) {
 				System.out.println("Socket timed out!");
-//					break;
 			} catch (IOException e) {
 				e.printStackTrace();
-//					break;
 			}
-//			}
 		}
 
 		public void exitserver() {
@@ -187,12 +190,6 @@ public class UserController {
 	@FXML
 	protected void startCamera(ActionEvent event) throws IOException {
 		if (!this.cameraActive) {
-			// start the video capture
-//			this.capture.open(cameraId);
-//			new EchoServer().start();
-//			client = new EchoClient();
-			// is the video stream available?
-//		if (this.capture.isOpened()) {
 			// Instantiating the File class
 			File file = new File("Server.txt");
 			// Instantiating the PrintStream class
@@ -242,9 +239,6 @@ public class UserController {
 				t = new DataServer(3000);
 				t.setDaemon(true);
 				t.start();
-//			DataServer frameReceiver = new DataServer(3000);
-//			this.timer = Executors.newSingleThreadScheduledExecutor();
-//			this.timer.scheduleAtFixedRate(frameReceiver, 0, 33, TimeUnit.MILLISECONDS);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -286,10 +280,10 @@ public class UserController {
 			System.out.println("Can't read length of array from bytes");
 			e.printStackTrace();
 		}
-		byte[] buffer = new byte[len];
+		incomingByteArray = new byte[len];
 		if (len > 0) {
 			try {
-				in.readFully(buffer);
+				in.readFully(incomingByteArray);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Can't read transmitted bytes");
@@ -298,11 +292,11 @@ public class UserController {
 		}
 
 		System.out.println("----------------------------------------------------------------------------");
-		bb = ByteBuffer.wrap(buffer);
-		System.out.println("The Recieved image length is " + buffer.length);
+		bb = ByteBuffer.wrap(incomingByteArray);
+		System.out.println("The Recieved image length is " + incomingByteArray.length);
 
-		byte[] encryptedText = new byte[buffer.length - 256];
-		bb.get(encryptedText);
+		encryptedByteArray = new byte[incomingByteArray.length - 256];
+		bb.get(encryptedByteArray);
 		bb.get(encOverBytes20);
 
 		try {
@@ -316,17 +310,8 @@ public class UserController {
 		bb.get(keyArray);
 		bb.get(nonce20);
 		bb.get(counterArray);
-		Mat frame = Imgcodecs.imdecode(new MatOfByte(encryptedText), Imgcodecs.IMREAD_UNCHANGED);
-//		frameNo++;
-		// convert and show the frame
-		if (!frame.empty()) {
-			Image imageToShow = Utils.mat2Image(frame);
-			updateImageView(currentFrame, imageToShow);
-		} else {
-			System.out.println("The transmitted frame is too encrypted to show at user");
-		}
 
-		len = encryptedText.length;
+		len = encryptedByteArray.length;
 		numEncBlock = (int) ((len * instr.getEncryptDouble() + 6399) / 6400);
 		unencGap = len / numEncBlock;
 		key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
@@ -338,13 +323,14 @@ public class UserController {
 		System.out.println("Counter        : " + counter20);
 
 		try {
-			pText20 = cipherCC20.decrypt(encryptedText, key20, nonce20, counter20, 0, unencGap, numEncBlock);
+			viewedByteArray = cipherCC20.decrypt(encryptedByteArray, key20, nonce20, counter20, 0, unencGap,
+					numEncBlock);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Output cant be decrypted");
 			e.printStackTrace();
 		} // decrypt
-		if (!dataIsValidJPEG(pText20)) {
+		if (!dataIsValidJPEG(viewedByteArray)) {
 //			System.out.println("The decrypted image is not a valid JPEG");
 		}
 
@@ -353,22 +339,15 @@ public class UserController {
 		System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
 		System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 		System.out.println("Counter        : " + counter20);
-		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
+		userFrame = Imgcodecs.imdecode(new MatOfByte(viewedByteArray), Imgcodecs.IMREAD_UNCHANGED);
 
 		if (logoCheckBox.isSelected()) {
 			this.logoMat = Imgcodecs.imread("resources/dp.jpg");
 			if (this.logoMat != null) {
-				// Rect roi = new Rect(frame.cols() - logoMat.cols(), frame.rows() -
-				// logoMat.rows(),
-				// logoMat.cols(),
-				// logoMat.rows());
 				Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
-				Mat imageROI = encMat.submat(roi);
+				Mat imageROI = userFrame.submat(roi);
 				// add the logoMat: method #1
 				Core.addWeighted(imageROI, 1.0, logoMat, 1.0, 0.0, imageROI);
-
-				// add the logoMat: method #2
-				// logoMat.copyTo(imageROI, logoMat);
 			}
 			if (!instr.isLogoBool()) {
 				instr.setLogoBool(true);
@@ -379,7 +358,7 @@ public class UserController {
 		}
 
 		if (grayCheckBox.isSelected()) {
-			Imgproc.cvtColor(encMat, encMat, Imgproc.COLOR_BGR2GRAY);
+			Imgproc.cvtColor(userFrame, userFrame, Imgproc.COLOR_BGR2GRAY);
 			if (!instr.isGrayBool())
 				instr.setGrayBool(true);
 		} else {
@@ -412,11 +391,23 @@ public class UserController {
 		}
 
 		if (decryptCheckBox.isSelected()) {
-			Image imageToShow = Utils.mat2Image(encMat);
-			updateImageView(currentFrame, imageToShow);
+			encDecUserFrame = Imgcodecs.imdecode(new MatOfByte(viewedByteArray), Imgcodecs.IMREAD_UNCHANGED);
+			if (!encDecUserFrame.empty()) {
+				encDecUserImage = Utils.mat2Image(encDecUserFrame);
+				updateImageView(currentFrame, encDecUserImage);
+			}
 			if (!instr.isDecryptBool())
 				instr.setDecryptBool(true);
 		} else {
+			encDecUserFrame = Imgcodecs.imdecode(new MatOfByte(encryptedByteArray), Imgcodecs.IMREAD_UNCHANGED);
+//			frameNo++;
+			// convert and show the frame
+			if (!encDecUserFrame.empty()) {
+				encDecUserImage = Utils.mat2Image(encDecUserFrame);
+				updateImageView(currentFrame, encDecUserImage);
+			} else {
+				System.out.println("The transmitted frame is too encrypted to show at user");
+			}
 			if (instr.isDecryptBool())
 				instr.setDecryptBool(false);
 		}
@@ -454,13 +445,13 @@ public class UserController {
 //			e.printStackTrace();
 //		}
 		// show the histogram
-		this.showHistogram(encMat, grayCheckBox.isSelected());
+		this.showHistogram(userFrame, grayCheckBox.isSelected());
 		// face detection
-		this.faceDetectAndDisplay(encMat);
+		this.faceDetectAndDisplay(userFrame);
 
 		System.out.println("----------------------------------------------------------------------------");
 		System.out.println("\n");
-		return encMat;
+		return userFrame;
 	}
 
 	public void sendBytes(byte[] myByteArray, int start, int len, Socket socket) throws IOException {
@@ -497,14 +488,14 @@ public class UserController {
 		}
 
 		try {
-			server.close();
+			dataSocket.close();
 		} catch (IOException e1) {
 			System.out.println("Can't stop Dataserver socket");
 			e1.printStackTrace();
 		}
 
 		try {
-			serverSocket.close();
+			dataServerSocket.close();
 		} catch (IOException e) {
 			System.out.println("Can't close serversocket");
 			e.printStackTrace();
