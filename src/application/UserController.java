@@ -333,8 +333,8 @@ public class UserController {
 		counter20 = ByteBuffer.wrap(counterArray).getInt();
 
 		System.out.println("\n---Encrypted bytes recieved at user---");
-		System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
-		System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+		System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
+		System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 		System.out.println("Counter        : " + counter20);
 
 		try {
@@ -350,8 +350,8 @@ public class UserController {
 
 		System.out.println("\n---Decryption at user---");
 
-		System.out.println("Key       (hex): " + convertBytesToHex(key20.getEncoded()));
-		System.out.println("Nonce     (hex): " + convertBytesToHex(nonce20));
+		System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
+		System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 		System.out.println("Counter        : " + counter20);
 		Mat encMat = Imgcodecs.imdecode(new MatOfByte(pText20), Imgcodecs.IMREAD_UNCHANGED);
 
@@ -456,7 +456,7 @@ public class UserController {
 		// show the histogram
 		this.showHistogram(encMat, grayCheckBox.isSelected());
 		// face detection
-		this.detectAndDisplay(encMat);
+		this.faceDetectAndDisplay(encMat);
 
 		System.out.println("----------------------------------------------------------------------------");
 		System.out.println("\n");
@@ -642,7 +642,7 @@ public class UserController {
 	 * 
 	 * @param frame it looks for faces in this frame
 	 */
-	private void detectAndDisplay(Mat frame) {
+	private void faceDetectAndDisplay(Mat frame) {
 		MatOfRect faces = new MatOfRect();
 		Mat grayFrame = new Mat();
 
@@ -676,7 +676,7 @@ public class UserController {
 			return false;
 
 		int totalBytes = data.length;
-		String bytes = convertBytesToHex(data);
+		String bytes = BytesToHex(data);
 
 		System.out.println("The first two bytes of decrypted image are " + bytes.charAt(0) + bytes.charAt(1) + " "
 				+ bytes.charAt(2) + bytes.charAt(3) + " The last two bytes are " + bytes.charAt(totalBytes - 4)
@@ -686,7 +686,7 @@ public class UserController {
 				&& bytes.charAt(totalBytes - 2) == (char) 0xff && bytes.charAt(totalBytes - 1) == (char) 0xd9);
 	}
 
-	public static BufferedImage Mat2BufferedImage(Mat mat) {
+	public static BufferedImage MatToBufferedImage(Mat mat) {
 		// Encoding the image
 		MatOfByte matOfByte = new MatOfByte();
 		Imgcodecs.imencode(".jpg", mat, matOfByte);
@@ -715,7 +715,7 @@ public class UserController {
 		return byteArray;
 	}
 
-	private static String convertBytesToHex(byte[] bytes) {
+	private static String BytesToHex(byte[] bytes) {
 		StringBuilder result = new StringBuilder();
 		for (byte temp : bytes) {
 			result.append(String.format("%02x", temp));
