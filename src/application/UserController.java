@@ -77,16 +77,16 @@ public class UserController {
 	@FXML
 	private Button cameraButton;
 	@FXML
-	private Button saveSnapshot;
+	private Button snapButton;
 	@FXML
-	private Button buttonRecord;
+	private Button recordButton;
 	// the FXML image view
 	@FXML
 	private ImageView currentFrame;
 	@FXML
 	private ImageView encryptedFrame;
 	@FXML
-	private ImageView iconRecord;
+	private ImageView recordIcon;
 	@FXML
 	private CheckBox grayCheckBox;
 	@FXML
@@ -214,12 +214,12 @@ public class UserController {
 			recordActive = true;
 			File file = new File("resources/stop.png");
 			Image image = new Image(file.toURI().toString());
-			iconRecord.setImage(image);
+			recordIcon.setImage(image);
 		} else {
 			recordActive = false;
 			File file = new File("resources/record.png");
 			Image image = new Image(file.toURI().toString());
-			iconRecord.setImage(image);
+			recordIcon.setImage(image);
 			if (writer.isOpened()) {
 				writer.release();
 			}
@@ -387,7 +387,7 @@ public class UserController {
 		System.out.println("Counter        : " + counter20);
 		userFrame = Imgcodecs.imdecode(new MatOfByte(viewedByteArray), Imgcodecs.IMREAD_UNCHANGED);
 
-		saveSnapshot.setOnAction(new EventHandler<ActionEvent>() {
+		snapButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -551,7 +551,7 @@ public class UserController {
 		}
 
 		if(recordActive) {
-			buttonRecord.fire();
+			recordButton.fire();
 		}
 
 		if (this.cameraCapture.isOpened()) {
