@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.imageio.ImageIO;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -40,11 +43,13 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
+import org.opencv.videoio.VideoWriter;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -71,11 +76,17 @@ public class UserController {
 	// the FXML cameraButton
 	@FXML
 	private Button cameraButton;
+	@FXML
+	private Button saveSnapshot;
+	@FXML
+	private Button buttonRecord;
 	// the FXML image view
 	@FXML
 	private ImageView currentFrame;
 	@FXML
 	private ImageView encryptedFrame;
+	@FXML
+	private ImageView iconRecord;
 	@FXML
 	private CheckBox grayCheckBox;
 	@FXML
@@ -98,6 +109,7 @@ public class UserController {
 	private VideoCapture cameraCapture = new VideoCapture();
 	// a flag to change the cameraButton behavior
 	private boolean cameraActive = false;
+	private boolean recordActive = false;
 	private Mat logoMat;
 	private CascadeClassifier faceCascade = new CascadeClassifier();
 	private int absoluteFaceSize = 0;
@@ -132,6 +144,8 @@ public class UserController {
 	private Image userImage;
 	private Image encDecUserImage;
 
+	private VideoWriter writer;
+
 	public class DataServer extends Thread {
 
 		public DataServer(int port) throws IOException {
@@ -147,6 +161,8 @@ public class UserController {
 				dataSocket = dataServerSocket.accept();
 				System.out.println("Just connected to " + dataSocket.getRemoteSocketAddress());
 
+				writer = new VideoWriter("resources/capture.mp4", VideoWriter.fourcc('x', '2', '6', '4'), 30,
+						new Size(640.0, 480.0), true);
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameReceiver = new Runnable() {
 
@@ -154,6 +170,10 @@ public class UserController {
 					public void run() {
 
 						userFrame = recieveAndDecryptFrame(dataSocket);
+						System.out.println("recording on:" + recordActive);
+						if (recordActive) {
+							writer.write(userFrame);
+						}
 						// convert and show the frame
 						userImage = Utils.mat2Image(userFrame);
 						updateImageView(encryptedFrame, userImage);
@@ -174,6 +194,35 @@ public class UserController {
 
 		public void exitserver() {
 
+		}
+	}
+
+//	@FXML
+//	protected void screenShot(ActionEvent event) throws IOException {
+//		File outputFile = new File("resources/ss.jpg");
+//        BufferedImage bImage = SwingFXUtils.fromFXImage(encryptedFrame.snapshot(null, null), null);
+//        try {
+//            ImageIO.write(bImage, "jpg", outputFile);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//	}
+
+	@FXML
+	protected void recordVideo(ActionEvent event) {
+		if (!recordActive) {
+			recordActive = true;
+			File file = new File("resources/stop.png");
+			Image image = new Image(file.toURI().toString());
+			iconRecord.setImage(image);
+		} else {
+			recordActive = false;
+			File file = new File("resources/record.png");
+			Image image = new Image(file.toURI().toString());
+			iconRecord.setImage(image);
+			if (writer.isOpened()) {
+				writer.release();
+			}
 		}
 	}
 
@@ -338,6 +387,27 @@ public class UserController {
 		System.out.println("Counter        : " + counter20);
 		userFrame = Imgcodecs.imdecode(new MatOfByte(viewedByteArray), Imgcodecs.IMREAD_UNCHANGED);
 
+		saveSnapshot.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				File outputFile = new File("resources/ss.jpg");
+				BufferedImage bImage = null;
+				try {
+					bImage = MatToBufferedImage(userFrame);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					ImageIO.write(bImage, "jpg", outputFile);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		});
+
 		if (logoCheckBox.isSelected()) {
 			this.logoMat = Imgcodecs.imread("resources/dp.jpg");
 			if (this.logoMat != null) {
@@ -465,17 +535,23 @@ public class UserController {
 		}
 
 		try {
-			dataSocket.close();
+			if (dataSocket != null)
+				dataSocket.close();
 		} catch (IOException e1) {
 			System.out.println("Can't stop Dataserver socket");
 			e1.printStackTrace();
 		}
 
 		try {
-			dataServerSocket.close();
+			if (dataServerSocket != null)
+				dataServerSocket.close();
 		} catch (IOException e) {
 			System.out.println("Can't close serversocket");
 			e.printStackTrace();
+		}
+
+		if(recordActive) {
+			buttonRecord.fire();
 		}
 
 		if (this.cameraCapture.isOpened()) {
@@ -718,4 +794,15 @@ public class UserController {
 		}
 	}
 
+	public static BufferedImage MatToBufferedImage(Mat mat) throws IOException {
+		// Encoding the image
+		MatOfByte matOfByte = new MatOfByte();
+		Imgcodecs.imencode(".jpg", mat, matOfByte);
+		// Storing the encoded Mat in a byte array
+		byte[] byteArray = matOfByte.toArray();
+		// Preparing the Buffered Image
+		InputStream in = new ByteArrayInputStream(byteArray);
+		BufferedImage bufImage = ImageIO.read(in);
+		return bufImage;
+	}
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,11 +16,29 @@
 
 <BorderPane prefHeight="555.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserController">
    <bottom>
-      <HBox alignment="center" prefHeight="75.0" prefWidth="436.0" BorderPane.alignment="BOTTOM_CENTER">
+      <HBox alignment="center" spacing="10" prefHeight="75.0" prefWidth="436.0" BorderPane.alignment="BOTTOM_CENTER">
          <padding>
             <Insets bottom="25" left="25" right="25" top="25" />
          </padding>
-         <Button fx:id="cameraButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" onAction="#startCamera" text="Start Camera" textAlignment="CENTER" />
+         <Button fx:id="saveSnapshot" mnemonicParsing="false" prefHeight="39.0" prefWidth="31.0">
+            <graphic>
+               <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../resources/fp.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="cameraButton" alignment="CENTER" contentDisplay="BOTTOM" onAction="#startCamera" prefHeight="33.0" prefWidth="85.0" text="Start Camera" />
+         <Button fx:id="buttonRecord" mnemonicParsing="false" onAction="#recordVideo" prefWidth="36.0">
+            <graphic>
+               <ImageView fx:id="iconRecord" fitHeight="20.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../resources/record.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
       </HBox>
    </bottom>
    <right>
