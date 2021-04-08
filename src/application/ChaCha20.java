@@ -14,8 +14,8 @@ public class ChaCha20 {
 
 	private static final String ENCRYPT_ALGO = "ChaCha20";
 
-	public byte[] encrypt(byte[] pText, SecretKey key, byte[] nonce, int counter, int offset, int length, int times)
-			throws Exception {
+	public byte[] encrypt(byte[] pText, SecretKey key, byte[] nonce, int counter, int offset, int length, int times,
+			double encPercent) throws Exception {
 
 		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 
@@ -23,21 +23,25 @@ public class ChaCha20 {
 
 		cipher.init(Cipher.ENCRYPT_MODE, key, param);
 
-//        byte[] encryptedText = cipher.doFinal(pText, offset, length);
 		byte[] encryptedText = new byte[pText.length];
-		System.arraycopy(pText, 0, encryptedText, 0, pText.length);
-//		encryptedText = pText;
-		for (int i = 0; i < times - 1; i++) {
-			cipher.update(pText, offset + (i + 1) * (length) - 64, 64, encryptedText, offset + (i + 1) * (length) - 64);
-//			compr(pText, encryptedText, offset + (i) * (length));
+		if (encPercent != 100.0) {
+			System.arraycopy(pText, 0, encryptedText, 0, pText.length);
+			// encryptedText = pText;
+			for (int i = 0; i < times - 1; i++) {
+				cipher.update(pText,
+						offset + (i + 1) * (length) - 64, 64, encryptedText,
+						offset + (i + 1) * (length) - 64);
+				// compr(pText, encryptedText, offset + (i) * (length));
+			}
+			cipher.doFinal(pText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
+		} else {
+			encryptedText = cipher.doFinal(pText);
 		}
-		cipher.doFinal(pText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
-
 		return encryptedText;
 	}
 
-	public byte[] decrypt(byte[] cText, SecretKey key, byte[] nonce, int counter, int offset, int length, int times)
-			throws Exception {
+	public byte[] decrypt(byte[] cText, SecretKey key, byte[] nonce, int counter, int offset, int length, int times,
+			double encPercent) throws Exception {
 
 		Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 
@@ -45,16 +49,19 @@ public class ChaCha20 {
 
 		cipher.init(Cipher.DECRYPT_MODE, key, param);
 
-//		byte[] encryptedText = cipher.doFinal(pText, offset, length);
 		byte[] decryptedText = new byte[cText.length];
-		System.arraycopy(cText, 0, decryptedText, 0, cText.length);
+		if (encPercent != 100.0) {
+			System.arraycopy(cText, 0, decryptedText, 0, cText.length);
 //			encryptedText = pText;
-		for (int i = 0; i < times - 1; i++) {
-			cipher.update(cText, offset + (i + 1) * (length) - 64, 64, decryptedText, offset + (i + 1) * (length) - 64);
+			for (int i = 0; i < times - 1; i++) {
+				cipher.update(cText, offset + (i + 1) * (length) - 64, 64, decryptedText,
+						offset + (i + 1) * (length) - 64);
 //			compr(pText, encryptedText, offset + (i) * (length));
+			}
+			cipher.doFinal(cText, offset + (times - 1) * length, 64, decryptedText, offset + (times - 1) * length);
+		} else {
+			decryptedText = cipher.doFinal(cText);
 		}
-		cipher.doFinal(cText, offset + (times - 1) * length, 64, decryptedText, offset + (times - 1) * length);
-
 		return decryptedText;
 
 	}

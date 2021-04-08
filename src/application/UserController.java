@@ -132,7 +132,7 @@ public class UserController {
 	private Thread t;
 	private Socket controlSocket;
 
-	private Instruction instr = new Instruction(false, false, true, false, false, 6.25);
+	private Instruction instr = new Instruction(false, false, true, false, false, 3);
 	private byte[] instrBytes;
 	private byte[] encInstrbytes;
 
@@ -370,7 +370,7 @@ public class UserController {
 
 		try {
 			viewedByteArray = cipherCC20.decrypt(encryptedByteArray, key20, nonce20, counter20, 0, unencGap,
-					numEncBlock);
+					numEncBlock, instr.getEncryptDouble());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Output cant be decrypted");
@@ -550,7 +550,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 
-		if(recordActive) {
+		if (recordActive) {
 			recordButton.fire();
 		}
 

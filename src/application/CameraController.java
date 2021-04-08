@@ -317,7 +317,7 @@ public class CameraController {
 
 						System.out.println("\n---Encryption---");
 						encryptedByteArray20 = cipherCC20.encrypt(capturedByteArray, key20, nonce20, counter20, 0,
-								unencGap, numEncBlock); // encrypt
+								unencGap, numEncBlock, encPercentValue); // encrypt
 						System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
@@ -327,7 +327,7 @@ public class CameraController {
 						System.out.println("\n---Decryption---");
 
 						decryptedByteArray20 = cipherCC20.decrypt(encryptedByteArray20, key20, nonce20, counter20, 0,
-								unencGap, numEncBlock); // decrypt
+								unencGap, numEncBlock, encPercentValue); // decrypt
 						System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
