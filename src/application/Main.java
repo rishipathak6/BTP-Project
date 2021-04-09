@@ -16,7 +16,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		isUser = false;
+		isUser = true;
 
 		try {
 			if (!isUser) {

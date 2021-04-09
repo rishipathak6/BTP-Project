@@ -2,7 +2,7 @@ package application;
 
 import java.io.Serializable;
 
-public class Instruction implements Serializable  {
+public class Instruction implements Serializable {
 	/**
 	 * 
 	 */
@@ -71,4 +71,5 @@ public class Instruction implements Serializable  {
 	public void setEncryptDouble(double encryptDouble) {
 		this.encryptDouble = encryptDouble;
 	}
+
 }
