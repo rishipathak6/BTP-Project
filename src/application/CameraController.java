@@ -137,6 +137,8 @@ public class CameraController {
 	private Mat encDecCameraFrame;
 	private Image cameraImage;
 	private Image encDecCameraImage;
+	private long startTime;
+	private long endTime;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
 	public class ControlServer extends Thread {
@@ -168,10 +170,15 @@ public class CameraController {
 					publicKey = endsInstruction.getPublicKey();
 					System.out.println("message = " + message);
 					if (message.equals("Start Camera")) {
+						startTime = System.nanoTime();
+						System.out.println("Just got camera message and RSA public key at: " + startTime);
 						cameraButton.fire();
 					} else if (message.equals("Stop Camera")) {
+						endTime = System.nanoTime();
+						System.out.println("Camera closed at " + (double)(endTime - startTime) / 1000000);
 						cameraButton.fire();
 					}
+
 //					server.close();
 
 				} catch (SocketTimeoutException s) {
@@ -215,12 +222,14 @@ public class CameraController {
 
 			// is the video stream available?
 			if (this.cameraCapture.isOpened()) {
+				startTime = System.nanoTime();
+				System.out.println("Camera open at " + startTime);
 				this.cameraActive = true;
 				this.haarCheckBox.setSelected(true);
 				this.checkboxSelection(
 						"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
-				this.encSlider.setValue(6.25);
-				this.encPercent.setText("6.25");
+				this.encSlider.setValue(3.0);
+				this.encPercent.setText("3.0");
 				encSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 					encPercent.setText(Double.toString(newValue.doubleValue()));
 				});
@@ -236,7 +245,8 @@ public class CameraController {
 
 				dataSocket = new Socket(InetAddress.getLocalHost(), 3000);
 				System.out.println("Just connected to " + dataSocket.getRemoteSocketAddress());
-
+				endTime = System.nanoTime();
+				System.out.println("Data Server connected at " + (double)(endTime - startTime) / 1000000);
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
 
@@ -286,6 +296,9 @@ public class CameraController {
 		// check if the capture is open
 		if (this.cameraCapture.isOpened()) {
 			try {
+				endTime = System.nanoTime();
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("Frame captured at " + (double)(endTime - startTime) / 1000000);
 				// read the current frame
 				this.cameraCapture.read(frame);
 
@@ -293,13 +306,12 @@ public class CameraController {
 				if (!frame.empty()) {
 					// add a logoMat...
 
-					this.bufferedImage = MatToBufferedImage(frame);
+//					this.bufferedImage = MatToBufferedImage(frame);
 					this.capturedByteArray = MatToByteArray(frame);
-					System.out.println("----------------------------------------------------------------------------");
 					System.out.println("The transmitted image length is " + this.capturedByteArray.length);
 					System.out.println("");
-					System.out.println(this.bufferedImage);
-					System.out.println("");
+//					System.out.println(this.bufferedImage);
+//					System.out.println("");
 //					if (!dataIsValidJPEG(capturedByteArray)) {
 ////						System.out.println("The original image is not a valid JPEG");
 //					}
@@ -318,19 +330,14 @@ public class CameraController {
 						System.out.println("\n---Encryption---");
 						encryptedByteArray20 = cipherCC20.encrypt(capturedByteArray, key20, nonce20, counter20, 0,
 								unencGap, numEncBlock, encPercentValue); // encrypt
+						endTime = System.nanoTime();
+						System.out.println("\nFrame encrypted at " + (double)(endTime - startTime) / 1000000 + "\n");
 						System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
 						System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 						System.out.println("Counter        : " + counter20);
 //						System.out.println("Original  (hex): " + BytesToHex(capturedByteArray));
 //						System.out.println("Encrypted (hex): " + BytesToHex(encryptedByteArray20));
 
-						System.out.println("\n---Decryption---");
-
-						decryptedByteArray20 = cipherCC20.decrypt(encryptedByteArray20, key20, nonce20, counter20, 0,
-								unencGap, numEncBlock, encPercentValue); // decrypt
-						System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
-						System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
-						System.out.println("Counter        : " + counter20);
 //							 System.out.println("Decrypted (hex): " + BytesToHex(decryptedByteArray20));
 //							 System.out.println("Decrypted : " + new String(decryptedByteArray20));
 
@@ -346,11 +353,16 @@ public class CameraController {
 						sentBytes20 = ByteBuffer.allocate(encryptedByteArray20.length + 256).put(encryptedByteArray20)
 								.put(encOverBytes20).array();
 						sendBytes(sentBytes20, 0, sentBytes20.length, dataSocket);
-						System.out.println("Bytes sent");
+						endTime = System.nanoTime();
+						System.out.println("Encrypted frame sent at " + (double)(endTime - startTime) / 1000000);
 //						DataInputStream in = new DataInputStream(dataSocket.getInputStream());
 //
 						encInstrBytes = readBytes(dataSocket);
+						endTime = System.nanoTime();
+						System.out.println("Encrypted instruction recieved at " + (double)(endTime - startTime) / 1000000);
 						instrBytes = cipherRSA.decrypt(encInstrBytes, publicKey);
+						endTime = System.nanoTime();
+						System.out.println("Instruction decrypted at " + (double)(endTime - startTime) / 1000000);
 						instr = (Instruction) bytesToObject(instrBytes);
 
 						System.out.println("Gray    = " + instr.isGrayBool());
@@ -409,6 +421,13 @@ public class CameraController {
 						}
 
 						if (this.decryptCheckBox.isSelected()) {
+							System.out.println("\n---Decryption---");
+
+							decryptedByteArray20 = cipherCC20.decrypt(encryptedByteArray20, key20, nonce20, counter20,
+									0, unencGap, numEncBlock, encPercentValue); // decrypt
+							System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
+							System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
+							System.out.println("Counter        : " + counter20);
 							encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(decryptedByteArray20),
 									Imgcodecs.IMREAD_UNCHANGED);
 							if (!encDecCameraFrame.empty()) {

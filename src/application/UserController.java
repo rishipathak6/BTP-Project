@@ -146,6 +146,9 @@ public class UserController {
 
 	private VideoWriter writer;
 
+	private long startTime;
+	private long endTime;
+
 	public class DataServer extends Thread {
 
 		public DataServer(int port) throws IOException {
@@ -160,7 +163,8 @@ public class UserController {
 				System.out.println("Waiting for client on port " + dataServerSocket.getLocalPort() + "...");
 				dataSocket = dataServerSocket.accept();
 				System.out.println("Just connected to " + dataSocket.getRemoteSocketAddress());
-
+				endTime = System.nanoTime();
+				System.out.println("Data server connected at " + (double) (endTime - startTime) / 1000000);
 				writer = new VideoWriter("resources/capture.mp4", VideoWriter.fourcc('x', '2', '6', '4'), 30,
 						new Size(640.0, 480.0), true);
 				// grab a frame every 33 ms (30 frames/sec)
@@ -172,6 +176,8 @@ public class UserController {
 						userFrame = recieveAndDecryptFrame(dataSocket);
 						System.out.println("recording on:" + recordActive);
 						if (recordActive) {
+							Imgproc.putText(userFrame, ("frame" + counter20), new Point(20, 460), 0, 0.75,
+									new Scalar(200, 200, 200), 3);
 							writer.write(userFrame);
 						}
 						// convert and show the frame
@@ -242,7 +248,8 @@ public class UserController {
 			PrintStream stream = new PrintStream(file);
 			System.out.println("From now on " + file.getAbsolutePath() + " will be your console");
 			System.setOut(stream);
-
+			startTime = System.nanoTime();
+			System.out.println("Just trying to connect to camera at: " + startTime);
 			controlSocket = new Socket(InetAddress.getLocalHost(), 8000);
 			System.out.println("Just connected to " + controlSocket.getRemoteSocketAddress()
 					+ " for sending start camera instruction");
@@ -255,10 +262,14 @@ public class UserController {
 				System.out.println("Cannot generate RSA keypair");
 				e1.printStackTrace();
 			}
+			endTime = System.nanoTime();
+			System.out.println("RSA keys generated at " + (double) (endTime - startTime) / 1000000);
 
 			EndsInstruction firstInstruction = new EndsInstruction("Start Camera", keypair.getPublic());
 
 			out.writeObject(firstInstruction);
+			endTime = System.nanoTime();
+			System.out.println("Public key sent at " + (double) (endTime - startTime) / 1000000);
 			controlSocket.close();
 
 			this.cameraActive = true;
@@ -290,6 +301,8 @@ public class UserController {
 			}
 			this.cameraButton.setText("Stop Camera");
 		} else {
+			endTime = System.nanoTime();
+			System.out.println("Camera closed at " + (double) (endTime - startTime) / 1000000);
 			// the camera is not active at this point
 			this.cameraActive = false;
 			// update again the cameraButton content
@@ -338,6 +351,8 @@ public class UserController {
 		}
 
 		System.out.println("----------------------------------------------------------------------------");
+		endTime = System.nanoTime();
+		System.out.println("Frame recieved at " + (double) (endTime - startTime) / 1000000);
 		bb = ByteBuffer.wrap(incomingByteArray);
 		System.out.println("The Recieved image length is " + incomingByteArray.length);
 
@@ -351,7 +366,8 @@ public class UserController {
 			System.out.println("Cannot decrypt the key, nonce and counter");
 			e1.printStackTrace();
 		}
-
+		endTime = System.nanoTime();
+		System.out.println("Key, nonce and counter decrypted at " + (double) (endTime - startTime) / 1000000);
 		bb = ByteBuffer.wrap(overBytes20);
 		bb.get(keyArray);
 		bb.get(nonce20);
@@ -367,7 +383,8 @@ public class UserController {
 		System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
 		System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 		System.out.println("Counter        : " + counter20);
-
+		endTime = System.nanoTime();
+		System.out.println("Starting data decryption at " + (double) (endTime - startTime) / 1000000);
 		try {
 			viewedByteArray = cipherCC20.decrypt(encryptedByteArray, key20, nonce20, counter20, 0, unencGap,
 					numEncBlock, instr.getEncryptDouble());
@@ -376,15 +393,9 @@ public class UserController {
 			System.out.println("Output cant be decrypted");
 			e.printStackTrace();
 		} // decrypt
-		if (!dataIsValidJPEG(viewedByteArray)) {
-//			System.out.println("The decrypted image is not a valid JPEG");
-		}
+		endTime = System.nanoTime();
+		System.out.println("Data decrypted at " + (double) (endTime - startTime) / 1000000);
 
-		System.out.println("\n---Decryption at user---");
-
-		System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
-		System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
-		System.out.println("Counter        : " + counter20);
 		userFrame = Imgcodecs.imdecode(new MatOfByte(viewedByteArray), Imgcodecs.IMREAD_UNCHANGED);
 
 		snapButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -490,20 +501,24 @@ public class UserController {
 			System.out.println("Can't convert instruction to bytes");
 			e.printStackTrace();
 		}
-
+		endTime = System.nanoTime();
+		System.out.println("Starting Instruction encryption at " + (double) (endTime - startTime) / 1000000);
 		try {
 			encInstrbytes = cipherRSA.encrypt(instrBytes, keypair.getPrivate());
 		} catch (Exception e1) {
 			System.out.println("Can't encrypt instruction");
 			e1.printStackTrace();
 		}
-
+		endTime = System.nanoTime();
+		System.out.println("Instruction encrypted at " + (double) (endTime - startTime) / 1000000);
 		try {
 			sendBytes(encInstrbytes, 0, encInstrbytes.length, server);
 		} catch (IOException e) {
 			System.out.println("Can't send instruction bytes");
 			e.printStackTrace();
 		}
+		endTime = System.nanoTime();
+		System.out.println("Instruction sent at " + (double) (endTime - startTime) / 1000000);
 
 		// show the histogram
 		this.showHistogram(userFrame, grayCheckBox.isSelected());
