@@ -24,18 +24,19 @@ public class ChaCha20 {
 		cipher.init(Cipher.ENCRYPT_MODE, key, param);
 
 		byte[] encryptedText = new byte[pText.length];
-		if (encPercent != 100.0) {
+		if (encPercent != 100.0 && encPercent != 0.0) {
 			System.arraycopy(pText, 0, encryptedText, 0, pText.length);
 			// encryptedText = pText;
 			for (int i = 0; i < times - 1; i++) {
-				cipher.update(pText,
-						offset + (i + 1) * (length) - 64, 64, encryptedText,
+				cipher.update(pText, offset + (i + 1) * (length) - 64, 64, encryptedText,
 						offset + (i + 1) * (length) - 64);
 				// compr(pText, encryptedText, offset + (i) * (length));
 			}
 			cipher.doFinal(pText, offset + (times - 1) * length, 64, encryptedText, offset + (times - 1) * length);
-		} else {
+		} else if (encPercent == 100.0) {
 			encryptedText = cipher.doFinal(pText);
+		} else {
+			encryptedText = pText;
 		}
 		return encryptedText;
 	}
@@ -50,7 +51,7 @@ public class ChaCha20 {
 		cipher.init(Cipher.DECRYPT_MODE, key, param);
 
 		byte[] decryptedText = new byte[cText.length];
-		if (encPercent != 100.0) {
+		if (encPercent != 100.0 && encPercent != 0.0) {
 			System.arraycopy(cText, 0, decryptedText, 0, cText.length);
 //			encryptedText = pText;
 			for (int i = 0; i < times - 1; i++) {
@@ -59,8 +60,10 @@ public class ChaCha20 {
 //			compr(pText, encryptedText, offset + (i) * (length));
 			}
 			cipher.doFinal(cText, offset + (times - 1) * length, 64, decryptedText, offset + (times - 1) * length);
-		} else {
+		} else if (encPercent == 100.0) {
 			decryptedText = cipher.doFinal(cText);
+		} else {
+			decryptedText = cText;
 		}
 		return decryptedText;
 

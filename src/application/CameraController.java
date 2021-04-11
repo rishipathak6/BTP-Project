@@ -100,7 +100,6 @@ public class CameraController {
 	@FXML
 	private CheckBox decryptCheckBox;
 	private double encPercentValue;
-	private int frameNo = 1;
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
 	// the OpenCV object that realizes the video capture
@@ -175,7 +174,7 @@ public class CameraController {
 						cameraButton.fire();
 					} else if (message.equals("Stop Camera")) {
 						endTime = System.nanoTime();
-						System.out.println("Camera closed at " + (double)(endTime - startTime) / 1000000);
+						System.out.println("Camera closed at " + (double) (endTime - startTime) / 1000000);
 						cameraButton.fire();
 					}
 
@@ -246,15 +245,14 @@ public class CameraController {
 				dataSocket = new Socket(InetAddress.getLocalHost(), 3000);
 				System.out.println("Just connected to " + dataSocket.getRemoteSocketAddress());
 				endTime = System.nanoTime();
-				System.out.println("Data Server connected at " + (double)(endTime - startTime) / 1000000);
+				System.out.println("Data Server connected at " + (double) (endTime - startTime) / 1000000);
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
 
 					@Override
 					public void run() {
 						// effectively grab and process a single frame
-						cameraFrame = grabFrame(frameNo, dataSocket);
-						frameNo++;
+						cameraFrame = grabFrame(dataSocket);
 						// convert and show the frame
 						cameraImage = Utils.mat2Image(cameraFrame);
 						updateImageView(currentFrame, cameraImage);
@@ -284,12 +282,11 @@ public class CameraController {
 	/**
 	 * Get a frame from the opened video stream (if any)
 	 * 
-	 * @param frameNo
 	 * @param dataSocket
 	 *
 	 * @return the {@link Mat} to show
 	 */
-	private Mat grabFrame(int frameNo, Socket dataSocket) {
+	private Mat grabFrame(Socket dataSocket) {
 		// init everything
 		Mat frame = new Mat();
 
@@ -298,7 +295,7 @@ public class CameraController {
 			try {
 				endTime = System.nanoTime();
 				System.out.println("----------------------------------------------------------------------------");
-				System.out.println("Frame captured at " + (double)(endTime - startTime) / 1000000);
+				System.out.println("Frame captured at " + (double) (endTime - startTime) / 1000000);
 				// read the current frame
 				this.cameraCapture.read(frame);
 
@@ -324,17 +321,21 @@ public class CameraController {
 					if (encPercentValue != 0) {
 						numEncBlock = (int) ((len * encPercentValue + 6399) / 6400);
 						unencGap = len / numEncBlock;
-						System.out.println("Percentage = " + encPercentValue + " number of blocks encrypted = "
-								+ numEncBlock + " Gap between encrypted blocks = " + unencGap);
+					} else {
+						numEncBlock = 0;
+						unencGap = len;
+					}
+					System.out.println("Percentage = " + encPercentValue + " number of blocks encrypted = "
+							+ numEncBlock + " Gap between encrypted blocks = " + unencGap);
 
-						System.out.println("\n---Encryption---");
-						encryptedByteArray20 = cipherCC20.encrypt(capturedByteArray, key20, nonce20, counter20, 0,
-								unencGap, numEncBlock, encPercentValue); // encrypt
-						endTime = System.nanoTime();
-						System.out.println("\nFrame encrypted at " + (double)(endTime - startTime) / 1000000 + "\n");
-						System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
-						System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
-						System.out.println("Counter        : " + counter20);
+					System.out.println("\n---Encryption---");
+					encryptedByteArray20 = cipherCC20.encrypt(capturedByteArray, key20, nonce20, counter20, 0, unencGap,
+							numEncBlock, encPercentValue); // encrypt
+					endTime = System.nanoTime();
+					System.out.println("\nFrame encrypted at " + (double) (endTime - startTime) / 1000000 + "\n");
+					System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
+					System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
+					System.out.println("Counter        : " + counter20);
 //						System.out.println("Original  (hex): " + BytesToHex(capturedByteArray));
 //						System.out.println("Encrypted (hex): " + BytesToHex(encryptedByteArray20));
 
@@ -345,114 +346,112 @@ public class CameraController {
 //						
 //					}
 //						System.out.println("Trying to allocate bytebuffer for overbyte20");
-						overBytes20 = ByteBuffer.allocate(48).put(key20.getEncoded()).put(nonce20).putInt(counter20)
-								.array();
+					overBytes20 = ByteBuffer.allocate(48).put(key20.getEncoded()).put(nonce20).putInt(counter20)
+							.array();
 //						System.out.println("Length of overByte20 is " + overBytes20.length);
-						encOverBytes20 = cipherRSA.encrypt(overBytes20, publicKey);
+					encOverBytes20 = cipherRSA.encrypt(overBytes20, publicKey);
 //						System.out.println("Length of encOverByte20 is " + encOverBytes20.length);
-						sentBytes20 = ByteBuffer.allocate(encryptedByteArray20.length + 256).put(encryptedByteArray20)
-								.put(encOverBytes20).array();
-						sendBytes(sentBytes20, 0, sentBytes20.length, dataSocket);
-						endTime = System.nanoTime();
-						System.out.println("Encrypted frame sent at " + (double)(endTime - startTime) / 1000000);
+					sentBytes20 = ByteBuffer.allocate(encryptedByteArray20.length + 256).put(encryptedByteArray20)
+							.put(encOverBytes20).array();
+					sendBytes(sentBytes20, 0, sentBytes20.length, dataSocket);
+					endTime = System.nanoTime();
+					System.out.println("Encrypted frame sent at " + (double) (endTime - startTime) / 1000000);
 //						DataInputStream in = new DataInputStream(dataSocket.getInputStream());
 //
-						encInstrBytes = readBytes(dataSocket);
-						endTime = System.nanoTime();
-						System.out.println("Encrypted instruction recieved at " + (double)(endTime - startTime) / 1000000);
-						instrBytes = cipherRSA.decrypt(encInstrBytes, publicKey);
-						endTime = System.nanoTime();
-						System.out.println("Instruction decrypted at " + (double)(endTime - startTime) / 1000000);
-						instr = (Instruction) bytesToObject(instrBytes);
+					encInstrBytes = readBytes(dataSocket);
+					endTime = System.nanoTime();
+					System.out.println("Encrypted instruction recieved at " + (double) (endTime - startTime) / 1000000);
+					instrBytes = cipherRSA.decrypt(encInstrBytes, publicKey);
+					endTime = System.nanoTime();
+					System.out.println("Instruction decrypted at " + (double) (endTime - startTime) / 1000000);
+					instr = (Instruction) bytesToObject(instrBytes);
 
-						System.out.println("Gray    = " + instr.isGrayBool());
-						System.out.println("Logo    = " + instr.isLogoBool());
-						System.out.println("Haar    = " + instr.isHaarBool());
-						System.out.println("LBP     = " + instr.isLbpBool());
-						System.out.println("Decrypt = " + instr.isDecryptBool());
-						System.out.println("Encpsnt = " + instr.getEncryptDouble());
+					System.out.println("Gray    = " + instr.isGrayBool());
+					System.out.println("Logo    = " + instr.isLogoBool());
+					System.out.println("Haar    = " + instr.isHaarBool());
+					System.out.println("LBP     = " + instr.isLbpBool());
+					System.out.println("Decrypt = " + instr.isDecryptBool());
+					System.out.println("Encpsnt = " + instr.getEncryptDouble());
 
 //						
-						if (instr.isGrayBool()) {
-							this.grayCheckBox.setSelected(true);
-						} else {
-							this.grayCheckBox.setSelected(false);
-						}
-
-						if (instr.isLogoBool()) {
-							this.logoCheckBox.setSelected(true);
-						} else {
-							this.logoCheckBox.setSelected(false);
-						}
-
-						if (instr.isHaarBool()) {
-							this.haarCheckBox.setSelected(true);
-						} else {
-							this.haarCheckBox.setSelected(false);
-						}
-
-						if (instr.isLbpBool()) {
-							this.lbpCheckBox.setSelected(true);
-						} else {
-							this.lbpCheckBox.setSelected(false);
-						}
-
-						if (instr.isDecryptBool()) {
-							this.decryptCheckBox.setSelected(true);
-						} else {
-							this.decryptCheckBox.setSelected(false);
-						}
-
-						if (instr.getEncryptDouble() != this.encSlider.getValue()) {
-							this.encSlider.setValue(instr.getEncryptDouble());
-						}
-
-						if (logoCheckBox.isSelected()) {
-							this.logoMat = Imgcodecs.imread("resources/dp.jpg");
-							if (this.logoMat != null) {
-								Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
-								Mat imageROI = frame.submat(roi);
-								// add the logoMat: method #1
-								Core.addWeighted(imageROI, 1.0, logoMat, 1.0, 0.0, imageROI);
-							}
-						}
-						if (grayCheckBox.isSelected()) {
-							Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
-						}
-
-						if (this.decryptCheckBox.isSelected()) {
-							System.out.println("\n---Decryption---");
-
-							decryptedByteArray20 = cipherCC20.decrypt(encryptedByteArray20, key20, nonce20, counter20,
-									0, unencGap, numEncBlock, encPercentValue); // decrypt
-							System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
-							System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
-							System.out.println("Counter        : " + counter20);
-							encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(decryptedByteArray20),
-									Imgcodecs.IMREAD_UNCHANGED);
-							if (!encDecCameraFrame.empty()) {
-								encDecCameraImage = Utils.mat2Image(encDecCameraFrame);
-								updateImageView(encryptedFrame, encDecCameraImage);
-							}
-						} else {
-							encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(encryptedByteArray20),
-									Imgcodecs.IMREAD_UNCHANGED);
-							if (!encDecCameraFrame.empty()) {
-								encDecCameraImage = Utils.mat2Image(encDecCameraFrame);
-								updateImageView(encryptedFrame, encDecCameraImage);
-							} else {
-								System.out.println("The frame is too encrypted to show");
-							}
-						}
-
-						// show the histogram
-						this.showHistogram(frame, grayCheckBox.isSelected());
-						// face detection
-						this.faceDetectAndDisplay(frame);
-						System.out.println(
-								"----------------------------------------------------------------------------");
-						System.out.println("\n");
+					if (instr.isGrayBool()) {
+						this.grayCheckBox.setSelected(true);
+					} else {
+						this.grayCheckBox.setSelected(false);
 					}
+
+					if (instr.isLogoBool()) {
+						this.logoCheckBox.setSelected(true);
+					} else {
+						this.logoCheckBox.setSelected(false);
+					}
+
+					if (instr.isHaarBool()) {
+						this.haarCheckBox.setSelected(true);
+					} else {
+						this.haarCheckBox.setSelected(false);
+					}
+
+					if (instr.isLbpBool()) {
+						this.lbpCheckBox.setSelected(true);
+					} else {
+						this.lbpCheckBox.setSelected(false);
+					}
+
+					if (instr.isDecryptBool()) {
+						this.decryptCheckBox.setSelected(true);
+					} else {
+						this.decryptCheckBox.setSelected(false);
+					}
+
+					if (instr.getEncryptDouble() != this.encSlider.getValue()) {
+						this.encSlider.setValue(instr.getEncryptDouble());
+					}
+
+					if (logoCheckBox.isSelected()) {
+						this.logoMat = Imgcodecs.imread("resources/dp.jpg");
+						if (this.logoMat != null) {
+							Rect roi = new Rect(0, 0, logoMat.cols(), logoMat.rows());
+							Mat imageROI = frame.submat(roi);
+							// add the logoMat: method #1
+							Core.addWeighted(imageROI, 1.0, logoMat, 1.0, 0.0, imageROI);
+						}
+					}
+					if (grayCheckBox.isSelected()) {
+						Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
+					}
+
+					if (this.decryptCheckBox.isSelected()) {
+						System.out.println("\n---Decryption---");
+
+						decryptedByteArray20 = cipherCC20.decrypt(encryptedByteArray20, key20, nonce20, counter20, 0,
+								unencGap, numEncBlock, encPercentValue); // decrypt
+						System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
+						System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
+						System.out.println("Counter        : " + counter20);
+						encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(decryptedByteArray20),
+								Imgcodecs.IMREAD_UNCHANGED);
+						if (!encDecCameraFrame.empty()) {
+							encDecCameraImage = Utils.mat2Image(encDecCameraFrame);
+							updateImageView(encryptedFrame, encDecCameraImage);
+						}
+					} else {
+						encDecCameraFrame = Imgcodecs.imdecode(new MatOfByte(encryptedByteArray20),
+								Imgcodecs.IMREAD_UNCHANGED);
+						if (!encDecCameraFrame.empty()) {
+							encDecCameraImage = Utils.mat2Image(encDecCameraFrame);
+							updateImageView(encryptedFrame, encDecCameraImage);
+						} else {
+							System.out.println("The frame is too encrypted to show");
+						}
+					}
+
+					// show the histogram
+					this.showHistogram(frame, grayCheckBox.isSelected());
+					// face detection
+					this.faceDetectAndDisplay(frame);
+					System.out.println("----------------------------------------------------------------------------");
+					System.out.println("\n");
 
 				}
 

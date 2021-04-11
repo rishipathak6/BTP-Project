@@ -327,7 +327,7 @@ public class UserController {
 		try {
 			in = new DataInputStream(server.getInputStream());
 		} catch (IOException e2) {
-			// TODO Auto-generated catch block
+			System.out.println("Can't get datainputstream from Server at 3000");
 			e2.printStackTrace();
 		}
 
@@ -335,7 +335,6 @@ public class UserController {
 		try {
 			len = in.readInt();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Can't read length of array from bytes");
 			e.printStackTrace();
 		}
@@ -344,7 +343,6 @@ public class UserController {
 			try {
 				in.readFully(incomingByteArray);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Can't read transmitted bytes");
 				e.printStackTrace();
 			}
@@ -374,8 +372,13 @@ public class UserController {
 		bb.get(counterArray);
 
 		len = encryptedByteArray.length;
-		numEncBlock = (int) ((len * instr.getEncryptDouble() + 6399) / 6400);
-		unencGap = len / numEncBlock;
+		if (instr.getEncryptDouble() != 0) {
+			numEncBlock = (int) ((len * instr.getEncryptDouble() + 6399) / 6400);
+			unencGap = len / numEncBlock;
+		} else {
+			numEncBlock = 0;
+			unencGap = len;
+		}
 		key20 = new SecretKeySpec(keyArray, 0, keyArray.length, "ChaCha20");
 		counter20 = ByteBuffer.wrap(counterArray).getInt();
 
@@ -389,7 +392,6 @@ public class UserController {
 			viewedByteArray = cipherCC20.decrypt(encryptedByteArray, key20, nonce20, counter20, 0, unencGap,
 					numEncBlock, instr.getEncryptDouble());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("Output cant be decrypted");
 			e.printStackTrace();
 		} // decrypt
@@ -402,13 +404,12 @@ public class UserController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				File outputFile = new File("resources/ss.jpg");
 				BufferedImage bImage = null;
 				try {
 					bImage = MatToBufferedImage(userFrame);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					System.out.println("Decrypted frame can't be coverted to Buffered image");
 					e1.printStackTrace();
 				}
 				try {
@@ -599,7 +600,6 @@ public class UserController {
 		try {
 			in = socket.getInputStream();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Can't read bytes from socket");
 			e.printStackTrace();
 		}
@@ -609,7 +609,6 @@ public class UserController {
 		try {
 			len = dis.readInt();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Can't read length of array from bytes");
 			e.printStackTrace();
 		}
@@ -618,7 +617,6 @@ public class UserController {
 			try {
 				dis.readFully(data);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Can't read transmitted bytes");
 				e.printStackTrace();
 			}
@@ -776,21 +774,6 @@ public class UserController {
 		Rect[] facesArray = faces.toArray();
 		for (int i = 0; i < facesArray.length; i++)
 			Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
-	}
-
-	private boolean dataIsValidJPEG(byte[] data) {
-		if (data == null || data.length < 2)
-			return false;
-
-		int totalBytes = data.length;
-		String bytes = BytesToHex(data);
-
-		System.out.println("The first two bytes of decrypted image are " + bytes.charAt(0) + bytes.charAt(1) + " "
-				+ bytes.charAt(2) + bytes.charAt(3) + " The last two bytes are " + bytes.charAt(totalBytes - 4)
-				+ bytes.charAt(totalBytes - 3) + " " + bytes.charAt(totalBytes - 2) + bytes.charAt(totalBytes - 1));
-
-		return (bytes.charAt(0) == (char) 0xff && bytes.charAt(1) == (char) 0xd8
-				&& bytes.charAt(totalBytes - 2) == (char) 0xff && bytes.charAt(totalBytes - 1) == (char) 0xd9);
 	}
 
 	private static String BytesToHex(byte[] bytes) {
