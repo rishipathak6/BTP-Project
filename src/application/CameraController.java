@@ -111,7 +111,6 @@ public class CameraController {
 	private static int cameraId = 0;
 	private CascadeClassifier faceCascade = new CascadeClassifier();
 	private int absoluteFaceSize = 0;
-	private BufferedImage bufferedImage;
 	private byte[] capturedByteArray;
 	private int len;
 	private int numEncBlock;
@@ -138,6 +137,14 @@ public class CameraController {
 	private Image encDecCameraImage;
 	private long startTime;
 	private long endTime;
+	private long ccTime1;
+	private long ccTime2;
+	private double ccMinTime = Long.MAX_VALUE;
+	private double ccSumTime;
+	private long rsaTime1;
+	private long rsaTime2;
+	private double rsaMinTime = Long.MAX_VALUE;
+	private double rsaSumTime;
 
 //	System.setOut(new PrintStream(new FileOutputStream("client.txt")));
 	public class ControlServer extends Thread {
@@ -227,8 +234,8 @@ public class CameraController {
 				this.haarCheckBox.setSelected(true);
 				this.checkboxSelection(
 						"C:/Users/radha/Documents/MyFirstJFXApp/src/application/resources/haarcascades/haarcascade_frontalface_alt.xml");
-				this.encSlider.setValue(3.0);
-				this.encPercent.setText("3.0");
+				this.encSlider.setValue(5.0);
+				this.encPercent.setText("5.0");
 				encSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 					encPercent.setText(Double.toString(newValue.doubleValue()));
 				});
@@ -256,6 +263,8 @@ public class CameraController {
 						// convert and show the frame
 						cameraImage = Utils.mat2Image(cameraFrame);
 						updateImageView(currentFrame, cameraImage);
+						endTime = System.nanoTime();
+						System.out.println("Camera frame displayed at " + (double) (endTime - startTime) / 1000000);
 					}
 				};
 
@@ -329,10 +338,23 @@ public class CameraController {
 							+ numEncBlock + " Gap between encrypted blocks = " + unencGap);
 
 					System.out.println("\n---Encryption---");
+					endTime = System.nanoTime();
+					System.out
+							.println("\nFrame encryption just started at " + (double) (endTime - startTime) / 1000000);
+					ccTime1 = endTime;
+
 					encryptedByteArray20 = cipherCC20.encrypt(capturedByteArray, key20, nonce20, counter20, 0, unencGap,
 							numEncBlock, encPercentValue); // encrypt
+
 					endTime = System.nanoTime();
-					System.out.println("\nFrame encrypted at " + (double) (endTime - startTime) / 1000000 + "\n");
+					System.out.println("Frame encrypted at " + (double) (endTime - startTime) / 1000000 + "\n");
+					ccTime2 = endTime;
+					if (ccMinTime > (double) ((ccTime2 - ccTime1) / 1000000.000000)) {
+						ccMinTime = (double) ((ccTime2 - ccTime1) / 1000000.000000);
+					}
+					ccSumTime += (ccTime2 - ccTime1);
+					System.out.println("- ChaCha20 encryption min time: " + ccMinTime);
+					System.out.println("- ChaCha20 encryption avg time: " + ccSumTime / (1000000 * counter20));
 					System.out.println("Key       (hex): " + BytesToHex(key20.getEncoded()));
 					System.out.println("Nonce     (hex): " + BytesToHex(nonce20));
 					System.out.println("Counter        : " + counter20);
@@ -361,9 +383,19 @@ public class CameraController {
 					encInstrBytes = readBytes(dataSocket);
 					endTime = System.nanoTime();
 					System.out.println("Encrypted instruction recieved at " + (double) (endTime - startTime) / 1000000);
+					rsaTime1 = endTime;
+
 					instrBytes = cipherRSA.decrypt(encInstrBytes, publicKey);
+
 					endTime = System.nanoTime();
 					System.out.println("Instruction decrypted at " + (double) (endTime - startTime) / 1000000);
+					rsaTime2 = endTime;
+					if (rsaMinTime > (double) ((rsaTime2 - rsaTime1) / 1000000.000000)) {
+						rsaMinTime = (double) ((rsaTime2 - rsaTime1) / 1000000.000000);
+					}
+					rsaSumTime += (rsaTime2 - rsaTime1);
+					System.out.println("- RSA decryption min time: " + rsaMinTime);
+					System.out.println("- RSA decryption avg time: " + rsaSumTime / (1000000 * counter20));
 					instr = (Instruction) bytesToObject(instrBytes);
 
 					System.out.println("Gray    = " + instr.isGrayBool());
@@ -445,6 +477,8 @@ public class CameraController {
 							System.out.println("The frame is too encrypted to show");
 						}
 					}
+					endTime = System.nanoTime();
+					System.out.println("Encrypted frame displayed at " + (double) (endTime - startTime) / 1000000);
 
 					// show the histogram
 					this.showHistogram(frame, grayCheckBox.isSelected());

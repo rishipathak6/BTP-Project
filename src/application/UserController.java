@@ -132,7 +132,7 @@ public class UserController {
 	private Thread t;
 	private Socket controlSocket;
 
-	private Instruction instr = new Instruction(false, false, true, false, false, 3);
+	private Instruction instr = new Instruction(false, false, true, false, false, 5.0);
 	private byte[] instrBytes;
 	private byte[] encInstrbytes;
 
@@ -148,6 +148,14 @@ public class UserController {
 
 	private long startTime;
 	private long endTime;
+	private long ccTime1;
+	private long ccTime2;
+	private double ccMinTime = Long.MAX_VALUE;
+	private double ccSumTime;
+	private long rsaTime1;
+	private long rsaTime2;
+	private double rsaMinTime = Long.MAX_VALUE;
+	private double rsaSumTime;
 
 	public class DataServer extends Thread {
 
@@ -183,6 +191,8 @@ public class UserController {
 						// convert and show the frame
 						userImage = Utils.mat2Image(userFrame);
 						updateImageView(encryptedFrame, userImage);
+						endTime = System.nanoTime();
+						System.out.println("Decrypted frame displayed at " + (double) (endTime - startTime) / 1000000);
 					}
 				};
 
@@ -388,6 +398,8 @@ public class UserController {
 		System.out.println("Counter        : " + counter20);
 		endTime = System.nanoTime();
 		System.out.println("Starting data decryption at " + (double) (endTime - startTime) / 1000000);
+		ccTime1 = endTime;
+
 		try {
 			viewedByteArray = cipherCC20.decrypt(encryptedByteArray, key20, nonce20, counter20, 0, unencGap,
 					numEncBlock, instr.getEncryptDouble());
@@ -395,8 +407,16 @@ public class UserController {
 			System.out.println("Output cant be decrypted");
 			e.printStackTrace();
 		} // decrypt
+
 		endTime = System.nanoTime();
 		System.out.println("Data decrypted at " + (double) (endTime - startTime) / 1000000);
+		ccTime2 = endTime;
+		if (ccMinTime > (double) ((ccTime2 - ccTime1) / 1000000.000000)) {
+			ccMinTime = (double) ((ccTime2 - ccTime1) / 1000000.000000);
+		}
+		ccSumTime += (ccTime2 - ccTime1);
+		System.out.println("- ChaCha20 decryption min time: " + ccMinTime);
+		System.out.println("- ChaCha20 decryption avg time: " + ccSumTime / (1000000 * counter20));
 
 		userFrame = Imgcodecs.imdecode(new MatOfByte(viewedByteArray), Imgcodecs.IMREAD_UNCHANGED);
 
@@ -490,7 +510,8 @@ public class UserController {
 			if (instr.isDecryptBool())
 				instr.setDecryptBool(false);
 		}
-
+		endTime = System.nanoTime();
+		System.out.println("Encrypted frame displayed at " + (double) (endTime - startTime) / 1000000);
 		if (encSlider.getValue() != instr.getEncryptDouble()) {
 			instr.setEncryptDouble(encSlider.getValue());
 		}
@@ -504,14 +525,24 @@ public class UserController {
 		}
 		endTime = System.nanoTime();
 		System.out.println("Starting Instruction encryption at " + (double) (endTime - startTime) / 1000000);
+		rsaTime1 = endTime;
+
 		try {
 			encInstrbytes = cipherRSA.encrypt(instrBytes, keypair.getPrivate());
 		} catch (Exception e1) {
 			System.out.println("Can't encrypt instruction");
 			e1.printStackTrace();
 		}
+
 		endTime = System.nanoTime();
 		System.out.println("Instruction encrypted at " + (double) (endTime - startTime) / 1000000);
+		rsaTime2 = endTime;
+		if (rsaMinTime > (double) ((rsaTime2 - rsaTime1) / 1000000.000000)) {
+			rsaMinTime = (double) ((rsaTime2 - rsaTime1) / 1000000.000000);
+		}
+		rsaSumTime += (rsaTime2 - rsaTime1);
+		System.out.println("- RSA encryption min time: " + rsaMinTime);
+		System.out.println("- RSA encryption avg time: " + rsaSumTime / (1000000 * counter20));
 		try {
 			sendBytes(encInstrbytes, 0, encInstrbytes.length, server);
 		} catch (IOException e) {
